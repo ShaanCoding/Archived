@@ -124,6 +124,10 @@ float: left;
 }
 
 .watchme{
-    background-image: url("/Pictures/Watchme.png") no-repeat;
+    color: white;
+    padding:100px 20px;
+    background-image: url("./Pictures/watchme.png");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
