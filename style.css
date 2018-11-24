@@ -124,8 +124,6 @@ float: left;
 }
 
 .watchme{
-    padding:100px 20px;
     background-image: url("/Pictures/Watchme.png") no-repeat;
     background-size: cover;
-    background-position: center center;
 }
