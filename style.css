@@ -126,7 +126,7 @@ float: left;
 .watchme{
     color: white;
     padding:100px 20px;
-    background-image: url("Pictures/FreeCodeCamp.jpg");
+    background-image: url("./Pictures/Watchme.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
