@@ -1,6 +1,6 @@
 # Github Following Bot
 This bot is a simple bot made for github, it is designed to mass follow everyone following the user listed in the githubUsers.txt file.
-This tool was made in reason to mass follow users in turn to get people to follow back, thus yourself getting igthub followers.
+This tool was made in reason to mass follow users in turn to get people to follow back, thus yourself getting github followers.
 **WARNING: USE AT YOUR OWN RISK**
 ## Requirements
 * Selenium library installed in python
