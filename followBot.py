@@ -1,11 +1,15 @@
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 import time
+
+options = Options()
+options.headless = True
 
 print("[INFO]: Running")
 userName = "Enter Github Username Here!"
 password = "Enter Github Password Here!"
 
-driver = webdriver.Firefox()
+driver = webdriver.Firefox(options=options)
 driver.get("http://github.com/login")
 
 usr = driver.find_element_by_id("login_field")
@@ -27,7 +31,7 @@ for user in userArray:
     driver.get("https://github.com/{}/followers".format(user))
     while(loop==True):
         try:
-            next = driver.find_element_by_partial_link_text('Next')
+            next = driver.find_element_by_link_text('Next')
             driver.get(next.get_attribute("href"))
         except:
             loop = False
