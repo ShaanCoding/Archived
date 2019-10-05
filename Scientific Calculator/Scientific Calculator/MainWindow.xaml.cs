@@ -31,105 +31,121 @@ namespace Scientific_Calculator
         private void Zero_Click(object sender, RoutedEventArgs e)
         {
             expression += "0";
+            expressionDisplay.Text = expression;
         }
 
         private void One_Click(object sender, RoutedEventArgs e)
         {
             expression += "1";
+            expressionDisplay.Text = expression;
         }
 
         private void Two_Click(object sender, RoutedEventArgs e)
         {
             expression += "2";
+            expressionDisplay.Text = expression;
         }
 
         private void Three_Click(object sender, RoutedEventArgs e)
         {
             expression += "3";
+            expressionDisplay.Text = expression;
         }
 
         private void Four_Click(object sender, RoutedEventArgs e)
         {
             expression += "4";
+            expressionDisplay.Text = expression;
         }
 
         private void Five_Click(object sender, RoutedEventArgs e)
         {
             expression += "5";
+            expressionDisplay.Text = expression;
         }
 
         private void Six_Click(object sender, RoutedEventArgs e)
         {
             expression += "6";
+            expressionDisplay.Text = expression;
         }
 
         private void Seven_Click(object sender, RoutedEventArgs e)
         {
             expression += "7";
+            expressionDisplay.Text = expression;
         }
 
         private void Eight_Click(object sender, RoutedEventArgs e)
         {
             expression += "8";
+            expressionDisplay.Text = expression;
         }
 
         private void Nine_Click(object sender, RoutedEventArgs e)
         {
             expression += "9";
+            expressionDisplay.Text = expression;
         }
 
         private void Dot_Click(object sender, RoutedEventArgs e)
         {
             expression += ".";
+            expressionDisplay.Text = expression;
         }
 
         private void Equal_Click(object sender, RoutedEventArgs e)
         {
-           MessageBox.Show(Solver.solveValue(expression).ToString());
+            expression = Solver.solveValue(expression).ToString();
+            expressionDisplay.Text = expression;
         }
 
         private void Division_Click(object sender, RoutedEventArgs e)
         {
             expression += "/";
+            expressionDisplay.Text = expression;
         }
 
         private void Multiplication_Click(object sender, RoutedEventArgs e)
         {
             expression += "*";
+            expressionDisplay.Text = expression;
         }
 
         private void Minus_Click(object sender, RoutedEventArgs e)
         {
             expression += "-";
+            expressionDisplay.Text = expression;
         }
 
         private void Plus_Click(object sender, RoutedEventArgs e)
         {
             expression += "+";
+            expressionDisplay.Text = expression;
         }
 
         private void ParenthesisLeft_Click(object sender, RoutedEventArgs e)
         {
             expression += "(";
+            expressionDisplay.Text = expression;
         }
 
         private void ParenthesisRight_Click(object sender, RoutedEventArgs e)
         {
             expression += ")";
-        }
-        private void ViewExpression_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show(expression);
+            expressionDisplay.Text = expression;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             expression.Remove(expression.Length - 1);
+            expressionDisplay.Text = expression;
         }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             expression = "";
+            expressionDisplay.Text = expression;
         }
     }
 }
