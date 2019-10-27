@@ -19,14 +19,16 @@
         <Button Content="9" HorizontalAlignment="Left" Margin="318,245,0,0" VerticalAlignment="Top" Width="149" Click="Nine_Click" Height="38"/>
         <Button Content="." HorizontalAlignment="Left" Margin="318,374,0,0" VerticalAlignment="Top" Width="149" Click="Dot_Click" Height="38"/>
         <Button Content="=" HorizontalAlignment="Left" Margin="472,374,0,0" VerticalAlignment="Top" Width="149" Click="Equal_Click" Height="38"/>
-        <Button Content="+" HorizontalAlignment="Left" Margin="472,331,0,0" VerticalAlignment="Top" Width="149" Click="Plus_Click" Height="38"/>
-        <Button Content="-" HorizontalAlignment="Left" Margin="472,288,0,0" VerticalAlignment="Top" Width="149" Click="Minus_Click" Height="38"/>
-        <Button Content="x" HorizontalAlignment="Left" Margin="472,245,0,0" VerticalAlignment="Top" Width="149" Click="Multiplication_Click" Height="38"/>
-        <Button Content="÷" HorizontalAlignment="Left" Margin="472,202,0,0" VerticalAlignment="Top" Width="149" Click="Division_Click" Height="38"/>
-        <Button Content="(" HorizontalAlignment="Left" Margin="626,374,0,0" VerticalAlignment="Top" Width="149" Click="ParenthesisLeft_Click" Height="38"/>
-        <Button Content=")" HorizontalAlignment="Left" Margin="626,331,0,0" VerticalAlignment="Top" Width="149" Click="ParenthesisRight_Click" Height="38"/>
-        <Button Content="DEL" HorizontalAlignment="Left" Margin="318,202,0,0" VerticalAlignment="Top" Width="149" Click="Delete_Click" Height="38"/>
-        <Button Content="CE" HorizontalAlignment="Left" Margin="164,202,0,0" VerticalAlignment="Top" Width="149" Click="Clear_Click" Height="38"/>
-        <TextBox x:Name="expressionDisplay" HorizontalAlignment="Left" Height="66" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="765"/>
+        <Button Content="+" HorizontalAlignment="Left" Margin="626,331,0,0" VerticalAlignment="Top" Width="149" Click="Plus_Click" Height="38"/>
+        <Button Content="-" HorizontalAlignment="Left" Margin="472,331,0,0" VerticalAlignment="Top" Width="149" Click="Minus_Click" Height="38"/>
+        <Button Content="x" HorizontalAlignment="Left" Margin="626,288,0,0" VerticalAlignment="Top" Width="149" Click="Multiplication_Click" Height="38"/>
+        <Button Content="÷" HorizontalAlignment="Left" Margin="626,374,0,0" VerticalAlignment="Top" Width="149" Click="Division_Click" Height="38"/>
+        <Button Content="(" HorizontalAlignment="Left" Margin="472,245,0,0" VerticalAlignment="Top" Width="149" Click="ParenthesisLeft_Click" Height="38"/>
+        <Button Content=")" HorizontalAlignment="Left" Margin="626,245,0,0" VerticalAlignment="Top" Width="149" Click="ParenthesisRight_Click" Height="38"/>
+        <Button Content="DEL" HorizontalAlignment="Left" Margin="164,202,0,0" VerticalAlignment="Top" Width="149" Click="Delete_Click" Height="38"/>
+        <Button Content="CE" HorizontalAlignment="Left" Margin="10,202,0,0" VerticalAlignment="Top" Width="149" Click="Clear_Click" Height="38"/>
+        <TextBox x:Name="expressionDisplay" HorizontalAlignment="Left" Height="66" Margin="10,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="765" IsReadOnly="True"/>
+        <Button Content="POW" HorizontalAlignment="Left" Margin="472,288,0,0" VerticalAlignment="Top" Width="149" Click="Power_Click" Height="38"/>
+        <Button Content="" HorizontalAlignment="Left" Margin="10,374,0,0" VerticalAlignment="Top" Width="149" Click="Nothing_Click" Height="38"/>
     </Grid>
 </Window>

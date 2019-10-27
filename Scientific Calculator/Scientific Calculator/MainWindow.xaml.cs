@@ -147,5 +147,16 @@ namespace Scientific_Calculator
             expression = "";
             expressionDisplay.Text = expression;
         }
+
+        private void Power_Click(object sender, RoutedEventArgs e)
+        {
+            expression += "^";
+            expressionDisplay.Text = expression;
+        }
+
+        private void Nothing_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
