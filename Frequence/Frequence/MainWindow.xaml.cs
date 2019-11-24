@@ -50,6 +50,13 @@ namespace Frequence
             mciSendString(command, null, 0, IntPtr.Zero);
         }
 
+        public void Volume(string alias, int volume)
+        {
+            string format = @"setaudio ""{0}"" volume to {1}";
+            string command = string.Format(format, alias, volume.ToString());
+            mciSendString(command, null, 0, IntPtr.Zero);
+        }
+
         [DllImport("winmm.dll")]
         private static extern long mciSendString(string command, StringBuilder buffer, int bufferSize, IntPtr hwndCallback);
 
@@ -340,6 +347,134 @@ namespace Frequence
             {
                 brownNoise.Stop("brownnoise");
                 brownNoiseBoolean = true;
+            }
+        }
+
+        private void RainSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (rainBoolean == false && rain != null)
+            {
+                rain.Volume("rain", Convert.ToInt32(rainSlider.Value));
+            }
+        }
+
+        private void ThunderstormSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (thunderstormBoolean == false && thunderStorm != null)
+            {
+                thunderStorm.Volume("thunderstorm", Convert.ToInt32(thunderstormSlider.Value));
+            }
+        }
+
+        private void WindSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (windBoolean == false && wind != null)
+            {
+                wind.Volume("wind", Convert.ToInt32(windSlider.Value));
+            }
+        }
+
+        private void ForestSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (forestBoolean == false && forest != null)
+            {
+                forest.Volume("forest", Convert.ToInt32(forestSlider.Value));
+            }
+        }
+
+        private void LeavesSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (leavesBoolean == false && leaves != null)
+            {
+                leaves.Volume("leaves", Convert.ToInt32(leavesSlider.Value));
+            }
+        }
+
+        private void WaterStreamSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (waterStreamBoolean == false && waterStream != null)
+            {
+                waterStream.Volume("waterstream", Convert.ToInt32(waterStreamSlider.Value));
+            }
+        }
+
+        private void SeaSideSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (seaSideBoolean == false && seaSide != null)
+            {
+                seaSide.Volume("seaside", Convert.ToInt32(seaSideSlider.Value));
+            }
+        }
+
+        private void WaterSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (waterBoolean == false && water != null)
+            {
+                water.Volume("water", Convert.ToInt32(waterSlider.Value));
+            }
+        }
+
+        private void FirePlaceSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (firePlaceBoolean == false && firePlace != null)
+            {
+                firePlace.Volume("fireplace", Convert.ToInt32(firePlaceSlider.Value));
+            }
+        }
+
+        private void SummerNightSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (summerNightBoolean == false && summerNight != null)
+            {
+                summerNight.Volume("summernight", Convert.ToInt32(summerNightSlider.Value));
+            }
+        }
+
+        private void CoffeeShopSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (coffeeShopBoolean == false && coffeeShop != null)
+            {
+                coffeeShop.Volume("coffeeshop", Convert.ToInt32(coffeeShopSlider.Value));
+            }
+        }
+
+        private void TrainSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (trainBoolean == false && train != null)
+            {
+                train.Volume("train", Convert.ToInt32(trainSlider.Value));
+            }
+        }
+
+        private void FanSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (fanBoolean == false && fan != null)
+            {
+                fan.Volume("fan", Convert.ToInt32(fanSlider.Value));
+            }
+        }
+
+        private void WhiteNoiseSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (whiteNoiseBoolean == false && whiteNoise != null)
+            {
+                whiteNoise.Volume("whitenoise", Convert.ToInt32(whiteNoiseSlider.Value));
+            }
+        }
+
+        private void PinkNoiseSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (pinkNoiseBoolean == false && pinkNoise != null)
+            {
+                pinkNoise.Volume("pinknoise", Convert.ToInt32(pinkNoiseSlider.Value));
+            }
+        }
+
+        private void BrownNoiseSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (brownNoiseBoolean == false && brownNoise != null)
+            {
+                brownNoise.Volume("brownnoise", Convert.ToInt32(brownNoiseSlider.Value));
             }
         }
     }

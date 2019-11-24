@@ -8,21 +8,37 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Button x:Name="RainButton" Content="Rain" HorizontalAlignment="Left" Margin="42,34,0,0" VerticalAlignment="Top" Width="75" Click="RainButton_Click"/>
-        <Button x:Name="ThunderstormButton" Content="Thunderstorm" HorizontalAlignment="Left" Margin="138,34,0,0" VerticalAlignment="Top" Width="75" Click="ThunderstormButton_Click"/>
+        <Button x:Name="ThunderstormButton" Content="Thunderstorm" HorizontalAlignment="Left" Margin="404,34,0,0" VerticalAlignment="Top" Width="75" Click="ThunderstormButton_Click"/>
         <Button x:Name="WindButton" Content="Wind" HorizontalAlignment="Left" Margin="42,59,0,0" VerticalAlignment="Top" Width="75" Click="WindButton_Click"/>
-        <Button x:Name="ForestButton" Content="Forest" HorizontalAlignment="Left" Margin="138,59,0,0" VerticalAlignment="Top" Width="75" Click="ForestButton_Click"/>
+        <Button x:Name="ForestButton" Content="Forest" HorizontalAlignment="Left" Margin="404,59,0,0" VerticalAlignment="Top" Width="75" Click="ForestButton_Click"/>
         <Button x:Name="LeavesButton" Content="Leaves" HorizontalAlignment="Left" Margin="42,85,0,0" VerticalAlignment="Top" Width="75" Click="LeavesButton_Click"/>
-        <Button x:Name="WaterStreamButton" Content="Water Stream" HorizontalAlignment="Left" Margin="138,85,0,0" VerticalAlignment="Top" Width="75" Click="WaterStreamButton_Click"/>
+        <Button x:Name="WaterStreamButton" Content="Water Stream" HorizontalAlignment="Left" Margin="404,85,0,0" VerticalAlignment="Top" Width="75" Click="WaterStreamButton_Click"/>
         <Button x:Name="SeaSideButton" Content="Sea Side" HorizontalAlignment="Left" Margin="42,110,0,0" VerticalAlignment="Top" Width="75" Click="SeaSideButton_Click"/>
-        <Button x:Name="WaterButton" Content="Water" HorizontalAlignment="Left" Margin="138,110,0,0" VerticalAlignment="Top" Width="75" Click="WaterButton_Click"/>
+        <Button x:Name="WaterButton" Content="Water" HorizontalAlignment="Left" Margin="404,110,0,0" VerticalAlignment="Top" Width="75" Click="WaterButton_Click"/>
         <Button x:Name="FirePlaceButton" Content="Fire Place" HorizontalAlignment="Left" Margin="42,136,0,0" VerticalAlignment="Top" Width="75" Click="FirePlaceButton_Click"/>
-        <Button x:Name="SummerNightButton" Content="Summmer Night" HorizontalAlignment="Left" Margin="138,136,0,0" VerticalAlignment="Top" Width="75" Click="SummerNightButton_Click"/>
+        <Button x:Name="SummerNightButton" Content="Summmer Night" HorizontalAlignment="Left" Margin="404,136,0,0" VerticalAlignment="Top" Width="75" Click="SummerNightButton_Click"/>
         <Button x:Name="CoffeeShopButton" Content="Coffee Shop" HorizontalAlignment="Left" Margin="42,161,0,0" VerticalAlignment="Top" Width="75" Click="CoffeeShopButton_Click"/>
-        <Button x:Name="TrainButton" Content="Train" HorizontalAlignment="Left" Margin="138,161,0,0" VerticalAlignment="Top" Width="75" Click="TrainButton_Click"/>
+        <Button x:Name="TrainButton" Content="Train" HorizontalAlignment="Left" Margin="404,161,0,0" VerticalAlignment="Top" Width="75" Click="TrainButton_Click"/>
         <Button x:Name="FanButton" Content="Fan" HorizontalAlignment="Left" Margin="42,187,0,0" VerticalAlignment="Top" Width="75" Click="FanButton_Click"/>
-        <Button x:Name="WhiteNoiseButton" Content="White Noise" HorizontalAlignment="Left" Margin="138,187,0,0" VerticalAlignment="Top" Width="75" Click="WhiteNoiseButton_Click"/>
+        <Button x:Name="WhiteNoiseButton" Content="White Noise" HorizontalAlignment="Left" Margin="404,187,0,0" VerticalAlignment="Top" Width="75" Click="WhiteNoiseButton_Click"/>
         <Button x:Name="PinkNoiseButton" Content="Pink Noise" HorizontalAlignment="Left" Margin="42,212,0,0" VerticalAlignment="Top" Width="75" Click="PinkNoiseButton_Click"/>
-        <Button x:Name="BrownNoiseButton" Content="Brown Noise" HorizontalAlignment="Left" Margin="138,212,0,0" VerticalAlignment="Top" Width="75" Click="BrownNoiseButton_Click"/>
+        <Button x:Name="BrownNoiseButton" Content="Brown Noise" HorizontalAlignment="Left" Margin="404,212,0,0" VerticalAlignment="Top" Width="75" Click="BrownNoiseButton_Click"/>
+        <Slider x:Name="rainSlider" HorizontalAlignment="Left" Margin="134,34,0,0" VerticalAlignment="Top" Width="199" Minimum="1" Maximum="1000" SmallChange="1" Value="500" ValueChanged="RainSlider_ValueChanged"/>
+        <Slider x:Name="windSlider" HorizontalAlignment="Left" Margin="134,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.375,-1.833" Width="199" Value="500" SmallChange="1" Maximum="1000" Minimum="1" ValueChanged="WindSlider_ValueChanged"/>
+        <Slider x:Name="leavesSlider" HorizontalAlignment="Left" Margin="134,82,0,0" VerticalAlignment="Top" Width="199" SmallChange="1" Maximum="1000" Minimum="1" Value="500" ValueChanged="LeavesSlider_ValueChanged"/>
+        <Slider x:Name="seaSideSlider" HorizontalAlignment="Left" Margin="134,110,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SeaSideSlider_ValueChanged"/>
+        <Slider x:Name="firePlaceSlider" HorizontalAlignment="Left" Margin="134,136,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FirePlaceSlider_ValueChanged"/>
+        <Slider x:Name="coffeeShopSlider" HorizontalAlignment="Left" Margin="134,163,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="CoffeeShopSlider_ValueChanged"/>
+        <Slider x:Name="fanSlider" HorizontalAlignment="Left" Margin="134,189,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FanSlider_ValueChanged"/>
+        <Slider x:Name="pinkNoiseSlider" HorizontalAlignment="Left" Margin="130,214,0,0" VerticalAlignment="Top" Width="203" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="PinkNoiseSlider_ValueChanged"/>
+        <Slider x:Name="thunderstormSlider" HorizontalAlignment="Left" Margin="498,34,0,0" VerticalAlignment="Top" Width="154" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ThunderstormSlider_ValueChanged"/>
+        <Slider x:Name="forestSlider" HorizontalAlignment="Left" Margin="498,59,0,0" VerticalAlignment="Top" Width="134" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ForestSlider_ValueChanged"/>
+        <Slider x:Name="waterStreamSlider" HorizontalAlignment="Left" Margin="498,85,0,0" VerticalAlignment="Top" Width="160" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterStreamSlider_ValueChanged"/>
+        <Slider x:Name="waterSlider" HorizontalAlignment="Left" Margin="498,110,0,0" VerticalAlignment="Top" Width="158" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterSlider_ValueChanged"/>
+        <Slider x:Name="summerNightSlider" HorizontalAlignment="Left" Margin="498,136,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SummerNightSlider_ValueChanged"/>
+        <Slider x:Name="trainSlider" HorizontalAlignment="Left" Margin="498,161,0,0" VerticalAlignment="Top" Width="183" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="TrainSlider_ValueChanged"/>
+        <Slider x:Name="whiteNoiseSlider" HorizontalAlignment="Left" Margin="505,189,0,0" VerticalAlignment="Top" Width="153" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WhiteNoiseSlider_ValueChanged"/>
+        <Slider x:Name="brownNoiseSlider" HorizontalAlignment="Left" Margin="505,214,0,0" VerticalAlignment="Top" Width="167" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="BrownNoiseSlider_ValueChanged"/>
 
     </Grid>
 </Window>
