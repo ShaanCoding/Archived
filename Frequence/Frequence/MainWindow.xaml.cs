@@ -124,6 +124,23 @@ namespace Frequence
             whiteNoise = new OggPlayer((Environment.CurrentDirectory + @"\Sound\whitenoise.mp3"), "whitenoise");
             pinkNoise = new OggPlayer((Environment.CurrentDirectory + @"\Sound\pinknoise.mp3"), "pinknoise");
             brownNoise = new OggPlayer((Environment.CurrentDirectory + @"\Sound\brownnoise.mp3"), "brownnoise");
+
+            rain.Volume("rain", 500);
+            thunderStorm.Volume("thunderstorm", 500);
+            wind.Volume("wind", 500);
+            forest.Volume("forest", 500);
+            leaves.Volume("leaves", 500);
+            waterStream.Volume("waterstream", 500);
+            seaSide.Volume("seaside", 500);
+            water.Volume("water", 500);
+            firePlace.Volume("fireplace", 500);
+            summerNight.Volume("summernight", 500);
+            coffeeShop.Volume("coffeeshop", 500);
+            train.Volume("train", 500);
+            fan.Volume("fan", 500);
+            whiteNoise.Volume("whitenoise", 500);
+            pinkNoise.Volume("pinknoise", 500);
+            brownNoise.Volume("brownnoise", 500);
         }
 
         private void RainButton_Click(object sender, RoutedEventArgs e)
@@ -242,12 +259,12 @@ namespace Frequence
         {
             if (firePlaceBoolean == true)
             {
-                firePlace.Play("fire");
+                firePlace.Play("fireplace");
                 firePlaceBoolean = false;
             }
             else if (firePlaceBoolean == false)
             {
-                firePlace.Stop("fire");
+                firePlace.Stop("fireplace");
                 firePlaceBoolean = true;
             }
         }
