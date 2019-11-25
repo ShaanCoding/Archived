@@ -5,110 +5,151 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Frequence"
         mc:Ignorable="d"
-        Title="Frequence" Height="800" Width="800" Icon="icon.png" AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+        Title="Frequence" Height="450" Width="800" Icon="icon.png" AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+
+    <Window.Resources>
+        <Style x:Key="RoundButtonTemplate" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="12.5" Background="{TemplateBinding Background}"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    
 
     <Border BorderBrush="Transparent"
              BorderThickness="0.75"
              CornerRadius="10"
-             Background="#89DBB2">
+             Background="#65CA99">
 
         <Grid>
-            <Button x:Name="RainButton" Content="" HorizontalAlignment="Left" Margin="42,10,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="RainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="340"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="53.75"/>
+                <RowDefinition Height="10"/>
+            </Grid.RowDefinitions>
+
+
+            <Button x:Name="RainButton" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="RainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/rain_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/rain.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="ThunderstormButton" Content="" HorizontalAlignment="Left" Margin="404,10,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="ThunderstormButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="ThunderstormButton" Grid.Column="3" Grid.Row="1" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ThunderstormButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/thunderstorm_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/thunderstorm.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WindButton" Content="" HorizontalAlignment="Left" Margin="42,79,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="WindButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="WindButton" Grid.Column="1" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WindButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/wind_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/wind.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="ForestButton" Content="" HorizontalAlignment="Left" Margin="404,79,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="ForestButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="ForestButton" Grid.Column="3" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ForestButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/forest_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/forest.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="LeavesButton" Content="" HorizontalAlignment="Left" Margin="42,148,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="LeavesButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="LeavesButton" Grid.Column="1" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="LeavesButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/leaves_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/leaves.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WaterStreamButton" Content="" HorizontalAlignment="Left" Margin="404,148,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="WaterStreamButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="WaterStreamButton" Grid.Column="3" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterStreamButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/waterstream_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/waterstream.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="SeaSideButton" Content="" HorizontalAlignment="Left" Margin="42,217,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="SeaSideButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="SeaSideButton" Grid.Column="1" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SeaSideButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/seaside_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/seaside.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WaterButton" Content="" HorizontalAlignment="Left" Margin="404,217,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="WaterButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="WaterButton" Grid.Column="3" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/water_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/water.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="FirePlaceButton" Content="" HorizontalAlignment="Left" Margin="42,285,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="FirePlaceButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="FirePlaceButton" Grid.Column="1" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FirePlaceButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/fireplace_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/fireplace.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="SummerNightButton" Content="" HorizontalAlignment="Left" Margin="404,285,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="SummerNightButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="SummerNightButton" Grid.Column="3" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SummerNightButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/summernight_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/summernight.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="CoffeeShopButton" Content="" HorizontalAlignment="Left" Margin="42,354,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="CoffeeShopButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="CoffeeShopButton" Grid.Column="1" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="CoffeeShopButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/coffeeshop_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/coffeeshop.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="TrainButton" Content="" HorizontalAlignment="Left" Margin="404,354,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="TrainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="TrainButton" Grid.Column="3" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="TrainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/train_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/train.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="FanButton" Content="" HorizontalAlignment="Left" Margin="42,426,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="FanButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="FanButton" Grid.Column="1" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FanButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/fan_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/fan.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WhiteNoiseButton" Content="" HorizontalAlignment="Left" Margin="404,423,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="WhiteNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="WhiteNoiseButton" Grid.Column="3" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WhiteNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/whitenoise_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/whitenoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="PinkNoiseButton" Content="" HorizontalAlignment="Left" Margin="42,494,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="PinkNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="PinkNoiseButton" Grid.Column="1" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="PinkNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/pinknoise_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/pinknoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BrownNoiseButton" Content="" HorizontalAlignment="Left" Margin="404,494,0,0" VerticalAlignment="Top" Width="64" Height="64" Click="BrownNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}">
+            <Button x:Name="BrownNoiseButton" Grid.Column="3" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="BrownNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
-                    <ImageBrush ImageSource="Button Icons/brownnoise_dark.png" Stretch="UniformToFill"/>
+                    <ImageBrush ImageSource="Button Icons/brownnoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Slider x:Name="rainSlider" HorizontalAlignment="Left" Margin="111,34,0,0" VerticalAlignment="Top" Width="199" Minimum="1" Maximum="1000" SmallChange="1" Value="500" ValueChanged="RainSlider_ValueChanged"/>
-            <Slider x:Name="windSlider" HorizontalAlignment="Left" Margin="111,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.375,-1.833" Width="199" Value="500" SmallChange="1" Maximum="1000" Minimum="1" ValueChanged="WindSlider_ValueChanged"/>
-            <Slider x:Name="leavesSlider" HorizontalAlignment="Left" Margin="111,163,0,0" VerticalAlignment="Top" Width="199" SmallChange="1" Maximum="1000" Minimum="1" Value="500" ValueChanged="LeavesSlider_ValueChanged"/>
-            <Slider x:Name="seaSideSlider" HorizontalAlignment="Left" Margin="111,238,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SeaSideSlider_ValueChanged"/>
-            <Slider x:Name="firePlaceSlider" HorizontalAlignment="Left" Margin="111,306,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FirePlaceSlider_ValueChanged"/>
-            <Slider x:Name="coffeeShopSlider" HorizontalAlignment="Left" Margin="111,374,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="CoffeeShopSlider_ValueChanged"/>
-            <Slider x:Name="fanSlider" HorizontalAlignment="Left" Margin="111,445,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FanSlider_ValueChanged"/>
-            <Slider x:Name="pinkNoiseSlider" HorizontalAlignment="Left" Margin="111,518,0,0" VerticalAlignment="Top" Width="203" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="PinkNoiseSlider_ValueChanged"/>
-            <Slider x:Name="thunderstormSlider" HorizontalAlignment="Left" Margin="479,34,0,0" VerticalAlignment="Top" Width="154" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ThunderstormSlider_ValueChanged"/>
-            <Slider x:Name="forestSlider" HorizontalAlignment="Left" Margin="479,103,0,0" VerticalAlignment="Top" Width="134" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ForestSlider_ValueChanged"/>
-            <Slider x:Name="waterStreamSlider" HorizontalAlignment="Left" Margin="473,163,0,0" VerticalAlignment="Top" Width="160" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterStreamSlider_ValueChanged"/>
-            <Slider x:Name="waterSlider" HorizontalAlignment="Left" Margin="475,238,0,0" VerticalAlignment="Top" Width="158" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterSlider_ValueChanged"/>
-            <Slider x:Name="summerNightSlider" HorizontalAlignment="Left" Margin="491,304,0,0" VerticalAlignment="Top" Width="199" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SummerNightSlider_ValueChanged"/>
-            <Slider x:Name="trainSlider" HorizontalAlignment="Left" Margin="479,374,0,0" VerticalAlignment="Top" Width="183" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="TrainSlider_ValueChanged"/>
-            <Slider x:Name="whiteNoiseSlider" HorizontalAlignment="Left" Margin="480,445,0,0" VerticalAlignment="Top" Width="153" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WhiteNoiseSlider_ValueChanged"/>
-            <Slider x:Name="brownNoiseSlider" HorizontalAlignment="Left" Margin="480,518,0,0" VerticalAlignment="Top" Width="167" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="BrownNoiseSlider_ValueChanged"/>
+            <Slider x:Name="rainSlider" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Minimum="1" Maximum="1000" SmallChange="1" Value="500" ValueChanged="RainSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="windSlider" Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="-3.375,-1.833" Width="200" Value="500" SmallChange="1" Maximum="1000" Minimum="1" ValueChanged="WindSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="leavesSlider" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" SmallChange="1" Maximum="1000" Minimum="1" Value="500" ValueChanged="LeavesSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="seaSideSlider" Grid.Column="4" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SeaSideSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="firePlaceSlider" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FirePlaceSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="coffeeShopSlider" Grid.Column="4" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="CoffeeShopSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="fanSlider" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="FanSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="pinkNoiseSlider" Grid.Column="4" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="PinkNoiseSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="thunderstormSlider" Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ThunderstormSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="forestSlider" Grid.Column="4" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="ForestSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="waterStreamSlider" Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterStreamSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="waterSlider" Grid.Column="4" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WaterSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="summerNightSlider" Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="SummerNightSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="trainSlider" Grid.Column="4" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="TrainSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="whiteNoiseSlider" Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WhiteNoiseSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Slider x:Name="brownNoiseSlider" Grid.Column="4" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="BrownNoiseSlider_ValueChanged" Height="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Button x:Name="closeButton" Grid.Column="5" Grid.Row="1" Style="{StaticResource RoundButtonTemplate}" Content="Close" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" Click="CloseButton_Click" Height="29" BorderBrush="{x:Null}" Background="#FF64B68E" Foreground="White" FontFamily="Agency" FontSize="14" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         </Grid>
     </Border>
 </Window>

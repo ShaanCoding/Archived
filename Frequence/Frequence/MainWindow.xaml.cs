@@ -497,5 +497,10 @@ public partial class MainWindow : Window
                 brownNoise.Volume("brownnoise", Convert.ToInt32(brownNoiseSlider.Value));
             }
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
