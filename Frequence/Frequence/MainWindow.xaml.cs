@@ -107,6 +107,7 @@ namespace Frequence
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             rain = new OggPlayer((Environment.CurrentDirectory + @"\Sound\rain.mp3"), "rain");
             thunderStorm = new OggPlayer((Environment.CurrentDirectory + @"\Sound\thunderstorm.mp3"), "thunderstorm");

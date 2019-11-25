@@ -99,53 +99,70 @@
     <Content Include="Button Icons\brownnoise.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\brownnoise_dark.png" />
     <Content Include="Button Icons\coffeeshop.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\coffeeshop_dark.png" />
     <Content Include="Button Icons\fan.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\fan_dark.png" />
     <Content Include="Button Icons\fireplace.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\fireplace_dark.png" />
     <Content Include="Button Icons\forest.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\forest_dark.png" />
     <Content Include="Button Icons\leaves.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\leaves_dark.png" />
     <Content Include="Button Icons\pinknoise.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\pinknoise_dark.png" />
     <Content Include="Button Icons\rain.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\rain_dark.png" />
     <Content Include="Button Icons\seaside.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\seaside_dark.png" />
     <Content Include="Button Icons\summernight.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\summernight_dark.png" />
     <Content Include="Button Icons\thunderstorm.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\thunderstorm_dark.png" />
     <Content Include="Button Icons\train.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\train_dark.png" />
     <Content Include="Button Icons\water.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Button Icons\waterstream.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\waterstream_dark.png" />
+    <Resource Include="Button Icons\water_dark.png" />
     <Content Include="Button Icons\whitenoise.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Button Icons\whitenoise_dark.png" />
     <Content Include="Button Icons\wind.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Button Icons\wind_dark.png" />
     <Content Include="Sound\brownnoise.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
