@@ -22,6 +22,19 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="NoHighlight" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     
 
@@ -53,82 +66,82 @@
             </Grid.RowDefinitions>
 
 
-            <Button x:Name="RainButton" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="RainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="RainButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="RainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/rain.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="ThunderstormButton" Grid.Column="3" Grid.Row="1" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ThunderstormButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="ThunderstormButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="1" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ThunderstormButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/thunderstorm.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WindButton" Grid.Column="1" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WindButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="WindButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WindButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/wind.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="ForestButton" Grid.Column="3" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ForestButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="ForestButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="2" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="ForestButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/forest.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="LeavesButton" Grid.Column="1" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="LeavesButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="LeavesButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="LeavesButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/leaves.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WaterStreamButton" Grid.Column="3" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterStreamButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="WaterStreamButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="3" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterStreamButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/waterstream.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="SeaSideButton" Grid.Column="1" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SeaSideButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="SeaSideButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SeaSideButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/seaside.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WaterButton" Grid.Column="3" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="WaterButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="4" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WaterButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/water.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="FirePlaceButton" Grid.Column="1" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FirePlaceButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="FirePlaceButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FirePlaceButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/fireplace.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="SummerNightButton" Grid.Column="3" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SummerNightButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="SummerNightButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="5" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="SummerNightButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/summernight.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="CoffeeShopButton" Grid.Column="1" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="CoffeeShopButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="CoffeeShopButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="CoffeeShopButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/coffeeshop.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="TrainButton" Grid.Column="3" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="TrainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="TrainButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="6" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="TrainButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/train.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="FanButton" Grid.Column="1" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FanButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="FanButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="FanButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/fan.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="WhiteNoiseButton" Grid.Column="3" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WhiteNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="WhiteNoiseButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="7" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="WhiteNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/whitenoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="PinkNoiseButton" Grid.Column="1" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="PinkNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="PinkNoiseButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="1" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="PinkNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/pinknoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="BrownNoiseButton" Grid.Column="3" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="BrownNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+            <Button x:Name="BrownNoiseButton" Style="{StaticResource RoundButtonTemplate}" Grid.Column="3" Grid.Row="8" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="47" Height="47" Click="BrownNoiseButton_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                 <Button.Background>
                     <ImageBrush ImageSource="Button Icons/brownnoise.png" Stretch="UniformToFill"/>
                 </Button.Background>
