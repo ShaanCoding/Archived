@@ -110,6 +110,7 @@
             <Slider x:Name="whiteNoiseSlider" HorizontalAlignment="Left" Margin="480,445,0,0" VerticalAlignment="Top" Width="153" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="WhiteNoiseSlider_ValueChanged"/>
             <Slider x:Name="brownNoiseSlider" HorizontalAlignment="Left" Margin="480,518,0,0" VerticalAlignment="Top" Width="167" Maximum="1000" Minimum="1" SmallChange="1" Value="500" ValueChanged="BrownNoiseSlider_ValueChanged"/>
             <Button x:Name="saveButton" Content="Save" HorizontalAlignment="Left" Margin="662,52,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+            <Button x:Name="loadButton" Content="Load" HorizontalAlignment="Left" Margin="662,77,0,0" VerticalAlignment="Top" Width="75" Click="LoadButton_Click"/>
 
         </Grid>
     </Border>

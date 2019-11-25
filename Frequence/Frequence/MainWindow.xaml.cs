@@ -70,9 +70,61 @@ namespace Frequence
             }
         }
 
+        public static void loadFileCSV()
+        {
+            try
+            {
+                OpenFileDialog openFile = new OpenFileDialog();
+                openFile.DefaultExt = "csv";
+                openFile.Filter = "CSV|*.csv";
+                bool? result = openFile.ShowDialog();
+                if (result == true)
+                {
+                    using (Stream s = File.Open(openFile.FileName, FileMode.Open))
+                    {
+                        using (StreamReader sr = new StreamReader(s))
+                        {
+                            var dataReadSplit = sr.ReadLine().Split(',');
+                            MainWindow.rainBoolean = Convert.ToBoolean(dataReadSplit[0]);
+                            MainWindow.rainVolume = Convert.ToInt32(dataReadSplit[1]);
+
+                            if (MainWindow.rainBoolean == false)
+                            {
+                                MainWindow.rain.Play("rain");
+                            }
+                            MainWindow.rain.Volume("rain", MainWindow.rainVolume);
+                            
+                            /*
+                             *                   sw.Write(MainWindow.rainBoolean + "," + MainWindow.rainVolume + "\n");
+                        sw.Write(MainWindow.thunderstormBoolean + "," + MainWindow.thunderstormVolume + "\n");
+                        sw.Write(MainWindow.windBoolean + "," + MainWindow.windVolume + "\n");
+                        sw.Write(MainWindow.forestBoolean + "," + MainWindow.forestVolume + "\n");
+                        sw.Write(MainWindow.leavesBoolean + "," + MainWindow.leavesVolume + "\n");
+                        sw.Write(MainWindow.waterStreamBoolean + "," + MainWindow.waterStreamVolume + "\n");
+                        sw.Write(MainWindow.seaSideBoolean + "," + MainWindow.seaSideVolume + "\n");
+                        sw.Write(MainWindow.waterStreamBoolean + "," + MainWindow.waterStreamVolume + "\n");
+                        sw.Write(MainWindow.firePlaceBoolean + "," + MainWindow.firePlaceVolume + "\n");
+                        sw.Write(MainWindow.summerNightBoolean + "," + MainWindow.summerNightVolume + "\n");
+                        sw.Write(MainWindow.coffeeShopBoolean + "," + MainWindow.coffeeShopVolume + "\n");
+                        sw.Write(MainWindow.trainBoolean + "," + MainWindow.trainVolume + "\n");
+                        sw.Write(MainWindow.fanBoolean + "," + MainWindow.fanVolume + "\n");
+                        sw.Write(MainWindow.whiteNoiseBoolean + "," + MainWindow.whiteNoiseVolume + "\n");
+                        sw.Write(MainWindow.pinkNoiseBoolean + "," + MainWindow.pinkNoiseVolume + "\n");
+                        sw.Write(MainWindow.brownNoiseBoolean + "," + MainWindow.pinkNoiseVolume + "\n");
+                             */
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ERROR: An Error Has Occured Whilst Loading");
+            }
+        }
+
     }
 
-    class OggPlayer
+    public class OggPlayer
     {
         readonly bool repeat = true;
 
@@ -122,22 +174,22 @@ namespace Frequence
 
     public partial class MainWindow : Window
     {
-        private static OggPlayer rain;
-        private static OggPlayer thunderStorm;
-        private static OggPlayer wind;
-        private static OggPlayer forest;
-        private static OggPlayer leaves;
-        private static OggPlayer waterStream;
-        private static OggPlayer seaSide;
-        private static OggPlayer water;
-        private static OggPlayer firePlace;
-        private static OggPlayer summerNight;
-        private static OggPlayer coffeeShop;
-        private static OggPlayer train;
-        private static OggPlayer fan;
-        private static OggPlayer whiteNoise;
-        private static OggPlayer pinkNoise;
-        private static OggPlayer brownNoise;
+        public static OggPlayer rain;
+        public static OggPlayer thunderStorm;
+        public static OggPlayer wind;
+        public static OggPlayer forest;
+        public static OggPlayer leaves;
+        public static OggPlayer waterStream;
+        public static OggPlayer seaSide;
+        public static OggPlayer water;
+        public static OggPlayer firePlace;
+        public static OggPlayer summerNight;
+        public static OggPlayer coffeeShop;
+        public static OggPlayer train;
+        public static OggPlayer fan;
+        public static OggPlayer whiteNoise;
+        public static OggPlayer pinkNoise;
+        public static OggPlayer brownNoise;
        
         public static bool rainBoolean = true;
         public static bool thunderstormBoolean = true;
@@ -584,6 +636,11 @@ namespace Frequence
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             GeneralFunctions.saveFileXML();
+        }
+
+        private void LoadButton_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.loadFileCSV();
         }
     }
 }
