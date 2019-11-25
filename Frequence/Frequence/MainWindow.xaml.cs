@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -20,6 +22,56 @@ namespace Frequence
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
+    class GeneralFunctions
+    {
+        public static void saveFileXML()
+        {
+            try
+            {
+                SaveFileDialog saveFile = new SaveFileDialog();
+                saveFile.DefaultExt = "csv";
+                saveFile.Filter = "CSV|*.csv";
+                bool? result = saveFile.ShowDialog();
+                if (result == true)
+                {
+                    if (File.Exists(saveFile.FileName))
+                    {
+                        File.Delete(saveFile.FileName);
+                    }
+
+                    using (Stream s = File.Open(saveFile.FileName, FileMode.CreateNew))
+                    {
+                        using (StreamWriter sw = new StreamWriter(s))
+                        {
+                            sw.Write(MainWindow.rainBoolean + "," + MainWindow.rainVolume + "\n");
+                            sw.Write(MainWindow.thunderstormBoolean + "," + MainWindow.thunderstormVolume + "\n");
+                            sw.Write(MainWindow.windBoolean + "," + MainWindow.windVolume + "\n");
+                            sw.Write(MainWindow.forestBoolean + "," + MainWindow.forestVolume + "\n");
+                            sw.Write(MainWindow.leavesBoolean + "," + MainWindow.leavesVolume + "\n");
+                            sw.Write(MainWindow.waterStreamBoolean + "," + MainWindow.waterStreamVolume + "\n");
+                            sw.Write(MainWindow.seaSideBoolean + "," + MainWindow.seaSideVolume + "\n");
+                            sw.Write(MainWindow.waterStreamBoolean + "," + MainWindow.waterStreamVolume + "\n");
+                            sw.Write(MainWindow.firePlaceBoolean + "," + MainWindow.firePlaceVolume + "\n");
+                            sw.Write(MainWindow.summerNightBoolean + "," + MainWindow.summerNightVolume + "\n");
+                            sw.Write(MainWindow.coffeeShopBoolean + "," + MainWindow.coffeeShopVolume + "\n");
+                            sw.Write(MainWindow.trainBoolean + "," + MainWindow.trainVolume + "\n");
+                            sw.Write(MainWindow.fanBoolean + "," + MainWindow.fanVolume + "\n");
+                            sw.Write(MainWindow.whiteNoiseBoolean + "," + MainWindow.whiteNoiseVolume + "\n");
+                            sw.Write(MainWindow.pinkNoiseBoolean + "," + MainWindow.pinkNoiseVolume + "\n");
+                            sw.Write(MainWindow.brownNoiseBoolean + "," + MainWindow.pinkNoiseVolume + "\n");
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("ERROR: An Error Has Occured Whilst Saving");
+            }
+        }
+
+    }
+
     class OggPlayer
     {
         readonly bool repeat = true;
@@ -86,23 +138,40 @@ namespace Frequence
         private static OggPlayer whiteNoise;
         private static OggPlayer pinkNoise;
         private static OggPlayer brownNoise;
+       
+        public static bool rainBoolean = true;
+        public static bool thunderstormBoolean = true;
+        public static bool windBoolean = true;
+        public static bool forestBoolean = true;
+        public static bool leavesBoolean = true;
+        public static bool waterStreamBoolean = true;
+        public static bool seaSideBoolean = true;
+        public static bool waterBoolean = true;
+        public static bool firePlaceBoolean = true;
+        public static bool summerNightBoolean = true;
+        public static bool coffeeShopBoolean = true;
+        public static bool trainBoolean = true;
+        public static bool fanBoolean = true;
+        public static bool whiteNoiseBoolean = true;
+        public static bool pinkNoiseBoolean = true;
+        public static bool brownNoiseBoolean = true;
 
-        bool rainBoolean = true;
-        bool thunderstormBoolean = true;
-        bool windBoolean = true;
-        bool forestBoolean = true;
-        bool leavesBoolean = true;
-        bool waterStreamBoolean = true;
-        bool seaSideBoolean = true;
-        bool waterBoolean = true;
-        bool firePlaceBoolean = true;
-        bool summerNightBoolean = true;
-        bool coffeeShopBoolean = true;
-        bool trainBoolean = true;
-        bool fanBoolean = true;
-        bool whiteNoiseBoolean = true;
-        bool pinkNoiseBoolean = true;
-        bool brownNoiseBoolean = true;
+        public static int rainVolume = 500;
+        public static int thunderstormVolume = 500;
+        public static int windVolume = 500;
+        public static int forestVolume = 500;
+        public static int leavesVolume = 500;
+        public static int waterStreamVolume = 500;
+        public static int seaSideVolume = 500;
+        public static int waterVolume = 500;
+        public static int firePlaceVolume = 500;
+        public static int summerNightVolume = 500;
+        public static int coffeeShopVolume = 500;
+        public static int trainVolume = 500;
+        public static int fanVolume = 500;
+        public static int whiteNoiseVolume = 500;
+        public static int pinkNoiseVolume = 500;
+        public static int brownNoiseVolume = 500;
 
         public MainWindow()
         {
@@ -372,7 +441,8 @@ namespace Frequence
         {
             if (rainBoolean == false && rain != null)
             {
-                rain.Volume("rain", Convert.ToInt32(rainSlider.Value));
+                rainVolume = Convert.ToInt32(rainSlider.Value);
+                rain.Volume("rain", rainVolume);
             }
         }
 
@@ -380,7 +450,8 @@ namespace Frequence
         {
             if (thunderstormBoolean == false && thunderStorm != null)
             {
-                thunderStorm.Volume("thunderstorm", Convert.ToInt32(thunderstormSlider.Value));
+                thunderstormVolume = Convert.ToInt32(thunderstormSlider.Value);
+                thunderStorm.Volume("thunderstorm", thunderstormVolume);
             }
         }
 
@@ -388,7 +459,8 @@ namespace Frequence
         {
             if (windBoolean == false && wind != null)
             {
-                wind.Volume("wind", Convert.ToInt32(windSlider.Value));
+                windVolume = Convert.ToInt32(windSlider.Value);
+                wind.Volume("wind", windVolume);
             }
         }
 
@@ -396,7 +468,8 @@ namespace Frequence
         {
             if (forestBoolean == false && forest != null)
             {
-                forest.Volume("forest", Convert.ToInt32(forestSlider.Value));
+                forestVolume = Convert.ToInt32(forestSlider.Value);
+                forest.Volume("forest", forestVolume);
             }
         }
 
@@ -404,7 +477,8 @@ namespace Frequence
         {
             if (leavesBoolean == false && leaves != null)
             {
-                leaves.Volume("leaves", Convert.ToInt32(leavesSlider.Value));
+                leavesVolume = Convert.ToInt32(leavesSlider.Value);
+                leaves.Volume("leaves", leavesVolume);
             }
         }
 
@@ -412,7 +486,8 @@ namespace Frequence
         {
             if (waterStreamBoolean == false && waterStream != null)
             {
-                waterStream.Volume("waterstream", Convert.ToInt32(waterStreamSlider.Value));
+                waterStreamVolume = Convert.ToInt32(waterStreamSlider.Value);
+                waterStream.Volume("waterstream", waterStreamVolume);
             }
         }
 
@@ -420,7 +495,8 @@ namespace Frequence
         {
             if (seaSideBoolean == false && seaSide != null)
             {
-                seaSide.Volume("seaside", Convert.ToInt32(seaSideSlider.Value));
+                seaSideVolume = Convert.ToInt32(seaSideSlider.Value);
+                seaSide.Volume("seaside", seaSideVolume);
             }
         }
 
@@ -428,7 +504,8 @@ namespace Frequence
         {
             if (waterBoolean == false && water != null)
             {
-                water.Volume("water", Convert.ToInt32(waterSlider.Value));
+                waterVolume = Convert.ToInt32(waterSlider.Value);
+                water.Volume("water", waterVolume);
             }
         }
 
@@ -436,7 +513,8 @@ namespace Frequence
         {
             if (firePlaceBoolean == false && firePlace != null)
             {
-                firePlace.Volume("fireplace", Convert.ToInt32(firePlaceSlider.Value));
+                firePlaceVolume = Convert.ToInt32(firePlaceSlider.Value);
+                firePlace.Volume("fireplace", firePlaceVolume);
             }
         }
 
@@ -444,7 +522,8 @@ namespace Frequence
         {
             if (summerNightBoolean == false && summerNight != null)
             {
-                summerNight.Volume("summernight", Convert.ToInt32(summerNightSlider.Value));
+                summerNightVolume = Convert.ToInt32(summerNightSlider.Value);
+                summerNight.Volume("summernight", summerNightVolume);
             }
         }
 
@@ -452,7 +531,8 @@ namespace Frequence
         {
             if (coffeeShopBoolean == false && coffeeShop != null)
             {
-                coffeeShop.Volume("coffeeshop", Convert.ToInt32(coffeeShopSlider.Value));
+                coffeeShopVolume = Convert.ToInt32(coffeeShopSlider.Value);
+                coffeeShop.Volume("coffeeshop", coffeeShopVolume);
             }
         }
 
@@ -460,7 +540,8 @@ namespace Frequence
         {
             if (trainBoolean == false && train != null)
             {
-                train.Volume("train", Convert.ToInt32(trainSlider.Value));
+                trainVolume = Convert.ToInt32(trainSlider.Value);
+                train.Volume("train", trainVolume);
             }
         }
 
@@ -468,7 +549,8 @@ namespace Frequence
         {
             if (fanBoolean == false && fan != null)
             {
-                fan.Volume("fan", Convert.ToInt32(fanSlider.Value));
+                fanVolume = Convert.ToInt32(fanSlider.Value);
+                fan.Volume("fan", fanVolume);
             }
         }
 
@@ -476,7 +558,8 @@ namespace Frequence
         {
             if (whiteNoiseBoolean == false && whiteNoise != null)
             {
-                whiteNoise.Volume("whitenoise", Convert.ToInt32(whiteNoiseSlider.Value));
+                whiteNoiseVolume = Convert.ToInt32(whiteNoiseSlider.Value);
+                whiteNoise.Volume("whitenoise", whiteNoiseVolume);
             }
         }
 
@@ -484,7 +567,8 @@ namespace Frequence
         {
             if (pinkNoiseBoolean == false && pinkNoise != null)
             {
-                pinkNoise.Volume("pinknoise", Convert.ToInt32(pinkNoiseSlider.Value));
+                pinkNoiseVolume = Convert.ToInt32(pinkNoiseSlider.Value);
+                pinkNoise.Volume("pinknoise", pinkNoiseVolume);
             }
         }
 
@@ -492,8 +576,14 @@ namespace Frequence
         {
             if (brownNoiseBoolean == false && brownNoise != null)
             {
-                brownNoise.Volume("brownnoise", Convert.ToInt32(brownNoiseSlider.Value));
+                brownNoiseVolume = Convert.ToInt32(brownNoiseSlider.Value);
+                brownNoise.Volume("brownnoise", brownNoiseVolume);
             }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            GeneralFunctions.saveFileXML();
         }
     }
 }
