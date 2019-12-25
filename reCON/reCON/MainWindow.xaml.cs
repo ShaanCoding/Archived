@@ -1,6 +1,7 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -33,10 +34,16 @@ namespace reCON
         int viewedIconIndex = 0;
         string URLExtension = "_Modified";
         List<string> imageFiles;
+        bool startButtonCancel = false;
+        private readonly BackgroundWorker worker = new BackgroundWorker();
 
         public MainWindow()
         {
             InitializeComponent();
+            worker.WorkerReportsProgress = true;
+            worker.DoWork += backgroundWorkerConvertingImages;
+            worker.ProgressChanged += backgroundWorkerConvertingImages_ProgressChanged;
+            worker.RunWorkerCompleted += backgroundWorkerConvertingImages_RunWorkerCompleted;
         }
 
         private void ChooseFolderButton_Click(object sender, RoutedEventArgs e)
@@ -69,24 +76,74 @@ namespace reCON
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            if(canStartConversionOne == true && canStartConversionTwo == true)
+            if(canStartConversionOne == true && canStartConversionTwo == true && startButtonCancel == false)
             {
-                try
+                worker.RunWorkerAsync();
+                startButton.Content = "Cancel";
+                startButtonCancel = true;
+            }
+            else if(startButtonCancel == true)
+            {
+                if (worker.IsBusy)
                 {
-                    Bitmap bmp = null;
-                    for(int i = 0; i < imageFiles.Count; i++)
+                    worker.CancelAsync();
+                }
+
+                startButton.Content = "Cancel";
+                startButtonCancel = false;
+            }
+        }
+
+        private void backgroundWorkerConvertingImages(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            Bitmap bmp = null;
+
+            for (int i = 0; i < imageFiles.Count; i++)
+            {
+                if (worker.CancellationPending == true)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
+                {
+                    try
                     {
                         bmp = (Bitmap)System.Drawing.Image.FromFile(imageFiles[i]);
                         bmp = ChangeColor(bmp);
-                        bmp.Save(imageFiles[i].Replace(".png","") + URLExtension + ".png");
+                        bmp.Save(imageFiles[i].Replace(".png", "") + URLExtension + ".png");
+                        //Calculates the loading bar
                     }
-                    System.Windows.MessageBox.Show("Success! The task was finished successfully.");
-                }
-                catch(System.Exception ex)
-                {
-                    System.Windows.MessageBox.Show("An error has occured, refer to: " + ex.ToString());
+                    catch (System.Exception ex)
+                    {
+                        System.Windows.MessageBox.Show("An error has occured, refer to: " + ex.ToString());
+                    }
+                    int returnProgressPercent = (int)Math.Ceiling((decimal)(i+1) / imageFiles.Count * 100); // NO IDEA WHY IT DOESNT WORK
+                    worker.ReportProgress(returnProgressPercent);
                 }
             }
+        }
+
+        private void backgroundWorkerConvertingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (e.Cancelled)
+            {
+                System.Windows.MessageBox.Show("Operation Cancelled");
+            }
+            else if (e.Error != null)
+            {
+                System.Windows.MessageBox.Show("Error in Process :" + e.Error);
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Success! The task has finished successfully.");
+            }
+        }
+
+        private void backgroundWorkerConvertingImages_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            loadingBar.Value = e.ProgressPercentage;
         }
 
 
@@ -163,6 +220,11 @@ namespace reCON
         private void PreviewPictureBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             loadPictureBox();
+        }
+
+        private void LoadingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
         }
     }
 }
