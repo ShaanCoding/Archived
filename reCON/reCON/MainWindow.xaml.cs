@@ -32,7 +32,7 @@ namespace reCON
         bool canStartConversionTwo = false;
         System.Drawing.Color newColor;
         int viewedIconIndex = 0;
-        string URLExtension = "_Modified";
+        readonly string URLExtension = "_Modified";
         List<string> imageFiles;
         bool startButtonCancel = false;
         private readonly BackgroundWorker worker = new BackgroundWorker();
@@ -41,36 +41,41 @@ namespace reCON
         {
             InitializeComponent();
             worker.WorkerReportsProgress = true;
-            worker.DoWork += backgroundWorkerConvertingImages;
-            worker.ProgressChanged += backgroundWorkerConvertingImages_ProgressChanged;
-            worker.RunWorkerCompleted += backgroundWorkerConvertingImages_RunWorkerCompleted;
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += BackgroundWorkerConvertingImages;
+            worker.ProgressChanged += BackgroundWorkerConvertingImages_ProgressChanged;
+            worker.RunWorkerCompleted += BackgroundWorkerConvertingImages_RunWorkerCompleted;
         }
 
         private void ChooseFolderButton_Click(object sender, RoutedEventArgs e)
         {
-            CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog();
-            openFileDialog.IsFolderPicker = true;
-            if(openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+            using (CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog())
             {
-                inputFolderURL = openFileDialog.FileName;
-                canStartConversionOne = true;
-                //Gets url of all image files with the png, bmp, tiff, gif or png file extension
-                imageFiles = Directory.GetFiles(inputFolderURL, "*.*", SearchOption.AllDirectories)
-                .Where(file => new string[] { ".jpg", ".bmp", ".tiff", ".gif", ".png" }
-                .Contains(System.IO.Path.GetExtension(file)))
-                .ToList();
+                openFileDialog.IsFolderPicker = true;
+                if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    inputFolderURL = openFileDialog.FileName;
+                    canStartConversionOne = true;
+                    //Gets url of all image files with the png, bmp, tiff, gif or png file extension
+                    imageFiles = Directory.GetFiles(inputFolderURL, "*.*", SearchOption.AllDirectories)
+                    .Where(file => new string[] { ".jpg", ".bmp", ".tiff", ".gif", ".png" }
+                    .Contains(System.IO.Path.GetExtension(file)))
+                    .ToList();
 
-                loadPictureBox(); //Will load image to picture box when done
+                    LoadPictureBox(); //Will load image to picture box when done
+                }
             }
         }
 
         private void ChooseColorButton_Click(object sender, RoutedEventArgs e)
         {
-            ColorDialog colorDialog = new ColorDialog();
-            if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            using (ColorDialog colorDialog = new ColorDialog())
             {
-                newColor = colorDialog.Color;
-                canStartConversionTwo = true;
+                if (colorDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    newColor = colorDialog.Color;
+                    canStartConversionTwo = true;
+                }
             }
         }
 
@@ -89,15 +94,15 @@ namespace reCON
                     worker.CancelAsync();
                 }
 
-                startButton.Content = "Cancel";
+                startButton.Content = "Start";
                 startButtonCancel = false;
             }
         }
 
-        private void backgroundWorkerConvertingImages(object sender, DoWorkEventArgs e)
+        private void BackgroundWorkerConvertingImages(object sender, DoWorkEventArgs e)
         {
             BackgroundWorker worker = sender as BackgroundWorker;
-            Bitmap bmp = null;
+            Bitmap bmp;
 
             for (int i = 0; i < imageFiles.Count; i++)
             {
@@ -125,7 +130,7 @@ namespace reCON
             }
         }
 
-        private void backgroundWorkerConvertingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void BackgroundWorkerConvertingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -141,7 +146,7 @@ namespace reCON
             }
         }
 
-        private void backgroundWorkerConvertingImages_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void BackgroundWorkerConvertingImages_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             loadingBar.Value = e.ProgressPercentage;
         }
@@ -167,7 +172,7 @@ namespace reCON
             return newBitmap;
         }
 
-        private void loadPictureBox()
+        private void LoadPictureBox()
         {
             ImageSource newImage = new BitmapImage(new Uri(imageFiles[viewedIconIndex]));
             previewPictureBox.Source = newImage;
@@ -179,7 +184,7 @@ namespace reCON
             if(imageFiles != null && viewedIconIndex > 0)
             {
                 viewedIconIndex--;
-                loadPictureBox();
+                LoadPictureBox();
             }
         }
 
@@ -188,7 +193,7 @@ namespace reCON
             if(imageFiles != null && viewedIconIndex < (imageFiles.Count - 1))
             {
                 viewedIconIndex++;
-                loadPictureBox();
+                LoadPictureBox();
             }
         }
 
@@ -219,7 +224,7 @@ namespace reCON
 
         private void PreviewPictureBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
-            loadPictureBox();
+            LoadPictureBox();
         }
 
         private void LoadingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
