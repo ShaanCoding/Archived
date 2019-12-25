@@ -5,17 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:reCON"
         mc:Ignorable="d"
-        Title="reCON" Height="450" Width="800" Icon="Assets/icon.ico">
-    <Grid>
-        <Button x:Name="chooseFolderButton" Content="Choose Folder" HorizontalAlignment="Left" Margin="37,307,0,0" VerticalAlignment="Top" Width="210" Height="56" Click="ChooseFolderButton_Click"/>
-        <Button x:Name="chooseColorButton" Content="Choose Colour" HorizontalAlignment="Left" Margin="284,305,0,0" VerticalAlignment="Top" Width="204" Height="58" Click="ChooseColorButton_Click"/>
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="539,305,0,0" VerticalAlignment="Top" Width="192" Height="58" Click="StartButton_Click"/>
-        <Image x:Name="previewPictureBox" HorizontalAlignment="Left" Height="200" Margin="288,61,0,0" VerticalAlignment="Top" Width="200" MouseEnter="PreviewPictureBox_MouseEnter" MouseLeave="PreviewPictureBox_MouseLeave"/>
-        <Button x:Name="nextImage" Content="Next" HorizontalAlignment="Left" Margin="517,166,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="NextImage_Click"/>
-        <Button x:Name="backImage" Content="Back" HorizontalAlignment="Left" Margin="102,166,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="BackImage_Click"/>
-        <Label x:Name="previewPictureBoxIndex" Content="Viewing Image: 1" HorizontalAlignment="Left" Margin="340,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.638,-0.26"/>
-        <Label Content="Hover over to preview" HorizontalAlignment="Left" Margin="314,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="-2.737,-0.394"/>
-        <ProgressBar x:Name="loadingBar" HorizontalAlignment="Left" Height="30" Margin="127,382,0,0" VerticalAlignment="Top" Width="506" ValueChanged="LoadingBar_ValueChanged"/>
+        Title="reCON" Height="450" Width="800" Icon="Assets/icon.ico" ResizeMode="CanResizeWithGrip" WindowStartupLocation="CenterOwner" WindowStyle="None">
 
+    <Window.Resources>
+        <Style x:Key="RoundButtonTemplate" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="15" Background="{TemplateBinding Background}"
+                                BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#FF1D1F24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="91*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+            <ColumnDefinition Width="3*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Rectangle x:Name="menuBar" Height="Auto" Width="Auto" Fill="#1E252B" VerticalAlignment="Top" MouseDown="MenuBar_MouseDown" Grid.Row="0" Grid.ColumnSpan="3"></Rectangle>
+        <Rectangle x:Name="closeButton" Height="20" Width="20" HorizontalAlignment="Right" VerticalAlignment="Center" MouseDown="CloseButton_MouseDown" Grid.Row="0" Grid.Column="2" Margin="0,10,10,10">
+            <Rectangle.Fill>
+                <ImageBrush ImageSource="Assets/XButtonWhite.png" Stretch="UniformToFill"/>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image x:Name="logoImage" Source="/Assets/Logo.png" HorizontalAlignment="Left" VerticalAlignment="Center" Width="70" Height="20" Grid.Row="0" Grid.Column="0" Margin="15,10,0,10"/>
+        <Button x:Name="chooseFolderButton" Style="{StaticResource RoundButtonTemplate}" Content="Choose Folder" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="60" Click="ChooseFolderButton_Click" Foreground="White" FontSize="20" Background="#FF31C4FF" Grid.Row="1" Grid.Column="0" Margin="32,277,33,68"/>
+        <Button x:Name="chooseColorButton" Style="{StaticResource RoundButtonTemplate}" Content="Choose Colour" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="60" Click="ChooseColorButton_Click" Foreground="White" FontSize="20" Background="#FF31C4FF" Grid.Row="1" Grid.Column="1" Margin="33,277,32,68"/>
+        <Button x:Name="startButton" Style="{StaticResource RoundButtonTemplate}" Content="Start" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" Height="60" Click="StartButton_Click" Foreground="White" FontSize="20" Background="#FF1E252B" Grid.Row="1" Grid.Column="2" Margin="32,277,33,68"/>
+        <Image x:Name="previewPictureBox" Height="200" VerticalAlignment="Top" Width="200" MouseEnter="PreviewPictureBox_MouseEnter" MouseLeave="PreviewPictureBox_MouseLeave" Grid.Row="1" Grid.Column="1" Margin="33,45,32,0"/>
+        <Button x:Name="nextImage" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Height="100" Click="NextImage_Click" BorderBrush="{x:Null}" Grid.Row="1" Grid.Column="2" Margin="82,149,83,0">
+            <Button.Background>
+                <ImageBrush ImageSource="Assets/Redo.png" Stretch="UniformToFill"/>
+            </Button.Background>
+            <Button.Foreground>
+                <ImageBrush/>
+            </Button.Foreground>
+        </Button>
+        <Button x:Name="backImage" HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Height="100" Click="BackImage_Click" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Grid.Column="0" Margin="82,149,83,0">
+            <Button.Background>
+                <ImageBrush ImageSource="Assets/Undo.png" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+        <Label x:Name="previewPictureBoxIndex" Content="Viewing Image: 1" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Grid.Row="1" Grid.Column="1" Margin="82,248,82,131"/>
+        <Label Content="Hover over to preview" HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="White" FontSize="16" Grid.Column="1" Margin="49,5,50,0" Grid.Row="1"/>
+        <ProgressBar x:Name="loadingBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Bottom" Width="600" ValueChanged="LoadingBar_ValueChanged" Grid.Row="1" Grid.ColumnSpan="3" Margin="98,0,97,15"/>
     </Grid>
 </Window>

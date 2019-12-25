@@ -65,6 +65,11 @@ namespace reCON
                     LoadPictureBox(); //Will load image to picture box when done
                 }
             }
+
+            if (canStartConversionOne == true && canStartConversionTwo == true)
+            {
+                startButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF31C4FF"));
+            }
         }
 
         private void ChooseColorButton_Click(object sender, RoutedEventArgs e)
@@ -76,6 +81,11 @@ namespace reCON
                     newColor = colorDialog.Color;
                     canStartConversionTwo = true;
                 }
+            }
+
+            if(canStartConversionOne == true && canStartConversionTwo == true)
+            {
+                startButton.Background = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF31C4FF"));
             }
         }
 
@@ -230,6 +240,19 @@ namespace reCON
         private void LoadingBar_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
 
+        }
+
+        private void MenuBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void CloseButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }
