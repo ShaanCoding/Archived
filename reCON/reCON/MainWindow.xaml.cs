@@ -32,7 +32,7 @@ namespace reCON
         System.Drawing.Color newColor;
         int viewedIconIndex = 0;
         string URLExtension = "_Modified";
-        string[] imageFiles;
+        List<string> imageFiles;
 
         public MainWindow()
         {
@@ -47,7 +47,12 @@ namespace reCON
             {
                 inputFolderURL = openFileDialog.FileName;
                 canStartConversionOne = true;
-                imageFiles = Directory.GetFiles(inputFolderURL);
+                //Gets url of all image files with the png, bmp, tiff, gif or png file extension
+                imageFiles = Directory.GetFiles(inputFolderURL, "*.*", SearchOption.AllDirectories)
+                .Where(file => new string[] { ".jpg", ".bmp", ".tiff", ".gif", ".png" }
+                .Contains(System.IO.Path.GetExtension(file)))
+                .ToList();
+
                 loadPictureBox(); //Will load image to picture box when done
             }
         }
@@ -69,7 +74,7 @@ namespace reCON
                 try
                 {
                     Bitmap bmp = null;
-                    for(int i = 0; i < imageFiles.Length; i++)
+                    for(int i = 0; i < imageFiles.Count; i++)
                     {
                         bmp = (Bitmap)System.Drawing.Image.FromFile(imageFiles[i]);
                         bmp = ChangeColor(bmp);
@@ -84,7 +89,9 @@ namespace reCON
             }
         }
 
-        public Bitmap ChangeColor(Bitmap scrBitmap)
+
+        //need to replace with faster method
+        private Bitmap ChangeColor(Bitmap scrBitmap)
         {
             System.Drawing.Color actualColor;
             Bitmap newBitmap = new Bitmap(scrBitmap.Width, scrBitmap.Height);
@@ -121,11 +128,41 @@ namespace reCON
 
         private void NextImage_Click(object sender, RoutedEventArgs e)
         {
-            if(imageFiles != null && viewedIconIndex < (imageFiles.Length - 1))
+            if(imageFiles != null && viewedIconIndex < (imageFiles.Count - 1))
             {
                 viewedIconIndex++;
                 loadPictureBox();
             }
+        }
+
+        private void PreviewPictureBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            Bitmap bmp = (Bitmap)System.Drawing.Image.FromFile(imageFiles[viewedIconIndex]);
+            bmp = ChangeColor(bmp);
+            previewPictureBox.Source = BitmapToImageSource(bmp);
+            previewPictureBoxIndex.Content = "Viewing Image Preview: " + (viewedIconIndex + 1);
+        }
+
+        /* https://stackoverflow.com/questions/22499407/how-to-display-a-bitmap-in-a-wpf-image */
+        BitmapImage BitmapToImageSource(Bitmap bitmap)
+        {
+            using (MemoryStream memory = new MemoryStream())
+            {
+                bitmap.Save(memory, System.Drawing.Imaging.ImageFormat.Bmp);
+                memory.Position = 0;
+                BitmapImage bitmapimage = new BitmapImage();
+                bitmapimage.BeginInit();
+                bitmapimage.StreamSource = memory;
+                bitmapimage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapimage.EndInit();
+
+                return bitmapimage;
+            }
+        }
+
+        private void PreviewPictureBox_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        {
+            loadPictureBox();
         }
     }
 }

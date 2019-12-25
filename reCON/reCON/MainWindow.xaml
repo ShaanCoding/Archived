@@ -10,7 +10,7 @@
         <Button x:Name="chooseFolderButton" Content="Choose Folder" HorizontalAlignment="Left" Margin="37,322,0,0" VerticalAlignment="Top" Width="210" Height="56" Click="ChooseFolderButton_Click"/>
         <Button x:Name="chooseColorButton" Content="Choose Colour" HorizontalAlignment="Left" Margin="284,320,0,0" VerticalAlignment="Top" Width="204" Height="58" Click="ChooseColorButton_Click"/>
         <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="539,320,0,0" VerticalAlignment="Top" Width="192" Height="58" Click="StartButton_Click"/>
-        <Image x:Name="previewPictureBox" HorizontalAlignment="Left" Height="200" Margin="288,61,0,0" VerticalAlignment="Top" Width="200"/>
+        <Image x:Name="previewPictureBox" HorizontalAlignment="Left" Height="200" Margin="288,61,0,0" VerticalAlignment="Top" Width="200" MouseEnter="PreviewPictureBox_MouseEnter" MouseLeave="PreviewPictureBox_MouseLeave"/>
         <Button x:Name="nextImage" Content="Next" HorizontalAlignment="Left" Margin="517,166,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="NextImage_Click"/>
         <Button x:Name="backImage" Content="Back" HorizontalAlignment="Left" Margin="102,166,0,0" VerticalAlignment="Top" Width="116" Height="46" Click="BackImage_Click"/>
         <Label x:Name="previewPictureBoxIndex" Content="Viewing Image: 1" HorizontalAlignment="Left" Margin="340,266,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.638,-0.26"/>
