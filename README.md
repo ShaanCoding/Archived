@@ -11,4 +11,4 @@ This program was built with no external frameworks excluding the base C# system 
 * **Shaan Khan** - *All Work*
 
 ## License
-This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](https://github.com/ShaanCoding/IconDrive/blob/master/README.md) files for details
+This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](https://github.com/ShaanCoding/IconDrive/blob/master/LICENSE) files for details
