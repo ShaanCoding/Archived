@@ -18,8 +18,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-//Thanks to microsoft.windowsapicodepack
-
 namespace reCON
 {
     /// <summary>
@@ -215,7 +213,7 @@ namespace reCON
             previewPictureBoxIndex.Content = "Viewing Image Preview: " + (viewedIconIndex + 1);
         }
 
-        /* https://stackoverflow.com/questions/22499407/how-to-display-a-bitmap-in-a-wpf-image */
+        /* Credits to https://stackoverflow.com/questions/22499407/how-to-display-a-bitmap-in-a-wpf-image */
         BitmapImage BitmapToImageSource(Bitmap bitmap)
         {
             using (MemoryStream memory = new MemoryStream())
