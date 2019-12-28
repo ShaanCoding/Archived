@@ -43,10 +43,6 @@ namespace IconDrive
                 listBoxAnswer.SelectedIndex = 0;
                 listBoxAnswer.UpdateLayout();
             }
-            /*
-            txtAnswer.SelectAll();
-            txtAnswer.Focus();
-            */
         }
         public string Answer
         {

@@ -22,11 +22,11 @@ namespace IconDrive
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string selectedIconString = "";
-        public static DriveInfo[] driveArray;
-        public static string selectedDriveString = "";
-        public static string nameOfDrive = "";
-        bool readyToInstall = false;
+        private string selectedIconString = "";
+        private DriveInfo[] driveArray;
+        private string selectedDriveString = "";
+        private string nameOfDrive = "";
+        private bool readyToInstall;
 
         public MainWindow()
         {
@@ -112,7 +112,7 @@ namespace IconDrive
                     File.SetAttributes(selectedDriveString + "autorun.inf", File.GetAttributes(selectedDriveString + "autorun.inf") | FileAttributes.Hidden);
                     MessageBox.Show("Application Sucessfully Installed!");
                 }
-                else if (readyToInstall == false)
+                else
                 {
                     MessageBox.Show("Not Ready To Install, Please Select Icon");
                 }
