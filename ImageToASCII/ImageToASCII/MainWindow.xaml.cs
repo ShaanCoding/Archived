@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
@@ -22,10 +23,9 @@ namespace ImageToASCII
             InitializeComponent();
         }
 
-        public static string inputImageFileName;
-        public static string saveLocation = "C:/Users/shaan/Documents/GitHub/MP4ToASCII/testOutput.txt";
-        public static char[] asciiChars = { '█', '░', '@', '&', '$', '%', '!', '(', ')', '=', '+', '^', '*', ';', ':', '_', '-', '"', '/', ',', '.', ' ' };
-        public static int asciiWidth = 0;
+        private string inputImageFileName;
+        private static  readonly char[] asciiChars = { '█', '░', '@', '&', '$', '%', '!', '(', ')', '=', '+', '^', '*', ';', ':', '_', '-', '"', '/', ',', '.', ' ' };
+        private int asciiWidth;
 
 
         //Need a int return to give brightness DONE
@@ -73,19 +73,22 @@ namespace ImageToASCII
                         Image inputImage = Image.FromFile(inputImageFileName);
                         Bitmap inputImageResize = resizeImage(inputImage, asciiWidth);
 
-                        string outputString = "";
-                            for (int y = 0; y < inputImageResize.Height; y++)
+                        StringBuilder outputStringFull = new StringBuilder();
+                        for (int y = 0; y < inputImageResize.Height; y++)
+                        {
+                            StringBuilder stringBuilder = new StringBuilder();
+                            for (int x = 0; x < inputImageResize.Width; x++)
                             {
-                                for (int x = 0; x < inputImageResize.Width; x++)
-                                {
-                                    System.Drawing.Color colour = inputImageResize.GetPixel(x, y);
-                                    int brightness = findBrightness(colour);
-                                    string pxlToChar = brightnessToChar(brightness);
-                                    outputString = outputString + pxlToChar + pxlToChar;
-                                }
-                            outputString = outputString + "\n";
+                                System.Drawing.Color colour = inputImageResize.GetPixel(x, y);
+                                int brightness = findBrightness(colour);
+                                string pxlToChar = brightnessToChar(brightness);
+                                stringBuilder.Append(pxlToChar);
+                                stringBuilder.Append(pxlToChar);
                             }
-                        outputText.Text = outputString;
+                            stringBuilder.Append("\n");
+                            outputStringFull.Append(stringBuilder);
+                        }
+                        outputText.Text = outputStringFull.ToString();
                         MessageBox.Show(inputImageFileName);
                     }
                 }
@@ -98,11 +101,6 @@ namespace ImageToASCII
             {
                 MessageBox.Show("ERROR: An Error Occured When Loading The File \nERROR:" + ex);
             }
-        }
-
-        public static void imageToASCII()
-        {
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
