@@ -21,7 +21,7 @@ namespace XKCDownloader
         bool startStopButtonBool = true;
         bool isPausedBool = false;
         private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
-        DataTable dt = new DataTable();
+        readonly DataTable dt = new DataTable();
 
         public MainWindow()
         {
@@ -35,10 +35,10 @@ namespace XKCDownloader
 
         private void SelectDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            selectFolder();
+            SelectFolder();
         }
 
-        private void selectFolder()
+        private void SelectFolder()
         {
             using (CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog())
             {
@@ -52,13 +52,13 @@ namespace XKCDownloader
             }
         }
 
-        private void startStopButton_Click(object sender, RoutedEventArgs e)
+        private void StartStopButton_Click(object sender, RoutedEventArgs e)
         {
             if(startStopButtonBool == true)
             {
                 if(isFolderSelected == true)
                 {
-                    findMaxPages();
+                    FindMaxPages();
                     backgroundWorker.RunWorkerAsync();
                     startStopButtonBool = false;
                     startStopButton.Content = "Stop";
@@ -79,7 +79,7 @@ namespace XKCDownloader
             }
         }
 
-        private void findMaxPages()
+        private void FindMaxPages()
         {
             using(WebClient client = new WebClient())
             {
@@ -93,7 +93,7 @@ namespace XKCDownloader
             }
         }
 
-        private string[] imageURLData(int index)
+        private string[] ImageURLData(int index)
         {
             using (WebClient client = new WebClient())
             {
@@ -125,7 +125,7 @@ namespace XKCDownloader
                 {
                     try
                     {
-                        string[] imageURLDataString = imageURLData(i);
+                        string[] imageURLDataString = ImageURLData(i);
                         using (WebClient client = new WebClient())
                         {
                             client.DownloadFile(new Uri(imageURLDataString[0]), string.Format(@"{0}\{1}.png", downloadDirectory, imageURLDataString[1]));
@@ -133,7 +133,7 @@ namespace XKCDownloader
                             dataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                             new Action(delegate ()
                             {
-                                dataTableAdd(i, numberOfComics, imageURLDataString[1], Convert.ToInt64(client.ResponseHeaders["Content-Length"]).ToString());
+                                DataTableAdd(i, numberOfComics, imageURLDataString[1], Convert.ToInt64(client.ResponseHeaders["Content-Length"]).ToString());
                             }));
                         }
                     }
@@ -183,7 +183,7 @@ namespace XKCDownloader
             }
         }
 
-        private void dataTablePopulated()
+        private void DataTablePopulated()
         {
             DataColumn dlNumber = new DataColumn("Number", typeof(string));
             DataColumn dlTitle = new DataColumn("Title", typeof(string));
@@ -198,7 +198,7 @@ namespace XKCDownloader
             dataGrid.ItemsSource = dt.DefaultView;
         }
 
-        private void dataTableAdd(int i, int totalNumber, string title, string size)
+        private void DataTableAdd(int i, int totalNumber, string title, string size)
         {
             dt.Rows.Add("Number " + i + " of " + totalNumber, title, size + " bytes", "Completed");
             dataGrid.ItemsSource = dt.DefaultView;
@@ -206,7 +206,7 @@ namespace XKCDownloader
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dataTablePopulated();
+            DataTablePopulated();
         }
     }
 }
