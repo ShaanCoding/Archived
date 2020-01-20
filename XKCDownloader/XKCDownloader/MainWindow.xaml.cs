@@ -17,9 +17,9 @@ namespace XKCDownloader
     {
         int numberOfComics;
         string downloadDirectory;
-        bool isFolderSelected = false;
+        bool isFolderSelected;
+        bool isPausedBool;
         bool startStopButtonBool = true;
-        bool isPausedBool = false;
         private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
         readonly DataTable dt = new DataTable();
 
@@ -63,12 +63,12 @@ namespace XKCDownloader
                     startStopButtonBool = false;
                     startStopButton.Content = "Stop";
                 }
-                else if(isFolderSelected == false)
+                else
                 {
                     MessageBox.Show("Error: Cannot start until a output folder is selected.");
                 }
             }
-            else if(startStopButtonBool == false)
+            else
             {
                 if (backgroundWorker.IsBusy)
                 {
@@ -93,7 +93,7 @@ namespace XKCDownloader
             }
         }
 
-        private string[] ImageURLData(int index)
+        private static string[] ImageURLData(int index)
         {
             using (WebClient client = new WebClient())
             {
@@ -114,7 +114,10 @@ namespace XKCDownloader
 
             for (int i = 1; i <= numberOfComics; i++)
             {
-                while (isPausedBool == true) { }
+                while (isPausedBool == true)
+                {
+                    //Empty loop to pause downloading
+                }
 
                 if (worker.CancellationPending == true)
                 {
@@ -139,7 +142,7 @@ namespace XKCDownloader
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("An error has occured, refer to: " + ex.ToString());
+                        MessageBox.Show("An error has occured, refer to: " + ex);
                     }
 
                 }
@@ -148,7 +151,7 @@ namespace XKCDownloader
             }
         }
 
-        private void BackgroundWorkerDownloadingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void BackgroundWorkerDownloadingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -176,7 +179,7 @@ namespace XKCDownloader
                 isPausedBool = false;
                 PauseButton.Content = "Resume";
             }
-            else if(isPausedBool == false)
+            else
             {
                 isPausedBool = true;
                 PauseButton.Content = "Pause";
