@@ -7,12 +7,19 @@
         mc:Ignorable="d"
         Title="XKCDownloader" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <TextBox x:Name="DownloadDirectoryURL" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="399" IsReadOnly="True"/>
-        <Button x:Name="SelectDirectoryButton" Content="..." HorizontalAlignment="Left" Margin="414,10,0,0" VerticalAlignment="Top" Width="80" Height="23" Click="SelectDirectoryButton_Click"/>
-        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="40" Margin="10,372,0,0" VerticalAlignment="Top" Width="775"/>
-        <Button x:Name="PauseButton" Content="Pause" HorizontalAlignment="Left" Margin="630,347,0,0" VerticalAlignment="Top" Width="76" Click="PauseButton_Click"/>
-        <Button x:Name="startStopButton" Content="Start" HorizontalAlignment="Left" Margin="711,347,0,0" VerticalAlignment="Top" Width="74" Click="startStopButton_Click"/>
-        <DataGrid x:Name="dataGrid" HorizontalAlignment="Left" Height="304" Margin="10,38,0,0" VerticalAlignment="Top" Width="775" IsReadOnly="True"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.25*"></RowDefinition>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="DownloadDirectoryURL" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" VerticalAlignment="Center" Width="400" IsReadOnly="True" Grid.Row="0" Margin="10,10,0,10"/>
+        <Button x:Name="SelectDirectoryButton" Content="..." HorizontalAlignment="Left" VerticalAlignment="Center" Width="80" Height="25" Click="SelectDirectoryButton_Click" Grid.Row="0" Margin="420,10,0,10"/>
+        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Center" Width="775" Grid.Row="3"/>
+        <Button x:Name="PauseButton" Content="Pause" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Click="PauseButton_Click" Margin="0,7,100,7.5" Grid.Row="2"/>
+        <Button x:Name="StartStopButton" Content="Start" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Click="StartStopButton_Click" Margin="0,7,10,7.5" Grid.Row="2"/>
+        <DataGrid x:Name="dataGrid" HorizontalAlignment="Center" Height="256" VerticalAlignment="Center" Width="775" IsReadOnly="True" Grid.Row="1" Margin="10"/>
 
     </Grid>
 </Window>

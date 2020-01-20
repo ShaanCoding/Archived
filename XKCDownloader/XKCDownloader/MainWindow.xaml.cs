@@ -61,7 +61,7 @@ namespace XKCDownloader
                     FindMaxPages();
                     backgroundWorker.RunWorkerAsync();
                     startStopButtonBool = false;
-                    startStopButton.Content = "Stop";
+                    StartStopButton.Content = "Stop";
                 }
                 else
                 {
@@ -75,7 +75,7 @@ namespace XKCDownloader
                     backgroundWorker.CancelAsync();
                 }
                 startStopButtonBool = true;
-                startStopButton.Content = "Start";
+                StartStopButton.Content = "Start";
             }
         }
 
