@@ -8,7 +8,7 @@ This program requires no prerequisites.
 This program was built with the base C# system libraries as well as Newtonsoft.JSON library available on NuGet.
 
 ## Authors
-* **Shaan Khan** - *All Work*
+  * **Shaan Khan** - *All Work*
 
 ## License
 This project is licensed under the Mozilla Public License 2.0 - see the [LICENSE](https://github.com/ShaanCoding/XKCDownloader/blob/master/LICENSE) files for details
