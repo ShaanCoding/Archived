@@ -2,6 +2,8 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/b36e2fc84a494d329f6344a3cf44a4cb)](https://app.codacy.com/manual/ShaanCoding/XKCDownloader?utm_source=github.com&utm_medium=referral&utm_content=ShaanCoding/XKCDownloader&utm_campaign=Badge_Grade_Dashboard)
 
+![Main Menu](Images/mainMenu.png)
+
 This application is a program intended to act as an automated XKCD comic downloader built in C# using WPF. This was done in order to further learn downloading images and navigating JSON files online using C# as well as to automate a task for a site I enjoy browsing.
 
 ## Prerequisites
