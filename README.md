@@ -1,6 +1,8 @@
 # Scientific Calculator
 This application is a simple scientific calculator coded in C# using WPF.
-The purpose of this program is to act as a simple lightweight calculator, using reverse polish notation and the shunting yard algorithm. This application is a further / alternative version of the boolean expression solver and therefore uses the same logic behind it.
+The purpose of this program is to act as a simple lightweight calculator, using reverse polish notation and the shunting yard algorithm. This application is a further / alternative version of the Boolean expression solver and therefore uses the same logic behind it.
+
+![Main Menu](Images/mainMenu.png)
 
 ## How To Use
 This program functions like a normal scientific calculator, to use this application:
