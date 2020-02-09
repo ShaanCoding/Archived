@@ -1,5 +1,9 @@
 # IconDrive
-This application is a simple custom USB icon installer created in C# using WPF. The purpose of this program is to function as a simple program to help users create custom USB icons as well as to continue my journey in learning WPF, specifically in stylising.
+This application is a simple custom USB icon installer created in C# using WPF. The purpose of this program is to function as a simple program to help users create custom USB icons as well as to continue my journey in learning WPF, specifically in stylizing.
+
+![Main Menu](Images/mainMenu.png)
+
+![Settings Menu](Images/settingsMenu.png)
 
 ## Prerequisites
 This program requires no prerequisites
