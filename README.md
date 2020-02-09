@@ -1,6 +1,7 @@
 # ImageToASCII
 This application is a simple image to ASCII art converter coded in C# using WPF. The purpose of this program is to develop proficiency in image manipulation.
 
+![Main Menu](Images/mainMenu.png)
 
 ## Prerequisites
 This program requires no prerequisites
