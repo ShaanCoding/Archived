@@ -1,0 +1,19 @@
+﻿<Window x:Class="Memely.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Memely"
+        mc:Ignorable="d"
+        Title="Memely" Height="450" Width="800">
+    <Grid>
+        <Image x:Name="MemePreviewImage" HorizontalAlignment="Left" Height="250" Margin="45,86,0,0" VerticalAlignment="Top" Width="250"/>
+        <Button x:Name="GetMemeIconURL" Content="Add Meme" HorizontalAlignment="Left" Margin="668,105,0,0" VerticalAlignment="Top" Width="76" Click="GetMemeIconURL_Click"/>
+        <TextBox x:Name="TopTextTextbox" HorizontalAlignment="Left" Height="24" Margin="460,128,0,0" TextWrapping="Wrap" Text="UPPER TEXT HERE" VerticalAlignment="Top" Width="284" TextChanged="TopTextTextbox_TextChanged"/>
+        <TextBox x:Name="BottomTextBox" HorizontalAlignment="Left" Height="24" Margin="458,162,0,0" TextWrapping="Wrap" Text="LOWER TEXT HERE" VerticalAlignment="Top" Width="288" TextChanged="BottomTextBox_TextChanged"/>
+        <TextBox x:Name="TextSizeTextBox" HorizontalAlignment="Left" Height="24" Margin="458,210,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="120" TextChanged="TextSizeTextBox_TextChanged"/>
+        <Button x:Name="ExportButton" Content="Save As" HorizontalAlignment="Left" Margin="458,246,0,0" VerticalAlignment="Top" Width="75" Click="ExportButton_Click"/>
+        <Button x:Name="BrushesColour" Content="Text Colour" HorizontalAlignment="Left" Margin="591,212,0,0" VerticalAlignment="Top" Width="76" Click="BrushesColour_Click"/>
+
+    </Grid>
+</Window>
