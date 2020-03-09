@@ -174,5 +174,10 @@ namespace Memely
             }
             GenerateMeme();
         }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+
+        }
     }
 }

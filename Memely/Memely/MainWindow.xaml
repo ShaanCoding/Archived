@@ -5,15 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Memely"
         mc:Ignorable="d"
-        Title="Memely" Height="450" Width="800">
-    <Grid>
-        <Image x:Name="MemePreviewImage" HorizontalAlignment="Left" Height="250" Margin="45,86,0,0" VerticalAlignment="Top" Width="250"/>
-        <Button x:Name="GetMemeIconURL" Content="Add Meme" HorizontalAlignment="Left" Margin="668,105,0,0" VerticalAlignment="Top" Width="76" Click="GetMemeIconURL_Click"/>
-        <TextBox x:Name="TopTextTextbox" HorizontalAlignment="Left" Height="24" Margin="460,128,0,0" TextWrapping="Wrap" Text="UPPER TEXT HERE" VerticalAlignment="Top" Width="284" TextChanged="TopTextTextbox_TextChanged"/>
-        <TextBox x:Name="BottomTextBox" HorizontalAlignment="Left" Height="24" Margin="458,162,0,0" TextWrapping="Wrap" Text="LOWER TEXT HERE" VerticalAlignment="Top" Width="288" TextChanged="BottomTextBox_TextChanged"/>
-        <TextBox x:Name="TextSizeTextBox" HorizontalAlignment="Left" Height="24" Margin="458,210,0,0" TextWrapping="Wrap" Text="12" VerticalAlignment="Top" Width="120" TextChanged="TextSizeTextBox_TextChanged"/>
-        <Button x:Name="ExportButton" Content="Save As" HorizontalAlignment="Left" Margin="458,246,0,0" VerticalAlignment="Top" Width="75" Click="ExportButton_Click"/>
-        <Button x:Name="BrushesColour" Content="Text Colour" HorizontalAlignment="Left" Margin="591,212,0,0" VerticalAlignment="Top" Width="76" Click="BrushesColour_Click"/>
+        Title="Memely" Height="450" Width="800" Icon="Assets/icon.ico" WindowStartupLocation="CenterScreen" MinWidth="800" MinHeight="450" ContentRendered="Window_ContentRendered">
+    <Grid Background="#FF252934">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="1.5*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="MemePreviewImage" HorizontalAlignment="Center" Height="350" VerticalAlignment="Center" Width="350" Grid.Column="0" Grid.RowSpan="7" OpacityMask="Black"/>
+        <Button x:Name="GetMemeIconURL" Content="Add Meme" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100" Height="25" Click="GetMemeIconURL_Click" TabIndex="0" Grid.Column="1" Grid.Row="1" Margin="29.5,9,0,8" Background="#FF5A5D67" Foreground="White" BorderBrush="{x:Null}"/>
+        <TextBox x:Name="TopTextTextbox" HorizontalAlignment="Left" Height="55" TextWrapping="Wrap" Text="UPPER TEXT HERE" VerticalAlignment="Center" Width="340" TextChanged="TopTextTextbox_TextChanged" TabIndex="1"  Grid.Column="1" Grid.Row="2" Margin="29.5,5,0,5.5"/>
+        <TextBox x:Name="BottomTextBox" HorizontalAlignment="Left" Height="55" TextWrapping="Wrap" Text="LOWER TEXT HERE" VerticalAlignment="Center" Width="340" TextChanged="BottomTextBox_TextChanged" TabIndex="2"  Grid.Column="1" Grid.Row="3" Margin="29.5,5.5,-2,5"/>
+        <TextBox x:Name="TextSizeTextBox" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="12" VerticalAlignment="Center" Width="250" TextChanged="TextSizeTextBox_TextChanged" TabIndex="3"  Grid.Column="1" Grid.Row="4" Margin="29.5,9,0,8"/>
+        <Button x:Name="BrushesColour" Content="Text Colour" HorizontalAlignment="Left" VerticalAlignment="Center" Width="125" Height="45" Click="BrushesColour_Click" TabIndex="4"  Grid.Column="1" Grid.Row="5" Margin="29.5,22,0,22" BorderBrush="{x:Null}" Background="#FF5A5D67" Foreground="White"/>
+        <Button x:Name="ExportButton" Content="Save As" HorizontalAlignment="Right" VerticalAlignment="Center" Width="125" Height="45" Click="ExportButton_Click" TabIndex="5"  Grid.Column="1" Grid.Row="5" Margin="0,22,105,22" BorderBrush="{x:Null}" Background="#FF5A5D67" Foreground="White"/>
     </Grid>
 </Window>
