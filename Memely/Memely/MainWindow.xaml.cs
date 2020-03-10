@@ -28,13 +28,13 @@ namespace Memely
     /// </summary>
     public partial class MainWindow : Window
     {
-        static string memeURL = "";
-        static string topText = "";
-        static string bottomText = "";
-        static System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
-        static int textSize = 0;
-        static bool isReadyToMeme = false;
-        static bool isMemeifyText = false;
+        string memeURL = "";
+        string topText = "";
+        string bottomText = "";
+        System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
+        int textSize;
+        bool isReadyToMeme;
+        static bool isMemeifyText;
 
         public MainWindow()
         {
