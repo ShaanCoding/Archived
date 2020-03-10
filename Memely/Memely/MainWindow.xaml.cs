@@ -67,9 +67,9 @@ namespace Memely
         }
 
         // Memify string for top/bottom text
-        private string stringMemify(string s){
+        private static string stringMemify(string s){
             Random rand = new Random();
-            char[] charArr = s.ToLower().ToCharArray();
+            char[] charArr = s.ToCharArray();
 
             for(int i = 0; i < charArr.Length; i++) {
                 // rng boolean 1(true) or 0(false) 
@@ -164,7 +164,10 @@ namespace Memely
                 MemePreviewImage.Source = BitmapToImageSource(outputImage);
                 return outputImage;
             }
-            else return null;
+            else 
+            {
+                return null;
+            }
         }
 
         public static SizeF MeasureString(string s, Font font, int width)
