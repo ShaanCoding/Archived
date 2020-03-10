@@ -54,14 +54,41 @@ namespace Memely
 
         private void TopTextTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            topText = TopTextTextbox.Text;
+            topText = stringMemify(TopTextTextbox.Text);
             GenerateMeme();
         }
 
         private void BottomTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            bottomText = BottomTextBox.Text;
+            // you could do this or add a checkbox
+            // so the user can choose to "memify" the text or not
+            bottomText = stringMemify(BottomTextBox.Text);
             GenerateMeme();
+        }
+
+        // Memify string for top/bottom text
+        private string stringMemify(string s){
+            Random rand = new Random();
+            char[] charArr = s.ToLower().ToCharArray();
+
+            for(int i = 0; i < charArr.Length; i++) {
+                charArr[i] = (flag) ? 
+                    Char.ToUpper(charArr[i]) : Char.ToLower(charArr[i]);
+
+                /*
+                im just seperating this ^ to 2 lines to look better
+                this is a short cut for if/else, its the same as
+                if (flag) {
+                    charArr[i] = Char.ToUpper(charArr[i]);
+                }
+                else {
+                    charArr[i] = Char.ToLower(charArr[i]);
+                }
+
+                you can delete this in your code
+                */
+            }
+            return new string(charArr);
         }
 
         private void TextSizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -101,10 +128,6 @@ namespace Memely
             it'll either return true/false
             and if you wanna run code if the var is false, do
             if(!var)        
-
-            you can also do this for strings and numbers
-            empty strings("") or 0 == false
-            any string/number value == true
             */
             if(isReadyToMeme) 
             {
@@ -138,10 +161,7 @@ namespace Memely
                 MemePreviewImage.Source = BitmapToImageSource(outputImage);
                 return outputImage;
             }
-            else
-            {
-                return null;
-            }
+            else return null;
         }
 
         public static SizeF MeasureString(string s, Font font, int width)
