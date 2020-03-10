@@ -72,6 +72,9 @@ namespace Memely
             char[] charArr = s.ToLower().ToCharArray();
 
             for(int i = 0; i < charArr.Length; i++) {
+                // rng boolean 1(true) or 0(false) 
+                bool flag = rand.Next(2) != 0;
+
                 charArr[i] = (flag) ? 
                     Char.ToUpper(charArr[i]) : Char.ToLower(charArr[i]);
 
