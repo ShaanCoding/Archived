@@ -94,7 +94,19 @@ namespace Memely
 
         private Bitmap GenerateMeme()
         {
-            if(isReadyToMeme == true)
+            /*
+            since isReadyToMeme is already a boolean, 
+            you dont need to compare it with true or not
+            and since you already use it and gave it a value at init,
+            it'll either return true/false
+            and if you wanna run code if the var is false, do
+            if(!var)        
+
+            you can also do this for strings and numbers
+            empty strings("") or 0 == false
+            any string/number value == true
+            */
+            if(isReadyToMeme) 
             {
                 Bitmap memeImage = null;
 
@@ -149,7 +161,8 @@ namespace Memely
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
-            if(isReadyToMeme == true)
+            // same with above
+            if(isReadyToMeme)
             {
                 Bitmap bmp = GenerateMeme();
 
