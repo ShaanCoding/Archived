@@ -28,12 +28,13 @@ namespace Memely
     /// </summary>
     public partial class MainWindow : Window
     {
-        string memeURL = "";
-        string topText = "";
-        string bottomText = "";
-        System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
-        int textSize = 0;
-        bool isReadyToMeme = false;
+        static string memeURL = "";
+        static string topText = "";
+        static string bottomText = "";
+        static System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
+        static int textSize = 0;
+        static bool isReadyToMeme = false;
+        static bool isMemeifyText = false;
 
         public MainWindow()
         {
@@ -54,14 +55,39 @@ namespace Memely
 
         private void TopTextTextbox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            topText = TopTextTextbox.Text;
+            topText = stringMemify(TopTextTextbox.Text);
             GenerateMeme();
         }
 
         private void BottomTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            bottomText = BottomTextBox.Text;
+            // you could do this or add a checkbox
+            // so the user can choose to "memify" the text or not
+            bottomText = stringMemify(BottomTextBox.Text);
             GenerateMeme();
+        }
+
+        // Memify string for top/bottom text
+        private static string stringMemify(string s){
+            if (isMemeifyText)
+            {
+                Random rand = new Random();
+                char[] charArr = s.ToCharArray();
+
+                for (int i = 0; i < charArr.Length; i++)
+                {
+                    // rng boolean 1(true) or 0(false) 
+                    bool flag = rand.Next(2) != 0;
+
+                    charArr[i] = (flag) ?
+                        Char.ToUpper(charArr[i]) : Char.ToLower(charArr[i]);
+                }
+                return new string(charArr);
+            }
+            else
+            {
+                return s;
+            }
         }
 
         private void TextSizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -94,7 +120,15 @@ namespace Memely
 
         private Bitmap GenerateMeme()
         {
-            if(isReadyToMeme == true)
+            /*
+            since isReadyToMeme is already a boolean, 
+            you dont need to compare it with true or not
+            and since you already use it and gave it a value at init,
+            it'll either return true/false
+            and if you wanna run code if the var is false, do
+            if(!var)        
+            */
+            if(isReadyToMeme) 
             {
                 Bitmap memeImage = null;
 
@@ -126,7 +160,7 @@ namespace Memely
                 MemePreviewImage.Source = BitmapToImageSource(outputImage);
                 return outputImage;
             }
-            else
+            else 
             {
                 return null;
             }
@@ -149,7 +183,8 @@ namespace Memely
 
         private void ExportButton_Click(object sender, RoutedEventArgs e)
         {
-            if(isReadyToMeme == true)
+            // same with above
+            if(isReadyToMeme)
             {
                 Bitmap bmp = GenerateMeme();
 
@@ -178,6 +213,22 @@ namespace Memely
         private void Window_ContentRendered(object sender, EventArgs e)
         {
 
+        }
+
+        private void MemeifyTextCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            isMemeifyText = Convert.ToBoolean(MemeifyTextCheckbox.IsChecked);
+            topText = stringMemify(TopTextTextbox.Text);
+            bottomText = stringMemify(BottomTextBox.Text);
+            GenerateMeme();
+        }
+
+        private void MemeifyTextCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            isMemeifyText = Convert.ToBoolean(MemeifyTextCheckbox.IsChecked);
+            topText = stringMemify(TopTextTextbox.Text);
+            bottomText = stringMemify(BottomTextBox.Text);
+            GenerateMeme();
         }
     }
 }
