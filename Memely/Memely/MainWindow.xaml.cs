@@ -28,12 +28,13 @@ namespace Memely
     /// </summary>
     public partial class MainWindow : Window
     {
-        string memeURL = "";
-        string topText = "";
-        string bottomText = "";
-        System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
-        int textSize = 0;
-        bool isReadyToMeme = false;
+        static string memeURL = "";
+        static string topText = "";
+        static string bottomText = "";
+        static System.Drawing.Brush textBrush = System.Drawing.Brushes.White;
+        static int textSize = 0;
+        static bool isReadyToMeme = false;
+        static bool isMemeifyText = false;
 
         public MainWindow()
         {
@@ -68,30 +69,25 @@ namespace Memely
 
         // Memify string for top/bottom text
         private static string stringMemify(string s){
-            Random rand = new Random();
-            char[] charArr = s.ToCharArray();
+            if (isMemeifyText)
+            {
+                Random rand = new Random();
+                char[] charArr = s.ToCharArray();
 
-            for(int i = 0; i < charArr.Length; i++) {
-                // rng boolean 1(true) or 0(false) 
-                bool flag = rand.Next(2) != 0;
+                for (int i = 0; i < charArr.Length; i++)
+                {
+                    // rng boolean 1(true) or 0(false) 
+                    bool flag = rand.Next(2) != 0;
 
-                charArr[i] = (flag) ? 
-                    Char.ToUpper(charArr[i]) : Char.ToLower(charArr[i]);
-
-                /*
-                im just seperating this ^ to 2 lines to look better
-                this is a short cut for if/else, its the same as
-                if (flag) {
-                    charArr[i] = Char.ToUpper(charArr[i]);
+                    charArr[i] = (flag) ?
+                        Char.ToUpper(charArr[i]) : Char.ToLower(charArr[i]);
                 }
-                else {
-                    charArr[i] = Char.ToLower(charArr[i]);
-                }
-
-                you can delete this in your code
-                */
+                return new string(charArr);
             }
-            return new string(charArr);
+            else
+            {
+                return s;
+            }
         }
 
         private void TextSizeTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -217,6 +213,22 @@ namespace Memely
         private void Window_ContentRendered(object sender, EventArgs e)
         {
 
+        }
+
+        private void MemeifyTextCheckbox_Checked(object sender, RoutedEventArgs e)
+        {
+            isMemeifyText = Convert.ToBoolean(MemeifyTextCheckbox.IsChecked);
+            topText = stringMemify(TopTextTextbox.Text);
+            bottomText = stringMemify(BottomTextBox.Text);
+            GenerateMeme();
+        }
+
+        private void MemeifyTextCheckbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            isMemeifyText = Convert.ToBoolean(MemeifyTextCheckbox.IsChecked);
+            topText = stringMemify(TopTextTextbox.Text);
+            bottomText = stringMemify(BottomTextBox.Text);
+            GenerateMeme();
         }
     }
 }
