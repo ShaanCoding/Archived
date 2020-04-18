@@ -109,9 +109,7 @@ def main():
     time.sleep(6)
 
     for i in range(0, numberOfQuestions):
-        questionString = driver.find_element_by_xpath("//div[@class='questions-text-alignment whiteTextWithShadow question-size-v4']")
         inputBox = driver.find_element_by_xpath("//input[@ng-model='innerAnswerInput']")
-
         inputBox.send_keys(eval_question(driver))
         time.sleep(0.1)
         inputBox.send_keys(Keys.ENTER)
