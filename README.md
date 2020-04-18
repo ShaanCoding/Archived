@@ -4,6 +4,8 @@ This application is a light weight Mathletics Live Bot created in Python using S
 
 
 
+![Main Menu](Images/mainMenu.png)
+
 ## Prerequisites
 
 This program requires Selenium to be installed in python, the rest including GeckoDriver comes pre-installed with the program files
