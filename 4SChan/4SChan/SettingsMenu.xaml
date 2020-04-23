@@ -7,14 +7,32 @@
         mc:Ignorable="d"
         Title="SettingsMenu" Height="450" Width="800" ContentRendered="Window_ContentRendered">
     <Grid>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="656,365,0,0" VerticalAlignment="Top" Width="74" Click="CancelButton_Click"/>
-        <Button x:Name="ApplyButton" Content="Apply" HorizontalAlignment="Left" Margin="558,367,0,0" VerticalAlignment="Top" Width="76" Click="ApplyButton_Click"/>
-        <CheckBox x:Name="MessageBoxOnCompleteCheckBox" Content="Show MessageBox On Complete" HorizontalAlignment="Left" Margin="55,51,0,0" VerticalAlignment="Top" Checked="MessageBoxOnCompleteCheckBox_Checked"/>
-        <CheckBox x:Name="ExitOnCompleteCheckBox" Content="Exit Program On Complete" HorizontalAlignment="Left" Margin="56,78,0,0" VerticalAlignment="Top" Checked="ExitOnCompleteCheckBox_Checked"/>
-        <TextBox x:Name="DownloadDirectoryTextBox" HorizontalAlignment="Left" Height="24" Margin="51,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" IsReadOnly="True"/>
-        <Button x:Name="OpenFileDialogButton" Content="..." HorizontalAlignment="Left" Margin="349,103,0,0" VerticalAlignment="Top" Width="76" Click="OpenFileDialogButton_Click"/>
-        <CheckBox x:Name="CreateSubFolderOnDownloadCheckBox" Content="Create Subfolder For Thread" HorizontalAlignment="Left" Margin="52,142,0,0" VerticalAlignment="Top"/>
-        <CheckBox x:Name="SaveWithOriginalFileNameCheckBox" Content="Save With Original File Name" HorizontalAlignment="Left" Margin="49,167,0,0" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <Label Content="Save Directory" Grid.Row="0" Grid.Column="1" Foreground="#659D32" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
+        <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" Rows="1" Height="60">
+            <TextBox x:Name="DownloadDirectoryTextBox" HorizontalAlignment="Left" Height="24" TextWrapping="Wrap" VerticalAlignment="Center" Width="328" IsReadOnly="True" Margin="2,18,0,18"/>
+            <Button x:Name="OpenFileDialogButton" Content="..." HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="80" Click="OpenFileDialogButton_Click"/>
+        </UniformGrid>
+
+        <Label Content="Settings" Grid.Row="1" Grid.Column="1" Foreground="#659D32" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
+        <UniformGrid Grid.Row="1" Grid.Column="1" Columns="1" Rows="4" Height="120">
+            <CheckBox x:Name="MessageBoxOnCompleteCheckBox" Content="Show MessageBox On Complete" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="MessageBoxOnCompleteCheckBox_Checked"/>
+            <CheckBox x:Name="ExitOnCompleteCheckBox" Content="Exit Program On Complete" HorizontalAlignment="Left" VerticalAlignment="Top" Checked="ExitOnCompleteCheckBox_Checked"/>
+            <CheckBox x:Name="CreateSubFolderOnDownloadCheckBox" Content="Create Subfolder For Thread" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <CheckBox x:Name="SaveWithOriginalFileNameCheckBox" Content="Save With Original File Name" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </UniformGrid>
+
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Click="CancelButton_Click" Grid.Column="1" Grid.Row="2" Margin="0,13.5,20,13.5"/>
+        <Button x:Name="ApplyButton" Content="Apply" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Click="ApplyButton_Click" Grid.Column="1" Grid.Row="2" Margin="0,13.5,110,13.5"/>
     </Grid>
 </Window>

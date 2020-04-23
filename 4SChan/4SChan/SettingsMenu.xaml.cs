@@ -70,6 +70,9 @@ namespace _4SChan
                     DownloadDirectoryTextBox.Text = openFileDialog.FileName;
                 }
             }
+
+            //Focuses back on original window
+            this.Focus();
         }
 
         private void MessageBoxOnCompleteCheckBox_Checked(object sender, RoutedEventArgs e)
