@@ -26,9 +26,9 @@ namespace _4SChan
 
             WebRequest req = WebRequest.Create(url);
             req.Method = "HEAD";
-            using (WebResponse resp = req.GetResponse())
+            using (WebResponse response = req.GetResponse())
             {
-                if (long.TryParse(resp.Headers.Get("Content-Length"), out long contentLength))
+                if (long.TryParse(response.Headers.Get("Content-Length"), out long contentLength))
                 {
                     result = contentLength;
                 }
@@ -45,56 +45,64 @@ namespace _4SChan
             //Return function
             List<ImagesClass> returnList = new List<ImagesClass>();
 
-            if (threadURL.Split('/').Length > 3 && threadURL.Contains('.'))
+            try
             {
-                //Correctly formats thread url
-                string endpoint = string.Join("/", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 3);
-                string board = string.Join("", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 1);
-                string apiUrl = $"{API_URL}{endpoint}.json";
-
-                //View it
-                RootObject rootObject;
-
-                using (WebClient webClient = new WebClient())
+                if (threadURL.Split('/').Length > 5 && threadURL.Contains('.'))
                 {
-                    var json = webClient.DownloadString(apiUrl);
-                    rootObject = JsonConvert.DeserializeObject<RootObject>(json);
-                }
+                    //Correctly formats thread url
+                    string endpoint = string.Join("/", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 3);
+                    string board = string.Join("", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 1);
+                    string apiUrl = $"{API_URL}{endpoint}.json";
 
-                int localCount = 0;
-                //Allocates return dictionary
-                for (int i = 0; i < rootObject.posts.Count; i++)
-                {
-                    //If DNE it ignores
-                    if (rootObject.posts[i].tim != null && rootObject.posts[i].ext != null)
+                    //View it
+                    RootObject rootObject;
+
+                    using (WebClient webClient = new WebClient())
                     {
-                        ImagesClass imgClass = new ImagesClass();
-                        imgClass.setIsSelected(true);
-
-                        string imageURL = API_IMG_URL + board + "/" + rootObject.posts[i].tim + rootObject.posts[i].ext;
-                        imgClass.setURLOfImage(imageURL);
-
-                        if (Properties.Settings.Default.saveWithOriginalFileName)
-                        {
-                            imgClass.setNameOfImage(rootObject.posts[i].tim.ToString());
-                        }
-                        else
-                        {
-                            imgClass.setNameOfImage(localCount.ToString());
-                            localCount++;
-                        }
-
-                        imgClass.setFileTypeOfImage(rootObject.posts[i].ext);
-                        imgClass.setDownloadSize(GetFileSize(imageURL));
-
-                        returnList.Add(imgClass);
+                        var json = webClient.DownloadString(apiUrl);
+                        rootObject = JsonConvert.DeserializeObject<RootObject>(json);
                     }
-                }
 
-                return returnList;
+                    int localCount = 0;
+                    //Allocates return dictionary
+                    for (int i = 0; i < rootObject.posts.Count; i++)
+                    {
+                        //If DNE it ignores
+                        if (rootObject.posts[i].tim != null && rootObject.posts[i].ext != null)
+                        {
+                            ImagesClass imgClass = new ImagesClass();
+                            imgClass.setIsSelected(true);
+
+                            string imageURL = API_IMG_URL + board + "/" + rootObject.posts[i].tim + rootObject.posts[i].ext;
+                            imgClass.setURLOfImage(imageURL);
+
+                            if (Properties.Settings.Default.saveWithOriginalFileName)
+                            {
+                                imgClass.setNameOfImage(rootObject.posts[i].tim.ToString());
+                            }
+                            else
+                            {
+                                imgClass.setNameOfImage(localCount.ToString());
+                                localCount++;
+                            }
+
+                            imgClass.setFileTypeOfImage(rootObject.posts[i].ext);
+                            imgClass.setDownloadSize(GetFileSize(imageURL));
+
+                            returnList.Add(imgClass);
+                        }
+                    }
+
+                    return returnList;
+                }
+                else
+                {
+                    return returnList;
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show("Error: Cannot start until a valid thread is inputted.");
                 return returnList;
             }
         }

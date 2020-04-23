@@ -117,9 +117,9 @@ namespace _4SChan
                     DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                     new Action(delegate ()
                     {
-                        if (!dt.Rows[i - 1].IsNull(5))
+                        if (!dt.Rows[i].IsNull(5))
                         {
-                            dt.Rows[i - 1].SetField(5, result);
+                            dt.Rows[i].SetField(5, result);
                         }
                     }));
 
@@ -191,7 +191,7 @@ namespace _4SChan
 
         private string GetSubFolderName(string inputString)
         {
-            if(inputString.Split('/').Length > 3 & inputString.Contains('.'))
+            if(inputString.Split('/').Length > 5 && inputString.Contains('.'))
             {
                 return string.Join("", inputString.Remove(0, inputString.LastIndexOf('.')).Split('/'), 3, 1);
             }
