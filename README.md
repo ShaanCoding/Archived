@@ -1,6 +1,6 @@
 # 4SChan
 
-This application is a basic 4chain thread image downloader created in C# with the assistance of NewtonSoft and the WindowsCodeAPI-Shell & Core. This program was made in order to bulk download image threads off 4chan such as desktop wallpaper dumps.
+This application is a basic 4chan thread image downloader created in C# with the assistance of NewtonSoft and the WindowsCodeAPI-Shell & Core. This program was made in order to bulk download image threads off 4chan such as desktop wallpaper dumps.
 
 ![Main Menu](Images/mainMenu.png)
 
