@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,81 +23,78 @@ namespace _4SChan
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static List<ImagesClass> imagesDictionary = new List<ImagesClass>();
+
+        private static bool showMessageBoxOnComplete;
+        private static bool exitOnComplete;
+        private static string downloadDirectory;
+        private static bool createSubFolderOnDownload;
+        private static bool saveWithOriginalFileName;
+
+        private string subFolderName = "";
+        private DataTable dt = new DataTable();
+        private FetchDownloadCancel fetchDownloadEnum = FetchDownloadCancel.Fetch;
+        private bool isFetchValid = false;
         private readonly BackgroundWorker backgroundWorker = new BackgroundWorker();
+
+        private enum FetchDownloadCancel
+        {
+            Fetch,
+            Cancel,
+            Download,
+        };
+
         public MainWindow()
         {
             InitializeComponent();
-            /*
+            InitalizeDataGridView();
+
             backgroundWorker.WorkerReportsProgress = true;
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-            */
         }
 
-        private static void ReadOnlyButton()
+        private void _4SChan_ContentRendered(object sender, EventArgs e)
         {
-            /*
-            if (startStopButtonBool == true)
+            AssignProperties();
+        }
+
+        public static void AssignProperties()
+        {
+            showMessageBoxOnComplete = Properties.Settings.Default.showMessageBoxOnComplete;
+            exitOnComplete = Properties.Settings.Default.exitOnComplete;
+            downloadDirectory = Properties.Settings.Default.downloadDirectory;
+            createSubFolderOnDownload = Properties.Settings.Default.createSubFolderOnDownload;
+            saveWithOriginalFileName = Properties.Settings.Default.saveWithOriginalFileName;
+        }
+
+
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+
+            string directoryToSaveTo;
+            if(Properties.Settings.Default.createSubFolderOnDownload)
             {
-                if (isFolderSelected == true)
+                //Check if subdirectory exists if not it creates it
+                directoryToSaveTo = Properties.Settings.Default.downloadDirectory + "\\" + subFolderName;
+                DirectoryInfo destinationDirectory = new DirectoryInfo(directoryToSaveTo);
+
+                if (!destinationDirectory.Exists)
                 {
-                    FindMaxPages();
-                    backgroundWorker.RunWorkerAsync();
-                    startStopButtonBool = false;
-                    StartStopButton.Content = "Stop";
-                }
-                else
-                {
-                    MessageBox.Show("Error: Cannot start until a output folder is selected.");
+                    destinationDirectory.Create();
                 }
             }
             else
             {
-                if (backgroundWorker.IsBusy)
-                {
-                    backgroundWorker.CancelAsync();
-                }
-                startStopButtonBool = true;
-                StartStopButton.Content = "Start";
+                directoryToSaveTo = Properties.Settings.Default.downloadDirectory;
             }
-            */
-        }
 
-        public static async void TestFunction()
-        {
-            /*
-            var downloader = new Downloader();                        // create new ChanDownloader instance
-
-            var thread = await downloader.LoadThread("Thread URL");   // load thread
-
-            var id = thread.Id;                                        // thread id
-            var subject = thread.Subject;                             // get thread subject (original)
-            var safeName = thread.SemanticSubject;                    // get thread subject in safe format
-            var files = thread.Files;                                 // get the file list
-
-            
-             //the webclient is exposed so you can hook up your event callbacks
-             //you can get the current downloaded file index from downloader.CurrentFileNumber
-
-            downloader.WebClient.DownloadFileCompleted += "YOUR CALLBACK";
-            await downloader.DownloadFiles(thread, "YOUR PATH");  // download the files to the specified directory
-            */
-        }
-
-        private void BackgroundWorkerDownloadingImages(object sender, DoWorkEventArgs e)
-        {
-            /*
-            BackgroundWorker worker = sender as BackgroundWorker;
-
-            for (int i = 1; i <= numberOfComics; i++)
+            for(int i = 0; i < imagesDictionary.Count; i++)
             {
-                while (isPausedBool == true)
-                {
-                    //Empty loop to pause downloading
-                }
-
                 if (worker.CancellationPending == true)
                 {
                     e.Cancel = true;
@@ -103,33 +102,33 @@ namespace _4SChan
                 }
                 else
                 {
-                    try
+                    string result = Downloader.DownloadImage(imagesDictionary[i].getURLOfImage(), imagesDictionary[i].getNameOfImage(), imagesDictionary[i].getFileTypeOfImage(), directoryToSaveTo);
+
+                    //Shows success or fail for each image
+                    DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                    new Action(delegate ()
                     {
-                        string[] imageURLDataString = ImageURLData(i);
-                        using (WebClient client = new WebClient())
+                        if(!dt.Rows[i-1].IsNull(5))
                         {
-                            client.DownloadFile(new Uri(imageURLDataString[0]), string.Format(@"{0}\{1}.png", downloadDirectory, imageURLDataString[1]));
-
-                            dataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                            new Action(delegate ()
-                            {
-                                DataTableAdd(i, numberOfComics, imageURLDataString[1], Convert.ToInt64(client.ResponseHeaders["Content-Length"]).ToString());
-                            }));
+                            dt.Rows[i-1].SetField(5, result);
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("An error has occured, refer to: " + ex);
-                    }
-
+                    }));
                 }
-                int returnProgressPercent = (int)Math.Ceiling((decimal)(i + 1) / numberOfComics * 100);
+                int returnProgressPercent = (int)Math.Ceiling((decimal)(i + 1) / imagesDictionary.Count * 100);
                 worker.ReportProgress(returnProgressPercent);
             }
-            */
+
+            if(Properties.Settings.Default.exitOnComplete)
+            {
+                this.Close();
+            }
+            else if(Properties.Settings.Default.showMessageBoxOnComplete)
+            {
+                MessageBox.Show("Success! All files downloaded sucessfully");
+            }
         }
 
-        private static void BackgroundWorkerDownloadingImages_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -141,13 +140,13 @@ namespace _4SChan
             }
             else
             {
-                MessageBox.Show("Success! The task has finished successfully.");
+                //Nothing
             }
         }
 
-        private void BackgroundWorkerDownloadingImages_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //ProgressBar.Value = e.ProgressPercentage;
+            ProgressBar.Value = e.ProgressPercentage;
         }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
@@ -155,5 +154,80 @@ namespace _4SChan
             SettingsMenu settingsMenu = new SettingsMenu();
             settingsMenu.ShowDialog();
         }
+
+        private void InitalizeDataGridView()
+        {
+            dt.Columns.Add("Selected", typeof(bool));
+            dt.Columns.Add("URL", typeof(string));
+            dt.Columns.Add("Name", typeof(string));
+            dt.Columns.Add("File Type", typeof(string));
+            dt.Columns.Add("Download Size (UNIT)", typeof(double));
+            dt.Columns.Add("Status");
+
+            DataGrid.ItemsSource = dt.DefaultView;
+        }
+
+        private void PopulateDataGridView()
+        {
+            dt = new DataTable();
+
+            InitalizeDataGridView();
+            foreach (ImagesClass img in imagesDictionary)
+            {
+                dt.Rows.Add(img.getIsSelected(), img.getURLOfImage(), img.getNameOfImage(), img.getFileTypeOfImage(), img.getDownloadSize(), "");
+            }
+        }
+
+        private string GetSubFolderName(string inputString)
+        {
+            return string.Join("", inputString.Remove(0, inputString.LastIndexOf('.')).Split('/'), 3, 1);
+        }
+
+        private void FetchDownloadButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(fetchDownloadEnum == FetchDownloadCancel.Fetch)
+            {
+                //Check if thread is valid and populate info
+
+                //Replace true with populate info
+                subFolderName = GetSubFolderName(URLTextBox.Text);
+                imagesDictionary = Downloader.ViewThread(URLTextBox.Text);
+                PopulateDataGridView();
+
+                if(imagesDictionary.Count > 0)
+                {
+                    isFetchValid = true;
+                    FetchDownloadButton.Content = "Download";
+                    fetchDownloadEnum = FetchDownloadCancel.Download;
+                }
+                else
+                {
+                    MessageBox.Show("Error: Cannot start until a valid thread is inputted.");
+                }
+            }
+            else if(fetchDownloadEnum == FetchDownloadCancel.Download)
+            {
+                if(isFetchValid == true)
+                {
+                    backgroundWorker.RunWorkerAsync();
+                    FetchDownloadButton.Content = "Cancel";
+                    fetchDownloadEnum = FetchDownloadCancel.Cancel;
+                }
+                else
+                {
+                    MessageBox.Show("Error: Cannot start until a valid thread is inputted.");
+                }
+            }
+            else if(fetchDownloadEnum == FetchDownloadCancel.Cancel)
+            {
+                if (backgroundWorker.IsBusy)
+                {
+                    backgroundWorker.CancelAsync();
+                }
+                FetchDownloadButton.Content = "Fetch";
+                fetchDownloadEnum = FetchDownloadCancel.Fetch;
+            }
+        }
+
     }
 }

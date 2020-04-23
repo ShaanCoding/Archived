@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -6,135 +7,141 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _4SChan
 {
     public class Downloader
     {
-        public WebClient WebClient = new WebClient();
-        public int CurrentFileNumber = 1;
-        private Thread _thread;
-        private const string api_url = @"https://a.4cdn.org/";
-        private const string api_img_url = @"https://i.4cdn.org/";
+        private const string API_URL = @"https://a.4cdn.org/";
+        private const string API_IMG_URL = @"https://i.4cdn.org/";
 
-        public async Task<Thread> LoadThread(string url)
+        public Downloader()
         {
-            Utils.Log("LoadThread: extracting info");
-            //turn http://boards.4chan.org/<board>/thread/<id>/<sometimes_title> into <board>/thread/<id>
-            var endpoint = string.Join("/", url.Remove(0, url.LastIndexOf('.')).Split('/'), 1, 3);
-            var apiUrl = $"{api_url}{endpoint}.json";
 
-            Utils.Log($"api url: {apiUrl}");
-            var json = await WebClient.DownloadStringTaskAsync($"{api_url}{endpoint}.json");
+        }
 
-            if (string.IsNullOrEmpty(json))
+        /*
+         * Credits To: https://stackoverflow.com/questions/12079794/get-size-of-image-file-before-downloading-from-web
+         * User: Ghost4Man
+         */
+        public static long GetFileSize(string url)
+        {
+            long result = 0;
+
+            WebRequest req = WebRequest.Create(url);
+            req.Method = "HEAD";
+            using (WebResponse resp = req.GetResponse())
             {
-                // request error
-                Utils.Log("LoadThread: web request returned null");
-                return null;
-            }
-
-            var posts = JObject.Parse(json)["posts"].ToObject<JArray>();
-            if (posts == null)
-            {
-                // parsing error
-                Utils.Log($"LoadThread: error parsing response\njson:\n{json}");
-                return null;
-            }
-
-            var id = posts[0]["no"].ToString();
-            var semantic = posts[0]["semantic_url"].ToString();
-            var subject = posts[0]["sub"] == null ? semantic : posts[0]["sub"].ToString();
-            var files = new List<File>();
-
-            for (int i = 0; i < posts.Count; i++)
-            {
-                if (posts[i]["filename"] != null)
+                if (long.TryParse(resp.Headers.Get("Content-Length"), out long contentLength))
                 {
-                    var filename = posts[i]["filename"].ToString() + posts[i]["ext"].ToString();
-                    var size = int.Parse(posts[i]["fsize"].ToString());
-                    var renamed = posts[i]["tim"].ToString() + posts[i]["ext"].ToString();
-                    var uri = $"{api_img_url}{endpoint.Split('/').First()}/{renamed}";
-                    files.Add(new File(filename, renamed, size, uri));
+                    result = contentLength;
                 }
             }
 
-            var thread = new Thread(url, id, subject, semantic, files);
-            this._thread = thread;
-            Utils.Log($"Loaded thread: {id} - {subject} ({files.Count} files)");
-
-            return thread;
+            return result;
         }
 
-        public async Task DownloadFiles(Thread thread, string path)
+        public static List<ImagesClass> ViewThread(string threadURL)
         {
-            var files = thread.Files;
-            for (int i = 0; i < files.Count; i++)
+            //Return function
+            List<ImagesClass> returnList = new List<ImagesClass>();
+            //Correctly formats thread url
+            string endpoint = string.Join("/", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 3);
+            string board = string.Join("", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 1);
+            string apiUrl = $"{API_URL}{endpoint}.json";
+
+            //View it
+            RootObject rootObject;
+
+            using (WebClient webClient = new WebClient())
             {
-                this.CurrentFileNumber = i + 1;
-                var current = files[i];
-                var filename = $"{path}\\{current.OriginalFileName}";
-                var uri = $"{current.Url}";
-                Utils.Log($"downloading {uri} to {filename}");
-                await WebClient.DownloadFileTaskAsync(uri, filename);
+                var json = webClient.DownloadString(apiUrl);
+                rootObject = JsonConvert.DeserializeObject<RootObject>(json);
             }
-            Utils.Log($"downloaded {files.Count} files to {path}");
-        }
 
-        public async Task DownloadFiles(List<File> files, string path)
-        {
-            for (int i = 0; i < files.Count; i++)
+            int localCount = 0;
+            //Allocates return dictionary
+            for(int i = 0; i < rootObject.posts.Count; i++)
             {
-                this.CurrentFileNumber = i + 1;
-                var current = files[i];
-                var filename = $"{path}\\{current.OriginalFileName}";
-                var uri = $"{current.Url}";
-                Utils.Log($"downloading {uri} to {filename}");
-                await WebClient.DownloadFileTaskAsync(uri, filename);
+                //If DNE it ignores
+                if(rootObject.posts[i].tim != null && rootObject.posts[i].ext != null)
+                {
+                    ImagesClass imgClass = new ImagesClass();
+                    imgClass.setIsSelected(true);
+
+                    string imageURL = API_IMG_URL + board + "/" + rootObject.posts[i].tim + rootObject.posts[i].ext;
+                    imgClass.setURLOfImage(imageURL);
+
+                    if (Properties.Settings.Default.saveWithOriginalFileName)
+                    {
+                        imgClass.setNameOfImage(rootObject.posts[i].tim.ToString());
+                    }
+                    else
+                    {
+                        imgClass.setNameOfImage(localCount.ToString());
+                        localCount++;
+                    }
+
+                    imgClass.setFileTypeOfImage(rootObject.posts[i].ext);
+                    imgClass.setDownloadSize(GetFileSize(imageURL));
+
+                    returnList.Add(imgClass);
+                }
             }
-            Utils.Log($"downloaded {files.Count} files to {path}");
+
+            return returnList;
         }
+
+        public static string DownloadImage(string URL, string nameOfImage, string fileType, string downloadDirectory)
+        {
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    string dlDirectory = string.Format(@"{0}\{1}{2}", downloadDirectory, nameOfImage, fileType);
+                    client.DownloadFile(new Uri(URL), dlDirectory);
+                    return "SUCCESS";
+                }
+            }
+            catch (Exception ex)
+            {
+                return "FAILED";
+            }
+        }
+
     }
 
-    public class Thread
-    {
-        public string Url { get; private set; }
-        public string Id { get; private set; }
-        public string Subject { get; private set; }
-        public string SemanticSubject { get; private set; }
-        public List<File> Files { get; private set; }
+    //Below is JSON structure can put into GSON
 
-        public Thread(string url, string id, string subject, string semantic, List<File> files)
-        {
-            this.Url = url;
-            Id = id;
-            Subject = subject;
-            SemanticSubject = semantic;
-            Files = files;
-        }
+    public class Post
+    {
+        public int no { get; set; }
+        public string now { get; set; }
+        public string name { get; set; }
+        public string com { get; set; }
+        public string filename { get; set; }
+        public string ext { get; set; }
+        public int w { get; set; }
+        public int h { get; set; }
+        public int tn_w { get; set; }
+        public int tn_h { get; set; }
+        public object tim { get; set; }
+        public int time { get; set; }
+        public string md5 { get; set; }
+        public int fsize { get; set; }
+        public int resto { get; set; }
+        public int bumplimit { get; set; }
+        public int imagelimit { get; set; }
+        public string semantic_url { get; set; }
+        public int replies { get; set; }
+        public int images { get; set; }
+        public int unique_ips { get; set; }
+        public int? filedeleted { get; set; }
     }
 
-    public class File
+    public class RootObject
     {
-        public string OriginalFileName { get; private set; }
-        public string FileName { get; private set; }
-        public int FileSize { get; private set; }
-        public string Url { get; private set; }
-
-        public File(string originalName, string filename, int filesize, string url)
-        {
-            this.OriginalFileName = originalName;
-            this.FileName = filename;
-            this.FileSize = filesize;
-            this.Url = url;
-        }
-    }
-
-    public static class Utils
-    {
-        public static void Log(string text)
-        {
-            Debug.WriteLine($"ChanDownloader-log: {text}");
-        }
+        public List<Post> posts { get; set; }
     }
 }

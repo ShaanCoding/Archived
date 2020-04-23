@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4SChan"
         mc:Ignorable="d"
-        Title="SettingsMenu" Height="450" Width="800">
+        Title="SettingsMenu" Height="450" Width="800" ContentRendered="Window_ContentRendered">
     <Grid>
-        
+        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="656,365,0,0" VerticalAlignment="Top" Width="74" Click="CancelButton_Click"/>
+        <Button x:Name="ApplyButton" Content="Apply" HorizontalAlignment="Left" Margin="558,367,0,0" VerticalAlignment="Top" Width="76" Click="ApplyButton_Click"/>
+        <CheckBox x:Name="MessageBoxOnCompleteCheckBox" Content="Show MessageBox On Complete" HorizontalAlignment="Left" Margin="55,51,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="ExitOnCompleteCheckBox" Content="Exit Program On Complete" HorizontalAlignment="Left" Margin="56,78,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="DownloadDirectoryTextBox" HorizontalAlignment="Left" Height="24" Margin="51,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="290" IsReadOnly="True"/>
+        <Button x:Name="OpenFileDialogButton" Content="..." HorizontalAlignment="Left" Margin="349,103,0,0" VerticalAlignment="Top" Width="76" Click="OpenFileDialogButton_Click"/>
+        <CheckBox x:Name="CreateSubFolderOnDownloadCheckBox" Content="Create Subfolder For Thread" HorizontalAlignment="Left" Margin="52,142,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="SaveWithOriginalFileNameCheckBox" Content="Save With Original File Name" HorizontalAlignment="Left" Margin="49,167,0,0" VerticalAlignment="Top"/>
+
     </Grid>
 </Window>

@@ -5,12 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4SChan"
         mc:Ignorable="d"
-        Title="4SChan" Height="450" Width="800">
+        Title="4SChan" Height="450" Width="800" ContentRendered="_4SChan_ContentRendered">
+    
     <Grid>
         <Label Content="URL:" HorizontalAlignment="Left" Margin="14,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.657,-0.048"/>
-        <TextBox x:Name="URLTextBox" HorizontalAlignment="Left" Height="23" Margin="56,15,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="423"/>
-        <Button x:Name="FetchDownloadButton" Content="Fetch" HorizontalAlignment="Left" Margin="488,10,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="URLTextBox" HorizontalAlignment="Left" Height="23" Margin="56,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="423"/>
+        <Button x:Name="FetchDownloadButton" Content="Fetch" HorizontalAlignment="Left" Margin="488,10,0,0" VerticalAlignment="Top" Width="75" Click="FetchDownloadButton_Click"/>
         <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="569,9,0,0" VerticalAlignment="Top" Width="75" Click="SettingsButton_Click"/>
-
+        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="44" Margin="122,317,0,0" VerticalAlignment="Top" Width="483"/>
+        <Label x:Name="NumberOfFilesAndSizeLabel" Content="0 Files - 0 MiB" HorizontalAlignment="Left" Margin="291,380,0,0" VerticalAlignment="Top" Height="30" Width="114"/>
+        <DataGrid x:Name="DataGrid" Height="447" HorizontalAlignment="Left" Margin="20,85,0,0" VerticalAlignment="Top" Width="799" CanUserAddRows="False"/>
     </Grid>
 </Window>
