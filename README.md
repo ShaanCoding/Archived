@@ -4,8 +4,6 @@
 
 This application is a light weight Mathletics Live Bot created in Python using Selenium. This application can go up to level 4 mathletics live automatically however past level 4 it cannot comprehend complex questions and fails to work. This program was made with the intention on brushing up on Python as well as an inside joke between friends.
 
-
-
 ![Main Menu](Images/mainMenu.png)
 
 ## Prerequisites
