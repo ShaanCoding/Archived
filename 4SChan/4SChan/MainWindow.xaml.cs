@@ -102,22 +102,33 @@ namespace _4SChan
                 }
                 else
                 {
-                    string result = Downloader.DownloadImage(imagesDictionary[i].getURLOfImage(), imagesDictionary[i].getNameOfImage(), imagesDictionary[i].getFileTypeOfImage(), directoryToSaveTo);
+                    string result;
+
+                    if(dt.Rows[i].Field<bool>(0) == true)
+                    {
+                        result = Downloader.DownloadImage(imagesDictionary[i].getURLOfImage(), imagesDictionary[i].getNameOfImage(), imagesDictionary[i].getFileTypeOfImage(), directoryToSaveTo);
+                    }
+                    else
+                    {
+                        result = "SKIPPED";
+                    }
 
                     //Shows success or fail for each image
                     DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                     new Action(delegate ()
                     {
-                        if(!dt.Rows[i-1].IsNull(5))
+                        if (!dt.Rows[i - 1].IsNull(5))
                         {
-                            dt.Rows[i-1].SetField(5, result);
+                            dt.Rows[i - 1].SetField(5, result);
                         }
                     }));
+
                 }
                 int returnProgressPercent = (int)Math.Ceiling((decimal)(i + 1) / imagesDictionary.Count * 100);
                 worker.ReportProgress(returnProgressPercent);
             }
 
+            //When done either exits or shows message or resumes
             if(Properties.Settings.Default.exitOnComplete)
             {
                 this.Close();
@@ -161,7 +172,7 @@ namespace _4SChan
             dt.Columns.Add("URL", typeof(string));
             dt.Columns.Add("Name", typeof(string));
             dt.Columns.Add("File Type", typeof(string));
-            dt.Columns.Add("Download Size (UNIT)", typeof(double));
+            dt.Columns.Add("Download Size (KB)", typeof(double));
             dt.Columns.Add("Status");
 
             DataGrid.ItemsSource = dt.DefaultView;
@@ -180,7 +191,14 @@ namespace _4SChan
 
         private string GetSubFolderName(string inputString)
         {
-            return string.Join("", inputString.Remove(0, inputString.LastIndexOf('.')).Split('/'), 3, 1);
+            if(inputString.Split('/').Length > 3 & inputString.Contains('.'))
+            {
+                return string.Join("", inputString.Remove(0, inputString.LastIndexOf('.')).Split('/'), 3, 1);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         private void FetchDownloadButton_Click(object sender, RoutedEventArgs e)
@@ -199,6 +217,10 @@ namespace _4SChan
                     isFetchValid = true;
                     FetchDownloadButton.Content = "Download";
                     fetchDownloadEnum = FetchDownloadCancel.Download;
+
+                    //Prevents users from accessing it until done
+                    CancelButton.Visibility = Visibility.Visible;
+                    URLTextBox.IsEnabled = false;
                 }
                 else
                 {
@@ -226,8 +248,48 @@ namespace _4SChan
                 }
                 FetchDownloadButton.Content = "Fetch";
                 fetchDownloadEnum = FetchDownloadCancel.Fetch;
+
+                //Prevents users from accessing it until done
+                CancelButton.Visibility = Visibility.Collapsed;
+                URLTextBox.IsEnabled = true;
             }
+            UpdateLabelFileSize();
         }
 
+        private void UpdateLabelFileSize()
+        {
+            int numberOfFiles = 0;
+            double totalDownloadSize = 0;
+            for(int i = 0; i < dt.Rows.Count; i++)
+            {
+                if(dt.Rows[i].Field<bool>(0) == true)
+                {
+                    numberOfFiles++;
+                    totalDownloadSize += imagesDictionary[i].getDownloadSize();
+                }
+            }
+
+            NumberOfFilesAndSizeLabel.Content = String.Format("{0} Files - {1} KB", numberOfFiles, totalDownloadSize);
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (backgroundWorker.IsBusy)
+            {
+                backgroundWorker.CancelAsync();
+            }
+            FetchDownloadButton.Content = "Fetch";
+            fetchDownloadEnum = FetchDownloadCancel.Fetch;
+
+            //Prevents users from accessing it until done
+            CancelButton.Visibility = Visibility.Collapsed;
+            URLTextBox.IsEnabled = true;
+            UpdateLabelFileSize();
+        }
+
+        private void DataGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            UpdateLabelFileSize();
+        }
     }
 }

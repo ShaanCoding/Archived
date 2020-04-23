@@ -71,5 +71,17 @@ namespace _4SChan
                 }
             }
         }
+
+        private void MessageBoxOnCompleteCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //Can only be one or the other not both
+            ExitOnCompleteCheckBox.IsChecked = false;
+        }
+
+        private void ExitOnCompleteCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            //Can be one or the other not both
+            MessageBoxOnCompleteCheckBox.IsChecked = false;
+        }
     }
 }
