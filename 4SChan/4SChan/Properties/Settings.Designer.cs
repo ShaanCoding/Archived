@@ -25,7 +25,7 @@ namespace _4SChan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool showMessageBoxOnComplete {
             get {
                 return ((bool)(this["showMessageBoxOnComplete"]));
@@ -61,7 +61,7 @@ namespace _4SChan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool createSubFolderOnDownload {
             get {
                 return ((bool)(this["createSubFolderOnDownload"]));
@@ -73,7 +73,7 @@ namespace _4SChan.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool saveWithOriginalFileName {
             get {
                 return ((bool)(this["saveWithOriginalFileName"]));

@@ -25,12 +25,6 @@ namespace _4SChan
     {
         private static List<ImagesClass> imagesDictionary = new List<ImagesClass>();
 
-        private static bool showMessageBoxOnComplete;
-        private static bool exitOnComplete;
-        private static string downloadDirectory;
-        private static bool createSubFolderOnDownload;
-        private static bool saveWithOriginalFileName;
-
         private string subFolderName = "";
         private DataTable dt = new DataTable();
         private FetchDownloadCancel fetchDownloadEnum = FetchDownloadCancel.Fetch;
@@ -56,86 +50,100 @@ namespace _4SChan
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
         }
 
-        private void _4SChan_ContentRendered(object sender, EventArgs e)
-        {
-            AssignProperties();
-        }
-
-        public static void AssignProperties()
-        {
-            showMessageBoxOnComplete = Properties.Settings.Default.showMessageBoxOnComplete;
-            exitOnComplete = Properties.Settings.Default.exitOnComplete;
-            downloadDirectory = Properties.Settings.Default.downloadDirectory;
-            createSubFolderOnDownload = Properties.Settings.Default.createSubFolderOnDownload;
-            saveWithOriginalFileName = Properties.Settings.Default.saveWithOriginalFileName;
-        }
-
-
-
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            BackgroundWorker worker = sender as BackgroundWorker;
-
-            string directoryToSaveTo;
-            if(Properties.Settings.Default.createSubFolderOnDownload)
+            //Only runs if downloadDirectory exists
+            if(Properties.Settings.Default.downloadDirectory != null || Properties.Settings.Default.downloadDirectory != "")
             {
-                //Check if subdirectory exists if not it creates it
-                directoryToSaveTo = Properties.Settings.Default.downloadDirectory + "\\" + subFolderName;
-                DirectoryInfo destinationDirectory = new DirectoryInfo(directoryToSaveTo);
+                BackgroundWorker worker = sender as BackgroundWorker;
 
-                if (!destinationDirectory.Exists)
+                string directoryToSaveTo;
+                if (Properties.Settings.Default.createSubFolderOnDownload)
                 {
-                    destinationDirectory.Create();
+                    //Check if subdirectory exists if not it creates it
+                    directoryToSaveTo = Properties.Settings.Default.downloadDirectory + "\\" + subFolderName;
+                    DirectoryInfo destinationDirectory = new DirectoryInfo(directoryToSaveTo);
+
+                    if (!destinationDirectory.Exists)
+                    {
+                        destinationDirectory.Create();
+                    }
+                }
+                else
+                {
+                    directoryToSaveTo = Properties.Settings.Default.downloadDirectory;
+                }
+
+                for (int i = 0; i < imagesDictionary.Count; i++)
+                {
+                    if (worker.CancellationPending == true)
+                    {
+                        e.Cancel = true;
+                        break;
+                    }
+                    else
+                    {
+                        string result;
+
+                        if (dt.Rows[i].Field<bool>(0) == true)
+                        {
+                            result = Downloader.DownloadImage(imagesDictionary[i].getURLOfImage(), imagesDictionary[i].getNameOfImage(), imagesDictionary[i].getFileTypeOfImage(), directoryToSaveTo);
+                        }
+                        else
+                        {
+                            result = "SKIPPED";
+                        }
+
+                        //Shows success or fail for each image
+                        DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                        new Action(delegate ()
+                        {
+                            if (!dt.Rows[i - 1].IsNull(5))
+                            {
+                                dt.Rows[i - 1].SetField(5, result);
+                            }
+                        }));
+
+                    }
+                    int returnProgressPercent = (int)Math.Ceiling((decimal)(i + 1) / imagesDictionary.Count * 100);
+                    worker.ReportProgress(returnProgressPercent);
+                }
+
+                //Resets button on completion
+                isFetchValid = false;
+                fetchDownloadEnum = FetchDownloadCancel.Fetch;
+
+                FetchDownloadButton.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                new Action(delegate ()
+                {
+                    FetchDownloadButton.Content = "Fetch";
+                }));
+
+                CancelButton.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                new Action(delegate ()
+                {
+                    CancelButton.Visibility = Visibility.Collapsed;
+                }));
+
+                URLTextBox.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
+                new Action(delegate ()
+                {
+                    URLTextBox.IsEnabled = true;
+                }));
+
+                //When done either exits or shows message or resumes
+                if (Properties.Settings.Default.exitOnComplete)
+                {
+                    Environment.Exit(0);
+                }
+                else if (Properties.Settings.Default.showMessageBoxOnComplete)
+                {
+                    MessageBox.Show("Success! All files downloaded sucessfully");
                 }
             }
             else
             {
-                directoryToSaveTo = Properties.Settings.Default.downloadDirectory;
-            }
-
-            for(int i = 0; i < imagesDictionary.Count; i++)
-            {
-                if (worker.CancellationPending == true)
-                {
-                    e.Cancel = true;
-                    break;
-                }
-                else
-                {
-                    string result;
-
-                    if(dt.Rows[i].Field<bool>(0) == true)
-                    {
-                        result = Downloader.DownloadImage(imagesDictionary[i].getURLOfImage(), imagesDictionary[i].getNameOfImage(), imagesDictionary[i].getFileTypeOfImage(), directoryToSaveTo);
-                    }
-                    else
-                    {
-                        result = "SKIPPED";
-                    }
-
-                    //Shows success or fail for each image
-                    DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                    new Action(delegate ()
-                    {
-                        if (!dt.Rows[i - 1].IsNull(5))
-                        {
-                            dt.Rows[i - 1].SetField(5, result);
-                        }
-                    }));
-
-                }
-                int returnProgressPercent = (int)Math.Ceiling((decimal)(i + 1) / imagesDictionary.Count * 100);
-                worker.ReportProgress(returnProgressPercent);
-            }
-
-            //When done either exits or shows message or resumes
-            if(Properties.Settings.Default.exitOnComplete)
-            {
-                Environment.Exit(0);
-            }
-            else if(Properties.Settings.Default.showMessageBoxOnComplete)
-            {
-                MessageBox.Show("Success! All files downloaded sucessfully");
+                MessageBox.Show("Error: Cannot start program until download directory is specified in Settings");
             }
         }
 
@@ -246,7 +254,9 @@ namespace _4SChan
                 {
                     backgroundWorker.CancelAsync();
                 }
+
                 FetchDownloadButton.Content = "Fetch";
+                isFetchValid = false;
                 fetchDownloadEnum = FetchDownloadCancel.Fetch;
 
                 //Prevents users from accessing it until done

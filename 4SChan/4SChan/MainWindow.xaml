@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_4SChan"
         mc:Ignorable="d"
-        Title="4SChan" Height="450" Width="800" ContentRendered="_4SChan_ContentRendered">
+        Title="4SChan" Height="450" Width="800">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>

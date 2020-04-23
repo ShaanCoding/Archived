@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="showMessageBoxOnComplete" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="exitOnComplete" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
@@ -12,10 +12,10 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="createSubFolderOnDownload" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="saveWithOriginalFileName" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

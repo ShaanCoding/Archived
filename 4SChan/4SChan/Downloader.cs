@@ -20,7 +20,7 @@ namespace _4SChan
          * Credits To: https://stackoverflow.com/questions/12079794/get-size-of-image-file-before-downloading-from-web
          * User: Ghost4Man
          */
-        public static double GetFileSize(string url)
+        private static double GetFileSize(string url)
         {
             double result = 0;
 
@@ -36,7 +36,6 @@ namespace _4SChan
             
             //Convert to KB with 2DP
             result = Math.Round((result / 1024.00), 2);
-
             return result;
         }
 
@@ -47,6 +46,7 @@ namespace _4SChan
 
             try
             {
+                //Checks if inputted URL is valid
                 if (threadURL.Split('/').Length > 5 && threadURL.Contains('.'))
                 {
                     //Correctly formats thread url
@@ -54,7 +54,7 @@ namespace _4SChan
                     string board = string.Join("", threadURL.Remove(0, threadURL.LastIndexOf('.')).Split('/'), 1, 1);
                     string apiUrl = $"{API_URL}{endpoint}.json";
 
-                    //View it
+                    //Reads json
                     RootObject rootObject;
 
                     using (WebClient webClient = new WebClient())
@@ -63,6 +63,7 @@ namespace _4SChan
                         rootObject = JsonConvert.DeserializeObject<RootObject>(json);
                     }
 
+                    //Counter if numbers instead of image name is used
                     int localCount = 0;
                     //Allocates return dictionary
                     for (int i = 0; i < rootObject.posts.Count; i++)
@@ -125,8 +126,8 @@ namespace _4SChan
         }
     }
 
-    //Below is JSON structure can put into GSON
-
+    //Web Scraping Structure
+    #region WebScraping Structure
     public class Post
     {
         public int no { get; set; }
@@ -157,4 +158,5 @@ namespace _4SChan
     {
         public List<Post> posts { get; set; }
     }
+    #endregion
 }

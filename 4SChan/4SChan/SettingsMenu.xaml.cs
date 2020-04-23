@@ -39,9 +39,20 @@ namespace _4SChan
             SaveWithOriginalFileNameCheckBox.IsChecked = Properties.Settings.Default.saveWithOriginalFileName;
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        private void OpenFileDialogButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //Gets folder URL
+            using (CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog())
+            {
+                openFileDialog.IsFolderPicker = true;
+                if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
+                {
+                    DownloadDirectoryTextBox.Text = openFileDialog.FileName;
+                }
+            }
+
+            //Focuses back on original window
+            this.Focus();
         }
 
         private void ApplyButton_Click(object sender, RoutedEventArgs e)
@@ -54,25 +65,8 @@ namespace _4SChan
             Properties.Settings.Default.saveWithOriginalFileName = (bool)SaveWithOriginalFileNameCheckBox.IsChecked;
             Properties.Settings.Default.Save();
 
-            //Override MainWindow.cs global variables for settings
-            MainWindow.AssignProperties();
-
+            //Closes menu
             this.Close();
-        }
-
-        private void OpenFileDialogButton_Click(object sender, RoutedEventArgs e)
-        {
-            using (CommonOpenFileDialog openFileDialog = new CommonOpenFileDialog())
-            {
-                openFileDialog.IsFolderPicker = true;
-                if(openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
-                {
-                    DownloadDirectoryTextBox.Text = openFileDialog.FileName;
-                }
-            }
-
-            //Focuses back on original window
-            this.Focus();
         }
 
         private void MessageBoxOnCompleteCheckBox_Checked(object sender, RoutedEventArgs e)
@@ -85,6 +79,12 @@ namespace _4SChan
         {
             //Can be one or the other not both
             MessageBoxOnCompleteCheckBox.IsChecked = false;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Closes menu
+            this.Close();
         }
     }
 }
