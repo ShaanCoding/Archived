@@ -53,7 +53,7 @@ namespace _4SChan
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //Only runs if downloadDirectory exists
-            if(Properties.Settings.Default.downloadDirectory != null || Properties.Settings.Default.downloadDirectory != "")
+            if(!string.IsNullOrEmpty(Properties.Settings.Default.downloadDirectory))
             {
                 BackgroundWorker worker = sender as BackgroundWorker;
 
