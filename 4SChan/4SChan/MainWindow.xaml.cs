@@ -117,9 +117,9 @@ namespace _4SChan
                     DataGrid.Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
                     new Action(delegate ()
                     {
-                        if (!dt.Rows[i].IsNull(5))
+                        if (!dt.Rows[i - 1].IsNull(5))
                         {
-                            dt.Rows[i].SetField(5, result);
+                            dt.Rows[i - 1].SetField(5, result);
                         }
                     }));
 
@@ -131,7 +131,7 @@ namespace _4SChan
             //When done either exits or shows message or resumes
             if(Properties.Settings.Default.exitOnComplete)
             {
-                this.Close();
+                Environment.Exit(0);
             }
             else if(Properties.Settings.Default.showMessageBoxOnComplete)
             {

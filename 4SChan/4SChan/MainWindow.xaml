@@ -7,14 +7,35 @@
         mc:Ignorable="d"
         Title="4SChan" Height="450" Width="800" ContentRendered="_4SChan_ContentRendered">
 
-    <Grid>
-        <Label Content="URL:" HorizontalAlignment="Left" Margin="14,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.657,-0.048"/>
-        <TextBox x:Name="URLTextBox" HorizontalAlignment="Left" Height="23" Margin="56,15,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="423"/>
-        <Button x:Name="FetchDownloadButton" Content="Fetch" HorizontalAlignment="Left" Margin="488,10,0,0" VerticalAlignment="Top" Width="75" Click="FetchDownloadButton_Click"/>
-        <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" Margin="569,9,0,0" VerticalAlignment="Top" Width="75" Click="SettingsButton_Click"/>
-        <ProgressBar x:Name="ProgressBar" HorizontalAlignment="Left" Height="44" Margin="122,317,0,0" VerticalAlignment="Top" Width="483"/>
-        <Label x:Name="NumberOfFilesAndSizeLabel" Content="0 Files - 0 KB" HorizontalAlignment="Left" Margin="291,380,0,0" VerticalAlignment="Top" Height="30" Width="114"/>
-        <DataGrid x:Name="DataGrid" Height="196" HorizontalAlignment="Left" Margin="20,85,0,0" VerticalAlignment="Top" Width="728" CanUserAddRows="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged"/>
-        <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="236,56,0,0" VerticalAlignment="Top" Width="76" Visibility="Collapsed" Click="CancelButton_Click"/>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="15*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.5*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Label Content="URL:" Grid.Row="0" Grid.Column="1" Foreground="#659D32" FontSize="16" FontWeight="Bold" FontFamily="Calibri"></Label>
+        <UniformGrid Grid.Row="0" Grid.Column="1" Columns="2" Rows="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox x:Name="URLTextBox" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="300" Margin="10 0 10 0"/>
+            <Button x:Name="FetchDownloadButton" Content="Fetch" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="75" Click="FetchDownloadButton_Click" Margin="10 0 10 0" Foreground="White" BorderBrush="{x:Null}" Background="#FF23272A"/>
+            <Button x:Name="SettingsButton" Content="Settings" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="75" Click="SettingsButton_Click" Margin="10 10 10 0" Foreground="White" BorderBrush="{x:Null}" Background="#FF23272A"/>
+            <Button x:Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="75" Visibility="Collapsed" Click="CancelButton_Click" Margin="10 10 10 0" BorderBrush="{x:Null}" Background="#FF23272A" Foreground="White"/>
+        </UniformGrid>
+
+        <UniformGrid Grid.Row="1" Grid.Column="1" Columns="1" Rows="1">
+            <DataGrid x:Name="DataGrid" HorizontalAlignment="Stretch" VerticalAlignment="Top" VerticalScrollBarVisibility="Auto" CanUserAddRows="False" SelectedCellsChanged="DataGrid_SelectedCellsChanged"/>
+        </UniformGrid>
+
+        <UniformGrid Grid.Row="2" Grid.Column="1" Columns="1" Rows="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <ProgressBar x:Name="ProgressBar" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Height="45" VerticalAlignment="Center" Width="650"/>
+            <Label x:Name="NumberOfFilesAndSizeLabel" Content="0 Files - 0 KB" HorizontalAlignment="Center" VerticalAlignment="Center" Height="30" Width="120" Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="14"/>
+        </UniformGrid>
     </Grid>
 </Window>
+    
+    
