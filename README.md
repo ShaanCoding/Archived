@@ -1,5 +1,7 @@
 # 4SChan
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d985f5fca2734fdf945b2bed0216c6a8)](https://app.codacy.com/manual/ShaanCoding/4SChan?utm_source=github.com&utm_medium=referral&utm_content=ShaanCoding/4SChan&utm_campaign=Badge_Grade_Dashboard)
+
 This application is a basic 4chan thread image downloader created in C# with the assistance of NewtonSoft and the WindowsCodeAPI-Shell & Core. This program was made in order to bulk download image threads off 4chan such as desktop wallpaper dumps.
 
 ![Main Menu](Images/mainMenu.png)
