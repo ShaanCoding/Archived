@@ -14,11 +14,34 @@ namespace A_Star_Pathfinding
 
         int SLEEP_TIME = 10;
 
-        public void Run(Node startNode, Node endNode, string[] map)
+        public void Run(Node startNode, Node endNode, Node[,] nodeMap)
         {
-            foreach (string line in map)
+
+            for (int y = 0; y < nodeMap.GetLength(1); y++)
             {
-                Console.WriteLine(line);
+                for (int x = 0; x < nodeMap.GetLength(0); x++)
+                {
+                    if (nodeMap[x, y].isBarrier == false)
+                    {
+                        if (startNode.x == x && startNode.y == y)
+                        {
+                            Console.Write("A");
+                        }
+                        else if (endNode.x == x && endNode.y == y)
+                        {
+                            Console.Write("B");
+                        }
+                        else
+                        {
+                            Console.Write(" ");
+                        }
+                    }
+                    else
+                    {
+                        Console.Write("#");
+                    }
+                }
+                Console.WriteLine();
             }
 
             //Put start on node on openList (set f at zero)
@@ -55,7 +78,7 @@ namespace A_Star_Pathfinding
                     break;
 
                 //Generate child - add neighbour nodes
-                currentNode.neighbours = GetNeighbours(currentNode.x, currentNode.y, map, openList);
+                currentNode.neighbours = GetNeighbours(currentNode.x, currentNode.y, nodeMap, openList);
                 gScore = currentNode.gScore + 1;
 
                 //Looping through all neighbours
@@ -65,14 +88,6 @@ namespace A_Star_Pathfinding
                     if (closedList.FirstOrDefault(l => l.x == neighbours.x
                         && l.y == neighbours.y) != null)
                         continue;
-
-                    /*
-                    //Skip walls
-                    if(currentNode.isBarrier)
-                    {
-                        continue;
-                    }
-                    */
 
                     //If not in openList initalize it
                     if (openList.FirstOrDefault(l => l.x == neighbours.x
@@ -122,32 +137,44 @@ namespace A_Star_Pathfinding
             Console.ReadLine();
         }
 
-        static List<Node> GetNeighbours(int x, int y, string[] map, List<Node> openList)
+        static List<Node> GetNeighbours(int x, int y, Node[,] nodeMap, List<Node> openList)
         {
             List<Node> returnList = new List<Node>();
 
-            if (map[y - 1][x] == ' ' || map[y - 1][x] == 'B')
+            if(y - 1 >= 0)
             {
-                Node node = openList.Find(l => l.x == x && l.y == y - 1);
-                if (node == null) returnList.Add(new Node(x, y - 1));
+                if (nodeMap[x, y - 1].isBarrier == false)
+                {
+                    Node node = openList.Find(l => l.x == x && l.y == y - 1);
+                    if (node == null) returnList.Add(new Node(x, y - 1));
+                }
             }
 
-            if (map[y + 1][x] == ' ' || map[y + 1][x] == 'B')
+            if(y + 1 < nodeMap.GetLength(1))
             {
-                Node node = openList.Find(l => l.x == x && l.y == y + 1);
-                if (node == null) returnList.Add(new Node(x, y + 1));
+                if (nodeMap[x, y + 1].isBarrier == false)
+                {
+                    Node node = openList.Find(l => l.x == x && l.y == y + 1);
+                    if (node == null) returnList.Add(new Node(x, y + 1));
+                }
             }
 
-            if (map[y][x - 1] == ' ' || map[y][x - 1] == 'B')
+            if(x - 1 >= 0)
             {
-                Node node = openList.Find(l => l.x == x - 1 && l.y == y);
-                if (node == null) returnList.Add(new Node(x - 1, y));
+                if (nodeMap[x - 1, y].isBarrier == false)
+                {
+                    Node node = openList.Find(l => l.x == x - 1 && l.y == y);
+                    if (node == null) returnList.Add(new Node(x - 1, y));
+                }
             }
 
-            if (map[y][x + 1] == ' ' || map[y][x + 1] == 'B')
+            if(x + 1 < nodeMap.GetLength(0))
             {
-                Node node = openList.Find(l => l.x == x + 1 && l.y == y);
-                if (node == null) returnList.Add(new Node(x + 1, y));
+                if (nodeMap[x + 1, y].isBarrier == false)
+                {
+                    Node node = openList.Find(l => l.x == x + 1 && l.y == y);
+                    if (node == null) returnList.Add(new Node(x + 1, y));
+                }
             }
 
             return returnList;
