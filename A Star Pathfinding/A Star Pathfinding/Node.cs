@@ -10,9 +10,9 @@ namespace A_Star_Pathfinding
         public int y;
         public Node parentNode;
         public List<Node> neighbours;
-        public int fCost;
-        public int gScore;
-        public int hScore;
+        public double fCost;
+        public double gScore;
+        public double hScore;
         public bool isBarrier;
 
         public Node(int x, int y)

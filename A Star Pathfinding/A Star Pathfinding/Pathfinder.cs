@@ -14,7 +14,7 @@ namespace A_Star_Pathfinding
 
         int SLEEP_TIME = 10;
 
-        public void Run(Node startNode, Node endNode, Node[,] nodeMap)
+        public void Run(Node startNode, Node endNode, Node[,] nodeMap, bool enableDiagonals)
         {
 
             for (int y = 0; y < nodeMap.GetLength(1); y++)
@@ -53,7 +53,7 @@ namespace A_Star_Pathfinding
             Node currentNode = null;
             var openList = new List<Node>();
             var closedList = new List<Node>();
-            int gScore = 0;
+            double gScore = 0;
 
             // start by adding the original position to the open list  
             openList.Add(startNode);
@@ -78,7 +78,7 @@ namespace A_Star_Pathfinding
                     break;
 
                 //Generate child - add neighbour nodes
-                currentNode.neighbours = GetNeighbours(currentNode.x, currentNode.y, nodeMap, openList);
+                currentNode.neighbours = GetNeighbours(currentNode.x, currentNode.y, nodeMap, openList, enableDiagonals);
                 gScore = currentNode.gScore + 1;
 
                 //Looping through all neighbours
@@ -137,10 +137,11 @@ namespace A_Star_Pathfinding
             Console.ReadLine();
         }
 
-        static List<Node> GetNeighbours(int x, int y, Node[,] nodeMap, List<Node> openList)
+        static List<Node> GetNeighbours(int x, int y, Node[,] nodeMap, List<Node> openList, bool enableDiagonals)
         {
             List<Node> returnList = new List<Node>();
 
+            //Cardinal axis TOP BOTTOM LEFT RIGHT
             if(y - 1 >= 0)
             {
                 if (nodeMap[x, y - 1].isBarrier == false)
@@ -177,12 +178,52 @@ namespace A_Star_Pathfinding
                 }
             }
 
+            //If diagonals are enabled
+            if (enableDiagonals)
+            {
+                if (y - 1 >= 0 && x - 1 >= 0)
+                {
+                    if (nodeMap[x - 1, y - 1].isBarrier == false)
+                    {
+                        Node node = openList.Find(l => l.x == x - 1 && l.y == y - 1);
+                        if (node == null) returnList.Add(new Node(x - 1, y - 1));
+                    }
+                }
+
+                if (y - 1 >= 0 && x + 1 < nodeMap.GetLength(0))
+                {
+                    if (nodeMap[x + 1, y - 1].isBarrier == false)
+                    {
+                        Node node = openList.Find(l => l.x == x + 1 && l.y == y - 1);
+                        if (node == null) returnList.Add(new Node(x + 1, y - 1));
+                    }
+                }
+
+                if (x - 1 >= 0 && y + 1 < nodeMap.GetLength(1))
+                {
+                    if (nodeMap[x - 1, y + 1].isBarrier == false)
+                    {
+                        Node node = openList.Find(l => l.x == x - 1 && l.y == y + 1);
+                        if (node == null) returnList.Add(new Node(x - 1, y + 1));
+                    }
+                }
+
+                if (x + 1 < nodeMap.GetLength(0) && y + 1 < nodeMap.GetLength(1))
+                {
+                    if (nodeMap[x + 1, y + 1].isBarrier == false)
+                    {
+                        Node node = openList.Find(l => l.x == x + 1 && l.y == y + 1);
+                        if (node == null) returnList.Add(new Node(x + 1, y + 1));
+                    }
+                }
+            }
+
             return returnList;
         }
 
-        static int ComputeHScore(Node neighbourNode, Node endNode)
+        static double ComputeHScore(Node neighbourNode, Node endNode)
         {
-            return ((neighbourNode.x - endNode.x) ^ 2 + (neighbourNode.y - endNode.y) ^ 2);
+            return Math.Sqrt((neighbourNode.x - endNode.x) ^ 2 + (neighbourNode.y - endNode.y) ^ 2);
         }
     }
 }

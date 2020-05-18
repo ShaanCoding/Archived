@@ -45,9 +45,10 @@ namespace A_Star_Pathfinding
             };
             Node startNode = new Node(0, 4);
             Node endNode = new Node(11, 1);
+            bool enableDiagonals = true;
 
             Pathfinder pathfinder = new Pathfinder();
-            pathfinder.Run(startNode, endNode, nodeMap);
+            pathfinder.Run(startNode, endNode, nodeMap, enableDiagonals);
         }
     }
 }
