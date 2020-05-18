@@ -1,53 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace A_Star_Pathfinding
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Node startNode = new Node(0, 0);
-            Node endNode = new Node(9, 9);
-
-            Node[,] inputString = new Node[10,10];
-
-            for(int x = 0; x < 10; x++)
+            // draw map  
+            string[] map = new string[]
             {
-                for(int y = 0; y < 10; y++)
-                {
-                    inputString[x, y] = new Node(x, y);
-                }
-            }
+                "+------------+",
+                "|     x      |",
+                "|  x     x  B|",
+                "|  x     x   |",
+                "|  x     x   |",
+                "|A x     x   |",
+                "|            |",
+                "+------------+",
+            };
+            Node startNode = new Node(1, 5);
+            Node endNode = new Node(12, 2);
 
-            inputString[3, 0].isBarrier = true;
-            inputString[3, 1].isBarrier = true;
-            inputString[3, 2].isBarrier = true;
-            inputString[3, 3].isBarrier = true;
-            inputString[4, 5].isBarrier = true;
-            inputString[4, 6].isBarrier = true;
-            inputString[5, 6].isBarrier = true;
-            inputString[5, 7].isBarrier = true;
-            inputString[5, 8].isBarrier = true;
-            inputString[5, 9].isBarrier = true;
-            inputString[4, 7].isBarrier = true;
-            inputString[4, 8].isBarrier = true;
-            //Manually setting nodes
-            /*
-                "A 0 0 X 0 0 0 0 0 0",
-                "0 0 0 X 0 0 0 0 0 0",
-                "0 0 0 X 0 0 0 0 0 0",
-                "0 0 0 X 0 0 0 0 0 0",
-                "0 0 0 0 0 0 0 0 0 0",
-                "0 0 0 0 X 0 0 0 0 0",
-                "0 0 0 0 X X X X X 0",
-                "0 0 0 0 X 0 0 0 0 0",
-                "0 0 0 0 X 0 0 0 0 0",
-                "0 0 0 0 0 0 0 0 0 B",
-             */
-
-            Pathfinder pathfinder = new Pathfinder(startNode, endNode, inputString);
-            pathfinder.Start();
+            Pathfinder pathfinder = new Pathfinder();
+            pathfinder.Run(startNode, endNode, map);
         }
     }
 }

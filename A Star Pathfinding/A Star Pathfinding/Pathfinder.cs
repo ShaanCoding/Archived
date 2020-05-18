@@ -8,122 +8,154 @@ namespace A_Star_Pathfinding
     class Pathfinder
     {
         /*
-         * Credits to https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
-         * For showing pseudocode
-         */
-        private Node startNode;
-        private Node endNode;
-        private Node[,] nodeMatrix;
+        * Credits to https://medium.com/@nicholas.w.swift/easy-a-star-pathfinding-7e6689c7f7b2
+        * For showing pseudocode
+        */
 
-        private List<Node> openList = new List<Node>();
-        private List<Node> closedList = new List<Node>();
+        int SLEEP_TIME = 10;
 
-        public Pathfinder(Node startNode, Node endNode, Node[,] nodeMatrix)
+        public void Run(Node startNode, Node endNode, string[] map)
         {
-            this.startNode = startNode;
-            this.endNode = endNode;
-            this.nodeMatrix = nodeMatrix;
-        }
+            foreach (string line in map)
+            {
+                Console.WriteLine(line);
+            }
 
-        public void Start()
-        {
-            //Put start node on openList (leave f at zero)
+            //Put start on node on openList (set f at zero)
             startNode.fCost = 0;
-            //Not sure
             startNode.gScore = 0;
             startNode.hScore = 0;
+
+            //Initalisation
+            Node currentNode = null;
+            var openList = new List<Node>();
+            var closedList = new List<Node>();
+            int gScore = 0;
+
+            // start by adding the original position to the open list  
             openList.Add(startNode);
 
-            //Loop until find the end - while the openList is not empty
-            while(openList.Count > 0)
+            while (openList.Count > 0)
             {
-                //Get current Node - lowest f value
-                Node currentNode = openList.OrderBy(x => x.fCost).First();
+                // get the square with the lowest F score  
+                currentNode = openList.OrderBy(l => l.fCost).FirstOrDefault();
+
                 //Remove from currentList and add to closedList
                 openList.Remove(currentNode);
                 closedList.Add(currentNode);
 
+                //show current square on the map  
+                Console.SetCursorPosition(currentNode.x, currentNode.y);
+                Console.Write('.');
+                Console.SetCursorPosition(currentNode.x, currentNode.y);
+                System.Threading.Thread.Sleep(SLEEP_TIME);
+
                 //If we find goal
-                if(currentNode == endNode)
-                {
-                    Console.WriteLine("Path found");
-                    //Backtrack to get path
-                    Node backTrackingNode = endNode;
+                if (closedList.FirstOrDefault(l => l.x == endNode.x && l.y == endNode.y) != null)
+                    break;
 
-                    while(backTrackingNode != startNode)
-                    {
-                        Console.WriteLine(string.Format("Node: {0}x {1}y", backTrackingNode.x, backTrackingNode.y));
-                        backTrackingNode.isPathNode = true;
-                        backTrackingNode = backTrackingNode.parentNode;
-                    }
-                    //Done program
-                }
-
-                //Skip walls
-                if(currentNode.isBarrier)
-                {
-                    continue;
-                }
-
-                //Generate children - add neighbour nodes
-                currentNode.neighbours = getNeighbours(currentNode, nodeMatrix);
+                //Generate child - add neighbour nodes
+                currentNode.neighbours = GetNeighbours(currentNode.x, currentNode.y, map, openList);
+                gScore = currentNode.gScore + 1;
 
                 //Looping through all neighbours
-                foreach(Node neighbour in currentNode.neighbours)
+                foreach (Node neighbours in currentNode.neighbours)
                 {
-                    //Child is on closed List
-                    if(closedList.Contains(neighbour))
+                    //If child is in closed list
+                    if (closedList.FirstOrDefault(l => l.x == neighbours.x
+                        && l.y == neighbours.y) != null)
+                        continue;
+
+                    /*
+                    //Skip walls
+                    if(currentNode.isBarrier)
                     {
                         continue;
                     }
+                    */
 
-                    neighbour.gScore = currentNode.gScore + 1;
-                    neighbour.hScore = getHeuristics(neighbour, endNode);
-                    neighbour.fCost = neighbour.gScore + neighbour.hScore;
-
-                    //TODO: REPLACE WITH LINQ
-                    foreach (Node openNodes in openList)
+                    //If not in openList initalize it
+                    if (openList.FirstOrDefault(l => l.x == neighbours.x
+                        && l.y == neighbours.y) == null)
                     {
-                        if(neighbour == openNodes && neighbour.gScore > openNodes.gScore)
+                        // compute its score, set the parent  
+                        neighbours.gScore = gScore;
+                        neighbours.hScore = ComputeHScore(neighbours, endNode);
+                        neighbours.fCost = neighbours.gScore + neighbours.hScore;
+                        neighbours.parentNode = currentNode;
+
+                        // and add it to the open list  
+                        openList.Add(neighbours);
+                    }
+                    else
+                    {
+                        //If new fScore better than current fScore replace with better path
+                        if (gScore + neighbours.hScore < neighbours.fCost)
                         {
-                            continue;
+                            neighbours.gScore = gScore;
+                            neighbours.fCost = neighbours.gScore + neighbours.hScore;
+                            neighbours.parentNode = currentNode;
                         }
                     }
-
-                    //Add child to the openList
-                    openList.Add(neighbour);
                 }
             }
+
+            Node end = currentNode;
+
+            //If it goes here path is found - lets print it
+            while (currentNode != null)
+            {
+                Console.SetCursorPosition(currentNode.x, currentNode.y);
+                Console.Write('_');
+                Console.SetCursorPosition(currentNode.x, currentNode.y);
+                currentNode = currentNode.parentNode;
+                System.Threading.Thread.Sleep(SLEEP_TIME);
+            }
+
+            //How many steps was required
+            if (end != null)
+            {
+                Console.SetCursorPosition(0, 20);
+                Console.WriteLine("Path : {0}", end.gScore);
+            }
+
+            Console.ReadLine();
         }
 
-        private double getHeuristics(Node neighbourNode, Node endNode)
-        {
-            //Delta pythagoras theorem return c^2
-            return ((neighbourNode.x - endNode.x) ^ 2 + (neighbourNode.y - endNode.y) ^ 2);
-        }
-
-        private List<Node> getNeighbours(Node currentNode, Node[,] nodeMatrix)
+        static List<Node> GetNeighbours(int x, int y, string[] map, List<Node> openList)
         {
             List<Node> returnList = new List<Node>();
-            //We are NOT doing diagnonals so just X + 1, X - 1, Y + 1, Y - 1
-            if(currentNode.x + 1 < 32)
+
+            if (map[y - 1][x] == ' ' || map[y - 1][x] == 'B')
             {
-                returnList.Add(nodeMatrix[currentNode.x + 1, currentNode.y]);
+                Node node = openList.Find(l => l.x == x && l.y == y - 1);
+                if (node == null) returnList.Add(new Node(x, y - 1));
             }
-            else if(currentNode.x - 1 > 0)
+
+            if (map[y + 1][x] == ' ' || map[y + 1][x] == 'B')
             {
-                returnList.Add(nodeMatrix[currentNode.x - 1, currentNode.y]);
+                Node node = openList.Find(l => l.x == x && l.y == y + 1);
+                if (node == null) returnList.Add(new Node(x, y + 1));
             }
-            else if (currentNode.y + 1 < 32)
+
+            if (map[y][x - 1] == ' ' || map[y][x - 1] == 'B')
             {
-                returnList.Add(nodeMatrix[currentNode.x, currentNode.y + 1]);
+                Node node = openList.Find(l => l.x == x - 1 && l.y == y);
+                if (node == null) returnList.Add(new Node(x - 1, y));
             }
-            else if (currentNode.y - 1 > 0)
+
+            if (map[y][x + 1] == ' ' || map[y][x + 1] == 'B')
             {
-                returnList.Add(nodeMatrix[currentNode.x, currentNode.y - 1]);
+                Node node = openList.Find(l => l.x == x + 1 && l.y == y);
+                if (node == null) returnList.Add(new Node(x + 1, y));
             }
-     
+
             return returnList;
+        }
+
+        static int ComputeHScore(Node neighbourNode, Node endNode)
+        {
+            return ((neighbourNode.x - endNode.x) ^ 2 + (neighbourNode.y - endNode.y) ^ 2);
         }
     }
 }
