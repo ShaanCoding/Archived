@@ -121,23 +121,23 @@ public class MainActivity extends Activity
 
         if(bmiValue < 18.5)
         {
-            returnString = "Underweight";
+            returnString = "You Are Underweight";
         }
         else if(bmiValue < 24.9)
         {
-            returnString = "Normal";
+            returnString = "Your Weight Is Normal";
         }
         else if(bmiValue < 29.9)
         {
-            returnString = "Overweight";
+            returnString = "You Are Overweight";
         }
         else if(bmiValue < 34.9)
         {
-            returnString = "Obese";
+            returnString = "You Are Obese";
         }
         else
         {
-            returnString = "Extremely Obese";
+            returnString = "You Are Extremely Obese";
         }
 
         return returnString;
