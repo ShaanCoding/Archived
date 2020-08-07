@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Markkd"
         mc:Ignorable="d"
-        Title="Markkd" Height="450" Width="800" Icon="/Markkd;component/Assets/icon.ico" Background="#FFFFBB00" Foreground="{x:Null}" ResizeMode="NoResize">
+        Title="Markkd" Height="450" Width="800" Icon="/Markkd;component/Assets/icon.ico" Background="#FFFFBB00" Foreground="{x:Null}" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     
     <Grid>
         <Grid.RowDefinitions>
