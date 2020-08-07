@@ -10,19 +10,19 @@ namespace Markkd.ViewModels
 {
     public class SubjectCalculatorViewModel
     {
-        public SubjectCalculatorModel subjectModel { get; set; }
+        public SubjectCalculatorModel subjectsModel { get; set; }
         public SimpleCommand simpleCommand { get; set; }
 
         public SubjectCalculatorViewModel()
         {
-            subjectModel = new SubjectCalculatorModel();
+            subjectsModel = new SubjectCalculatorModel();
             this.simpleCommand = new SimpleCommand(this);
         }
 
         public void CalculateButton()
         {
-            this.subjectModel.CalculateSubjectMarks();
-            this.subjectModel.CalculateWAM();
+            this.subjectsModel.CalculateSubjectMarks();
+            this.subjectsModel.CalculateWAM();
         }
     }
 }
