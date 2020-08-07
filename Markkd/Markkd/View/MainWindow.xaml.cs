@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Markkd.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace Markkd
     /// </summary>
     public partial class MainWindow : Window
     {
+        SubjectCalculatorViewModel viewModel = new SubjectCalculatorViewModel();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }
