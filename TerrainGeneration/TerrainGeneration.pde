@@ -16,7 +16,7 @@ int G = 94;
 int B = 194;
 
 void setup() {
-  size(600, 600, P3D);  
+  size(1920, 1080, P3D);  
   cols = w / scl;
   rows = h / scl;
   terrain = new float[cols][rows];  
