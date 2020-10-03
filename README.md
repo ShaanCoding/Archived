@@ -1,4 +1,4 @@
-# Identicons
+# TerrainGeneration
 
 ![Main Menu](Images/terrainGenerationBanner.png)
 
