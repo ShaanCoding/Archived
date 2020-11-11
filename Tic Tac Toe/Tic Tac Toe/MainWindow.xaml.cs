@@ -34,36 +34,71 @@ namespace Tic_Tac_Toe
         private void GridClick(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            if((string)button.Content != "O" || (string)button.Content != "X")
+            if((string)button.Content != "O" && (string)button.Content != "X")
             {
                 if(currentPlayer == PlayerEnum.XPlayer)
                 {
                     button.Content = "X";
-                    turns++;
                     currentPlayer = PlayerEnum.OPlayer;
                 }
                 else if(currentPlayer == PlayerEnum.OPlayer)
                 {
                     button.Content = "O";
-                    turns++;
                     currentPlayer = PlayerEnum.XPlayer;
                 }
+
+                turns++;
 
                 if(CheckDraw())
                 {
                     MessageBox.Show("Tie!");
                     playerDraws++;
+                    NewGame();
+                }
+
+                if(CheckWinner())
+                {
+                    if((string)button.Content == "X")
+                    {
+                        MessageBox.Show("X Won!");
+                        playerXWins++;
+                        NewGame();
+                    }
+                    else
+                    {
+                        MessageBox.Show("O Won!");
+                        playerOWins++;
+                        NewGame();
+                    }
                 }
             }
 
 
         }
 
-        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        public void NewGame()
         {
             currentPlayer = PlayerEnum.XPlayer;
             turns = 0;
             B00.Content = B01.Content = B02.Content = B10.Content = B11.Content = B12.Content = B20.Content = B21.Content = B22.Content = "";
+        }
+
+        public bool CheckWinner()
+        {
+            //Hacky check will fix later
+            if((string)B00.Content != "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void NewGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            NewGame();
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -83,7 +118,7 @@ namespace Tic_Tac_Toe
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            this.Close();
         }
     }
 }
