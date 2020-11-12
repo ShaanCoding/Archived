@@ -85,15 +85,20 @@ namespace Tic_Tac_Toe
 
         public bool CheckWinner()
         {
-            //Hacky check will fix later
-            if((string)B00.Content != "")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            //Check Rows
+            if(B00.Content == B10.Content && B10.Content == B20.Content && (string)B00.Content != "") { return true; }
+            if(B01.Content == B11.Content && B11.Content == B21.Content && (string)B01.Content != "") { return true; }
+            if(B02.Content == B12.Content && B12.Content == B22.Content && (string)B02.Content != "") { return true; }
+
+            //Check columns
+            if(B00.Content == B01.Content && B01.Content == B02.Content && (string)B00.Content != "") { return true; }
+            if(B10.Content== B11.Content && B11.Content == B12.Content && (string)B10.Content != "") { return true; }
+            if(B20.Content == B21.Content && B21.Content == B22.Content && (string)B20.Content != "") { return true; }
+
+            if(B00.Content == B11.Content && B11.Content == B22.Content && (string)B00.Content != "") { return true; }
+            if(B02.Content == B11.Content && B11.Content == B20.Content && (string)B02.Content != "") { return true; }
+
+            return false;
         }
 
         private void NewGameButton_Click(object sender, RoutedEventArgs e)
