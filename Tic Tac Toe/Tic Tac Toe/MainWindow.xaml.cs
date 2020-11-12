@@ -55,12 +55,14 @@ namespace Tic_Tac_Toe
                     {
                         MessageBox.Show("X Won!");
                         playerXWins++;
+                        XWinLabel.Content = "X Win: " + playerXWins;
                         NewGame();
                     }
                     else
                     {
                         MessageBox.Show("O Won!");
                         playerOWins++;
+                        XWinLabel.Content = "O Win: " + playerOWins;
                         NewGame();
                     }
                 }
@@ -70,6 +72,7 @@ namespace Tic_Tac_Toe
                     {
                         MessageBox.Show("Tie!");
                         playerDraws++;
+                        DrawsLabel.Content = "Draws: " + playerDraws;
                         NewGame();
                     }
                 }
