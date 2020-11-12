@@ -37,7 +37,9 @@
 ## About The Project
 
 <p align="center">
-    ![Screen Shot](images/ticTacToeShowcase.gif)
+  <a href="https://github.com/ShaanCoding/Tic-Tac-Toe">
+    <img src="images/ticTacToeShowcase.gif" alt="Logo" width="80" height="80">
+  </a>
 </p>
 
 ## Built With
