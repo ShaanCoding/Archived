@@ -38,7 +38,7 @@
 
 <p align="center">
   <a href="https://github.com/ShaanCoding/Tic-Tac-Toe">
-    <img src="images/ticTacToeShowcase.gif" alt="Logo" width="80" height="80">
+    <img src="images/ticTacToeShowcase.gif" alt="Logo">
   </a>
 </p>
 
