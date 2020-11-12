@@ -49,16 +49,9 @@ namespace Tic_Tac_Toe
 
                 turns++;
 
-                if(CheckDraw())
+                if (CheckWinner())
                 {
-                    MessageBox.Show("Tie!");
-                    playerDraws++;
-                    NewGame();
-                }
-
-                if(CheckWinner())
-                {
-                    if((string)button.Content == "X")
+                    if ((string)button.Content == "X")
                     {
                         MessageBox.Show("X Won!");
                         playerXWins++;
@@ -71,9 +64,16 @@ namespace Tic_Tac_Toe
                         NewGame();
                     }
                 }
+                else
+                {
+                    if (CheckDraw())
+                    {
+                        MessageBox.Show("Tie!");
+                        playerDraws++;
+                        NewGame();
+                    }
+                }
             }
-
-
         }
 
         public void NewGame()
@@ -92,7 +92,7 @@ namespace Tic_Tac_Toe
 
             //Check columns
             if(B00.Content == B01.Content && B01.Content == B02.Content && (string)B00.Content != "") { return true; }
-            if(B10.Content== B11.Content && B11.Content == B12.Content && (string)B10.Content != "") { return true; }
+            if(B10.Content == B11.Content && B11.Content == B12.Content && (string)B10.Content != "") { return true; }
             if(B20.Content == B21.Content && B21.Content == B22.Content && (string)B20.Content != "") { return true; }
 
             if(B00.Content == B11.Content && B11.Content == B22.Content && (string)B00.Content != "") { return true; }
