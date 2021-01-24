@@ -48,7 +48,9 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
           // This prop passes over all this data back to the main App.tsx class through onAdd
           props.onAdd({ answer: answer, question: question, id: idCounter++ });
         }}
-      ></Button>
+      >
+        Add Card
+      </Button>
     </Container>
   );
 };
