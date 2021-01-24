@@ -2,6 +2,7 @@
 
 import { Button, Container, TextField } from "@material-ui/core";
 import React, { useState } from "react";
+import { CardData } from "./Card";
 
 //We want to have a main component which tracks the id of each box added, so we don't have weird issues with mistracking elements on update through V-DOM
 let idCounter = 0;
