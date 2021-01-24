@@ -1,6 +1,6 @@
 // First we start with the add box
 
-import { Button, Container, TextField } from "@material-ui/core";
+import { Button, Container, Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { CardData } from "./Card";
 
@@ -12,46 +12,85 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
+  //This is for showing the actual text field
+  const [showing, setShowing] = useState(false);
+
   console.log(`${question} question, ${answer} answer`);
 
   return (
-    <Container>
-      {/* Question textfield 
+    <Grid container direction="column" justify="center" alignItems="center">
+      {!showing ? (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            setShowing(!showing);
+          }}
+        >
+          Show CardBox
+        </Button>
+      ) : (
+        <>
+          {/* Question textfield 
       This takes the inital value of question which is empty and when the text is changed, it runs the setQuestion function which updates dom*/}
-      <TextField
-        variant="outlined"
-        label="Question"
-        type="text"
-        value={question}
-        onChange={(e) => {
-          setQuestion(e.target.value);
-        }}
-      ></TextField>
+          <div>
+            <TextField
+              variant="outlined"
+              label="Question"
+              type="text"
+              value={question}
+              onChange={(e) => {
+                setQuestion(e.target.value);
+              }}
+            ></TextField>
+          </div>
 
-      {/* Answer textfield */}
-      <TextField
-        variant="outlined"
-        label="Answer"
-        type="text"
-        value={answer}
-        onChange={(e) => {
-          setAnswer(e.target.value);
-        }}
-      ></TextField>
+          {/* Answer textfield */}
+          <div>
+            <TextField
+              variant="outlined"
+              label="Answer"
+              type="text"
+              value={answer}
+              onChange={(e) => {
+                setAnswer(e.target.value);
+              }}
+            ></TextField>
+          </div>
 
-      {/* Add button */}
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => {
-          // Id counter increments on every new card to all have a unique id
-          // This prop passes over all this data back to the main App.tsx class through onAdd
-          props.onAdd({ answer: answer, question: question, id: idCounter++ });
-        }}
-      >
-        Add Card
-      </Button>
-    </Container>
+          {/* Add button */}
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                // Id counter increments on every new card to all have a unique id
+                // This prop passes over all this data back to the main App.tsx class through onAdd
+                props.onAdd({
+                  answer: answer,
+                  question: question,
+                  id: idCounter++,
+                });
+              }}
+            >
+              Add Card
+            </Button>
+          </div>
+
+          <div>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                setShowing(!showing);
+              }}
+            >
+              Hide
+            </Button>
+          </div>
+        </>
+      )}
+    </Grid>
   );
 };
 

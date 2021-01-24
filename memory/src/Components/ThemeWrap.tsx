@@ -1,11 +1,11 @@
 import { createMuiTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
-import { purple, green } from "@material-ui/core/colors";
+import { purple, green, blue } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: purple[500],
+      main: blue[500],
     },
     secondary: {
       main: green[500],

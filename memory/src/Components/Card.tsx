@@ -1,5 +1,5 @@
-import { Button } from "@material-ui/core";
-import { useState } from "react";
+import { Button, Grid } from "@material-ui/core";
+import React, { useState } from "react";
 
 // Interface for the datatype of cards
 export interface CardData {
@@ -14,20 +14,24 @@ const Card: React.FC<{ card: CardData; onDelete: () => void }> = (props) => {
 
   return (
     //The div should have a function of where it updates the following function on div click
-    <div
+    <Grid
+      container
+      direction="column"
+      justify="center"
+      alignItems="center"
       onClick={() => {
         setShowing(!showing);
       }}
     >
-      <p>Question:</p>
+      <h3>Question:</h3>
       {props.card.question}
 
       {/* If it is allowed to be shown we show it otherwise display null (tenary) */}
       {!showing ? null : (
         <>
-          <p>Answer:</p>
+          <h3>Answer:</h3>
           {props.card.answer}
-
+          <br />
           <Button
             variant="outlined"
             color="primary"
@@ -40,7 +44,7 @@ const Card: React.FC<{ card: CardData; onDelete: () => void }> = (props) => {
           </Button>
         </>
       )}
-    </div>
+    </Grid>
   );
 };
 
