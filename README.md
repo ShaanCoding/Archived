@@ -21,14 +21,13 @@
   </p>
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/ShaanCoding/MemorY?color=dark-green) ![Issues](https://img.shields.io/github/issues/ShaanCoding/MemorY) ![License](https://img.shields.io/github/license/ShaanCoding/MemorY) 
+![Contributors](https://img.shields.io/github/contributors/ShaanCoding/MemorY?color=dark-green) ![Issues](https://img.shields.io/github/issues/ShaanCoding/MemorY) ![License](https://img.shields.io/github/license/ShaanCoding/MemorY)
 
 ## Table Of Contents
 
 - [Table Of Contents](#table-of-contents)
 - [About The Project](#about-the-project)
 - [Built With](#built-with)
-- [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
   - [Creating A Pull Request](#creating-a-pull-request)
@@ -40,18 +39,11 @@
 
 ![Screen Shot](images/screenshot.png)
 
-
 ## Built With
 
 This project was built with the core React & TypeScript libraries, in addition, it also uses:
 
-* [Material-UI](https://material-ui.com/)
-
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+- [Material-UI](https://material-ui.com/)
 
 ## Roadmap
 
@@ -60,10 +52,11 @@ See the [open issues](https://github.com/ShaanCoding/MemorY/issues) for a list o
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-* If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/ShaanCoding/MemorY/issues/new) to discuss it, or directly create a pull request after you edit the *README.md* file with necessary changes.
-* Please make sure you check your spelling and grammar.
-* Create individual PR for each suggestion.
-* Please also read through the [Code Of Conduct](https://github.com/ShaanCoding/MemorY/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
+
+- If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/ShaanCoding/MemorY/issues/new) to discuss it, or directly create a pull request after you edit the _README.md_ file with necessary changes.
+- Please make sure you check your spelling and grammar.
+- Create individual PR for each suggestion.
+- Please also read through the [Code Of Conduct](https://github.com/ShaanCoding/MemorY/blob/main/CODE_OF_CONDUCT.md) before posting your first idea as well.
 
 ### Creating A Pull Request
 
@@ -79,11 +72,11 @@ Distributed under the MPL-2.0 License. See [LICENSE](https://github.com/ShaanCod
 
 ## Authors
 
-* **Shaan Khan** - *Comp Sci Student* - [Shaan Khan](https://github.com/ShaanCoding/) - *Built ReadME Template*
+- **Shaan Khan** - _Comp Sci Student_ - [Shaan Khan](https://github.com/ShaanCoding/) - _Built ReadME Template_
 
 ## Acknowledgements
 
-* [ShaanCoding](https://github.com/ShaanCoding/)
-* [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
-* [ImgShields](https://shields.io/)
-* Leo (Major Assistance, guided my hand throughout the entire development)
+- [ShaanCoding](https://github.com/ShaanCoding/)
+- [Othneil Drew](https://github.com/othneildrew/Best-README-Template)
+- [ImgShields](https://shields.io/)
+- Leo (Major Assistance, guided my hand throughout the entire development)
