@@ -11,7 +11,6 @@ const theme = createMuiTheme({
       main: green[500],
     },
   },
-  spacing: [0, 8, 16, 24, 32],
 });
 
 const ThemeWrap: React.FC = (props) => {
