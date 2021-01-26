@@ -1,6 +1,6 @@
 // First we start with the add box
 
-import { Button, Container, Grid, TextField } from "@material-ui/core";
+import { Box, Button, Container, Grid, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import { CardData } from "./Card";
 
@@ -20,20 +20,22 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
   return (
     <Grid container direction="column" justify="center" alignItems="center">
       {!showing ? (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => {
-            setShowing(!showing);
-          }}
-        >
-          Show CardBox
-        </Button>
+        <Box mt={4}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {
+              setShowing(!showing);
+            }}
+          >
+            Show CardBox
+          </Button>
+        </Box>
       ) : (
         <>
           {/* Question textfield 
       This takes the inital value of question which is empty and when the text is changed, it runs the setQuestion function which updates dom*/}
-          <div>
+          <Box my={2}>
             <TextField
               variant="outlined"
               label="Question"
@@ -43,10 +45,10 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
                 setQuestion(e.target.value);
               }}
             ></TextField>
-          </div>
+          </Box>
 
           {/* Answer textfield */}
-          <div>
+          <Box my={2}>
             <TextField
               variant="outlined"
               label="Answer"
@@ -56,10 +58,10 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
                 setAnswer(e.target.value);
               }}
             ></TextField>
-          </div>
+          </Box>
 
           {/* Add button */}
-          <div>
+          <Box my={2}>
             <Button
               variant="contained"
               color="primary"
@@ -75,9 +77,9 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
             >
               Add Card
             </Button>
-          </div>
+          </Box>
 
-          <div>
+          <Box my={2}>
             <Button
               variant="contained"
               color="primary"
@@ -87,7 +89,7 @@ const AddCardBox: React.FC<{ onAdd: (card: CardData) => void }> = (props) => {
             >
               Hide
             </Button>
-          </div>
+          </Box>
         </>
       )}
     </Grid>
