@@ -17,7 +17,7 @@ const Task: React.FC<{ task: TaskData; onDelete: () => void }> = (props) => {
   const [done, setDone] = useState(false);
 
   return (
-    <Container>
+    <Container className="todo-row">
       <Switch
         checked={done}
         onChange={() => {
