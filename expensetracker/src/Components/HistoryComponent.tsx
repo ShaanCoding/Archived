@@ -1,9 +1,12 @@
 import React from "react";
 import Transaction from "./Transaction";
 
-const HistoryComponent: React.FC<{ transaction: Transaction }> = (props) => {
+const HistoryComponent: React.FC<{
+  transaction: Transaction;
+  onDelete: (id: number) => void;
+}> = (props) => {
   return (
-    <div>
+    <div onDoubleClick={() => props.onDelete(props.transaction.id)}>
       {props.transaction.description} | {props.transaction.amount}
     </div>
   );

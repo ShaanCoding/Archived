@@ -21,12 +21,21 @@ function App() {
     setTransactions([...transactions, transaction]);
   };
 
+  const onDelete = (id: number) => {
+    //With this we want to have all transactions but the one we want to remove
+    setTransactions(
+      transactions.filter((transaction) => {
+        return transaction.id != id;
+      })
+    );
+  };
+
   return (
     <div className="App">
       <h1>Expense Tracker</h1>
-      <Balance balance={getBalance()} />
+      <Balance getBalance={getBalance} />
       <IncomeExpense transactions={transactions} />
-      <History transactions={transactions} />
+      <History transactions={transactions} onDelete={onDelete} />
       <AddTransaction onAdd={onAdd} />
     </div>
   );
