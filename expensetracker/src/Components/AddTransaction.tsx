@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Z_STREAM_ERROR } from "zlib";
 import Transaction from "./Transaction";
 
 let idCounter = 0;
@@ -7,7 +8,12 @@ const AddTransaction: React.FC<{
   onAdd: (transaction: Transaction) => void;
 }> = (props) => {
   const [text, setText] = useState("");
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
+  const [error, setError] = useState(false);
+
+  const isLegal = (amount: string) => {
+    return !isNaN(Number(amount));
+  };
 
   return (
     <div>
@@ -27,21 +33,28 @@ const AddTransaction: React.FC<{
           type="text"
           value={amount}
           onChange={(e) => {
-            setAmount(Number(e.target.value));
+            setAmount(e.target.value);
           }}
         />
       </div>
       <button
         onClick={() => {
-          props.onAdd({
-            amount: amount,
-            id: idCounter++,
-            description: text,
-          });
+          if (isLegal(amount)) {
+            setError(false);
+            props.onAdd({
+              amount: Number(amount),
+              id: idCounter++,
+              description: text,
+            });
+          } else {
+            setError(true);
+          }
         }}
       >
         Add Transaction
       </button>
+
+      {error ? <h4>Illegal Amount Entered</h4> : ""}
     </div>
   );
 };
