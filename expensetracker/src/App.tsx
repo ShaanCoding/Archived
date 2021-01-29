@@ -9,7 +9,19 @@ import History from "./Components/History";
 
 function App() {
   //We have ahook for our transaction array
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+
+  //Saving & loading data
+  let data = localStorage.getItem("TRANSACTIONS");
+
+  let LIST;
+
+  if (data) {
+    LIST = JSON.parse(data);
+  } else {
+    LIST = [];
+  }
+
+  const [transactions, setTransactions] = useState<Transaction[]>(LIST);
 
   const getBalance = () => {
     return transactions
@@ -17,13 +29,18 @@ function App() {
       .reduce((acc, item) => (acc += item), 0);
   };
 
+  const SaveTransaction = (transactions: Transaction[]) => {
+    setTransactions(transactions);
+    localStorage.setItem("TRANSACTIONS", JSON.stringify(transactions));
+  };
+
   const onAdd = (transaction: Transaction) => {
-    setTransactions([...transactions, transaction]);
+    SaveTransaction([...transactions, transaction]);
   };
 
   const onDelete = (id: number) => {
     //With this we want to have all transactions but the one we want to remove
-    setTransactions(
+    SaveTransaction(
       transactions.filter((transaction) => {
         return transaction.id != id;
       })

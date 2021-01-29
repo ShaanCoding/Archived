@@ -1,8 +1,17 @@
 import React, { useState } from "react";
-import { Z_STREAM_ERROR } from "zlib";
 import Transaction from "./Transaction";
 
-let idCounter = 0;
+let data = localStorage.getItem("ID");
+
+let ID;
+
+if (data) {
+  ID = JSON.parse(data);
+} else {
+  ID = 0;
+}
+
+let idCounter = ID;
 
 const AddTransaction: React.FC<{
   onAdd: (transaction: Transaction) => void;
@@ -46,6 +55,7 @@ const AddTransaction: React.FC<{
               id: idCounter++,
               description: text,
             });
+            localStorage.setItem("ID", idCounter);
           } else {
             setError(true);
           }
