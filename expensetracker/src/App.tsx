@@ -13,14 +13,7 @@ function App() {
 
   //Saving & loading data
   let data = localStorage.getItem("TRANSACTIONS");
-
-  let LIST;
-
-  if (data) {
-    LIST = JSON.parse(data);
-  } else {
-    LIST = [];
-  }
+  let LIST = data ? JSON.parse(data) : [];
 
   const [transactions, setTransactions] = useState<Transaction[]>(LIST);
 

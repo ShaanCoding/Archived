@@ -3,14 +3,7 @@ import React, { useState } from "react";
 import Transaction from "./Transaction";
 
 let data = localStorage.getItem("ID");
-
-let ID;
-
-if (data) {
-  ID = JSON.parse(data);
-} else {
-  ID = 0;
-}
+let ID = data ? JSON.parse(data) : 0;
 
 let idCounter = ID;
 
