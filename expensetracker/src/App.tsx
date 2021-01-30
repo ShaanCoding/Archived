@@ -6,6 +6,7 @@ import IncomeExpense from "./Components/IncomeExpense";
 import Transaction from "./Components/Transaction";
 import AddTransaction from "./Components/AddTransaction";
 import History from "./Components/History";
+import ThemeWrap from "./Components/ThemeWrap";
 
 function App() {
   //We have ahook for our transaction array
@@ -48,13 +49,15 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Expense Tracker</h1>
-      <Balance getBalance={getBalance} />
-      <IncomeExpense transactions={transactions} />
-      <History transactions={transactions} onDelete={onDelete} />
-      <AddTransaction onAdd={onAdd} />
-    </div>
+    <ThemeWrap>
+      <div className="trackerBox">
+        <h1 className="header">Expense Tracker</h1>
+        <Balance getBalance={getBalance} />
+        <IncomeExpense transactions={transactions} />
+        <History transactions={transactions} onDelete={onDelete} />
+        <AddTransaction onAdd={onAdd} />
+      </div>
+    </ThemeWrap>
   );
 }
 

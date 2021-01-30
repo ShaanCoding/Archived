@@ -1,3 +1,4 @@
+import { Button, Input, TextField } from "@material-ui/core";
 import React, { useState } from "react";
 import Transaction from "./Transaction";
 
@@ -27,8 +28,11 @@ const AddTransaction: React.FC<{
   return (
     <div>
       <div>
-        <h4>Text</h4>
-        <input
+        <h3>Text</h3>
+        <TextField
+          variant="outlined"
+          label="Add a description"
+          color="secondary"
           type="text"
           value={text}
           onChange={(e) => {
@@ -37,8 +41,11 @@ const AddTransaction: React.FC<{
         />
       </div>
       <div>
-        <h4>Amount</h4>
-        <input
+        <h3>Amount</h3>
+        <TextField
+          variant="outlined"
+          label="Add an amount"
+          color="secondary"
           type="text"
           value={amount}
           onChange={(e) => {
@@ -46,7 +53,11 @@ const AddTransaction: React.FC<{
           }}
         />
       </div>
-      <button
+      <br />
+      <Button
+        variant="contained"
+        color="primary"
+        type="submit"
         onClick={() => {
           if (isLegal(amount)) {
             setError(false);
@@ -62,9 +73,9 @@ const AddTransaction: React.FC<{
         }}
       >
         Add Transaction
-      </button>
+      </Button>
 
-      {error ? <h4>Illegal Amount Entered</h4> : ""}
+      {error ? <h4 className="error">Illegal Amount Entered</h4> : ""}
     </div>
   );
 };

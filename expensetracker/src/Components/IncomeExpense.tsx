@@ -15,14 +15,14 @@ const IncomeExpense: React.FC<{ transactions: Transaction[] }> = (props) => {
       .reduce((acc, item) => (acc += item), 0) * -1;
 
   return (
-    <div>
+    <div className="inc-exp-container">
       <div>
         <h4>Income</h4>
-        <p>{formatBalance(income)}</p>
+        <p className="money plus">{formatBalance(income)}</p>
       </div>
       <div>
         <h4>Expense</h4>
-        <p>{formatBalance(expenses)}</p>
+        <p className="money minus">{formatBalance(expenses)}</p>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import formatBalance from "./formatBalance";
 const Balance: React.FC<{ getBalance: () => number }> = (props) => {
   return (
     <>
-      <h4>Your Balance</h4>
+      <h2>Your Balance</h2>
       <h1>{formatBalance(props.getBalance())}</h1>
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import HistoryComponent from "./HistoryComponent";
 import Transaction from "./Transaction";
+import "../App.css";
 
 const History: React.FC<{
   transactions: Transaction[];
@@ -19,7 +20,7 @@ const History: React.FC<{
       />
     );
   });
-  return <div>{arrayMap}</div>;
+  return <ul className="list">{arrayMap}</ul>;
 };
 
 export default History;
