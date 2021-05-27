@@ -40,7 +40,7 @@ function App() {
       {/* Map all coins here */}
       {filteredCoins.map((coin: any) => {
         return (
-          <Coin key={coin.id} coinName={coin.name} coinImage={coin.image} coinSymbol={coin.symbol} coinVolume={coin.market_cap} coinPrice={coin.current_price}/>          
+          <Coin key={coin.id} coinName={coin.name} coinImage={coin.image} coinSymbol={coin.symbol} coinVolume={coin.total_volume} coinPrice={coin.current_price} coinPriceChange={coin.price_change_percentage_24h} coinMarketCap={coin.market_cap}/>          
           );
       })}
     </>
