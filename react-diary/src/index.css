@@ -1,0 +1,97 @@
+:root {
+  --light-grey: #e4e4e4;
+  --grey: #424451;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}  */
+
+.line-text {
+  display: flex;
+  align-items: center;
+}
+
+.line-text::after {
+  content: "";
+  flex: 1;
+  margin-left: 1rem;
+  height: 1px;
+  background-color: var(--grey);
+}
+
+/* Adding Lines On Divs (Before & After) */
+
+.line-box::before,
+.line-box::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  background-color: var(--grey);
+  margin: 30px auto;
+}
+
+.flexbox {
+  display: flex;
+}
+
+.flexbox > div {
+  /* width: 100%; */
+}
+
+.side-bar {
+  background-color: var(--light-grey);
+  padding: 80px 40px;
+  height: 100%;
+}
+
+.side-bar li {
+  list-style-type: none;
+}
+
+.side-bar * {
+  text-decoration: none;
+  color: var(--grey);
+}
+
+/* Weather card */
+
+.weather-card {
+}
+
+.weather-card > div {
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.weather-card h1 {
+  font-size: 18pt;
+}
+
+.weather-card p {
+  font-size: 10pt;
+}
+
+.dashboard {
+}
+
+.box {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.grey {
+  background-color: var(--light-grey);
+}
