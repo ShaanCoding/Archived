@@ -12,17 +12,17 @@ function App() {
   return (
     <Router>
       <div className="flexbox">
-        <div>
+        <div style={{ flexGrow: 2 }}>
           <SideBar />
         </div>
-        <div>
+        <div style={{ flexGrow: 6 }}>
           <Switch>
             <Route path="/">
               <Dashboard />
             </Route>
           </Switch>
         </div>
-        <div>
+        <div style={{ flexGrow: 1 }}>
           <Weather />
         </div>
       </div>

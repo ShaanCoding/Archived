@@ -47,7 +47,7 @@ code {
 }
 
 .flexbox > div {
-  /* width: 100%; */
+  margin: 20px;
 }
 
 .side-bar {
@@ -68,9 +68,16 @@ code {
 /* Weather card */
 
 .weather-card {
+  display: flex;
+  flex-direction: column;
 }
 
 .weather-card > div {
+  /* border-color: pink;
+  border-style: solid; */
+  margin: 20px;
+  /* height: 125px; */
+  height: 100%;
   padding: 15px;
   border-radius: 10px;
   text-align: center;

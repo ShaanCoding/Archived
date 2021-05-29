@@ -1,3 +1,5 @@
+import { FaCloudShowersHeavy, FaWind, FaSun } from "react-icons/fa";
+
 const WeatherCard: React.FC<{
   isGrey: boolean;
   isUpcoming: boolean;
@@ -10,11 +12,13 @@ const WeatherCard: React.FC<{
         <>
           <h1>UPCOMING</h1>
           <p>{props.weatherDay}</p>
+          <FaWind size={30} />
           {/* {Weather Icon} */}
         </>
       ) : (
         <>
           {/* {Weather icon} */}
+          <FaSun size={60} />
           <p>{props.weatherDay}</p>
         </>
       )}
