@@ -8,12 +8,12 @@
     {
       "id": 2,
       "taskName": "Go to David's place",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 3,
       "taskName": "Buy kitty kibble",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 4,
@@ -39,6 +39,6 @@
     }
   ],
   "quick-note": {
-    "name": "aaaaaaaaaaasdsdbbbbaaas\nccc"
+    "name": "aaa"
   }
 }

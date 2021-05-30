@@ -3,26 +3,20 @@ import { IQuickNote, IToday } from "./Interfaces";
 
 // Fetch Today
 const fetchTodays = async () => {
-  const res = await fetch("http://localhost:5000/today");
+  const res = await fetch("/today");
   const data = await res.json();
   return data;
 };
 
 const fetchToday = async (id: number) => {
-  const res = await fetch(`http://localhost:5000/today/${id}`);
+  const res = await fetch(`/today/${id}`);
   const data = await res.json();
   return data;
 };
 
 // Update Today
 const addToday = async (newToday: IToday) => {
-  const res = await fetch("http://localhost:5000/today", {
-    method: "POST",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(newToday),
-  });
+  axios.post("/today", newToday);
 };
 
 // Toggle Today (Checkboxes)
@@ -35,40 +29,32 @@ const toggleToday = async (
   const todayToToggle: IToday = await fetchToday(id);
   const updatedDay = { ...todayToToggle, isDone: !todayToToggle.isDone };
 
-  const res = await fetch(`http://localhost:5000/today/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify(updatedDay),
-  });
-
-  const data: IToday = await res.json();
+  const res = axios.put(`/today/${id}`, updatedDay);
 
   setTodayNotes(
     todayNotes.map((todayNote) =>
-      todayNote.id === id ? { ...todayNote, isDone: data.isDone } : todayNote
+      todayNote.id === id
+        ? { ...todayNote, isDone: !todayNote.isDone }
+        : todayNote
     )
   );
 };
 
 // Fetch Recent Notes
 const fetchNotes = async () => {
-  const res = await fetch("http://localhost:5000/recent-notes");
-  const data = await res.json();
-  return data;
+  const res = await axios.get("/recent-notes/");
+  return res.data;
 };
 
 // Fetch Quick Notes
 const fetchQuickNotes = async () => {
-  const res = await fetch("http://localhost:5000/quick-note/");
-  const data = await res.json();
-  return data;
+  const res = await axios.get("/quick-note/");
+  return res.data;
 };
 
 // Set Quick Notes
 const serverSetQuickNotes = async (newNotes: IQuickNote) => {
-  const res = await axios.put("http://localhost:5000/quick-note/", newNotes);
+  await axios.put("/quick-note/", newNotes);
 };
 
 export {
