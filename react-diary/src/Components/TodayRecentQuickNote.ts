@@ -55,6 +55,12 @@ const serverSetQuickNotes = async (newNotes: IQuickNote) => {
   await axios.put("/quick-note/", newNotes);
 };
 
+// Fetch Favourites
+const fetchFavourites = async () => {
+  const res = await axios.get("/favourites/");
+  return res.data;
+};
+
 export {
   fetchTodays,
   addToday,
@@ -62,4 +68,5 @@ export {
   fetchNotes,
   fetchQuickNotes,
   serverSetQuickNotes,
+  fetchFavourites,
 };

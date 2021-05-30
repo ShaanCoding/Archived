@@ -39,6 +39,23 @@
     }
   ],
   "quick-note": {
-    "name": "aaa"
-  }
+    "name": "saddsd"
+  },
+  "favourites": [
+    {
+      "id": 1,
+      "favouriteName": "Journal - May",
+      "favouriteURL": "journal-may"
+    },
+    {
+      "id": 2,
+      "favouriteName": "Mental Health Check",
+      "favouriteURL": "mental-health-check"
+    },
+    {
+      "id": 3,
+      "favouriteName": "Workout Log",
+      "favouriteURL": "workout-log"
+    }
+  ]
 }

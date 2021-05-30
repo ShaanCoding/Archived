@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "./Pages/Dashboard";
 import QuickNote from "./Pages/QuickNote";
+import ToDo from "./Pages/ToDo";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             </Route>
             <Route path="/quick-note">
               <QuickNote />
+            </Route>
+            <Route path="/to-do">
+              <ToDo />
             </Route>
           </Switch>
         </div>
