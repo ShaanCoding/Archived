@@ -23,14 +23,17 @@
   ],
   "recent-notes": [
     {
+      "id:": 0,
       "noteName": "Journal - April",
       "noteURL": "journal-april"
     },
     {
+      "id:": 1,
       "noteName": "Mental Health Check",
       "noteURL": "mental-health-check"
     },
     {
+      "id:": 2,
       "noteName": "Workout Log",
       "noteURL": "workout-log"
     }

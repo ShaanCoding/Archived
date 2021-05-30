@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Box from "./Box";
-import { IRecentNotes, IToday } from "./Interfaces";
+import Box from "../Components/Box";
+import { IRecentNotes, IToday } from "../Components/Interfaces";
 import {
   fetchNotes,
   fetchQuickNotes,
   fetchTodays,
   toggleToday,
-} from "./TodayRecentQuickNote";
+} from "../Components/TodayRecentQuickNote";
 
 const Dashboard: React.FC = (props) => {
   const [todayNotes, setTodayNotes] = useState<IToday[]>([]);
@@ -59,7 +59,7 @@ const Dashboard: React.FC = (props) => {
       <Box isGrey={false}>
         <h3>RECENT NOTES</h3>
         {recentNotes.map((note) => (
-          <li>
+          <li key={note.id}>
             <NavLink exact to={note.noteURL}>
               {note.noteName}
             </NavLink>

@@ -5,6 +5,7 @@ export interface IToday {
 }
 
 export interface IRecentNotes {
+  id: number;
   noteName: string;
   noteURL: string;
 }

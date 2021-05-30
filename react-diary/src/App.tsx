@@ -6,7 +6,8 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-import Dashboard from "./Components/Dashboard";
+import Dashboard from "./Pages/Dashboard";
+import QuickNote from "./Pages/QuickNote";
 
 function App() {
   return (
@@ -17,8 +18,11 @@ function App() {
         </div>
         <div style={{ flexGrow: 6 }}>
           <Switch>
-            <Route path="/">
+            <Route exact path="/">
               <Dashboard />
+            </Route>
+            <Route path="/quick-note">
+              <QuickNote />
             </Route>
           </Switch>
         </div>
