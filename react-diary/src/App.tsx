@@ -9,6 +9,7 @@ import {
 import Dashboard from "./Pages/Dashboard";
 import QuickNote from "./Pages/QuickNote";
 import ToDo from "./Pages/ToDo";
+import Notes from "./Pages/Notes";
 
 function App() {
   return (
@@ -22,11 +23,14 @@ function App() {
             <Route exact path="/">
               <Dashboard />
             </Route>
-            <Route path="/quick-note">
+            <Route exact path="/quick-note">
               <QuickNote />
             </Route>
-            <Route path="/to-do">
+            <Route exact path="/to-do">
               <ToDo />
+            </Route>
+            <Route exact path="/notes">
+              <Notes />
             </Route>
           </Switch>
         </div>

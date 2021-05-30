@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "aaaaa"
+    "name": "aaaaaAAAASASDASAS"
   },
   "favourites": [
     {
@@ -68,33 +68,38 @@
       "isDone": true,
       "taskName": "Banna",
       "id": 2
+    },
+    {
+      "isDone": false,
+      "taskName": "AAAA",
+      "id": 3
+    },
+    {
+      "isDone": false,
+      "taskName": "CC",
+      "id": 4
     }
   ],
   "notes": [
+    {
+      "noteName": "Once upon a time",
+      "noteURL": "once-upon-a-time",
+      "id": 1
+    },
     {
       "noteName": "The Little Boy Who Could",
       "noteURL": "the-little-boy-who-could",
       "id": 2
     },
     {
-      "noteName": "Coding Monkey",
-      "noteURL": "coding-monkey",
-      "id": 3
-    },
-    {
       "noteName": "I Am Become Consultant",
       "noteURL": "i-am-become-consultant",
-      "id": 4
+      "id": 3
     },
     {
       "noteName": "Depression",
       "noteURL": "depression",
-      "id": 5
-    },
-    {
-      "noteName": "Once upon a time",
-      "noteURL": "once-upon-a-time",
-      "id": 1
+      "id": 4
     }
   ]
 }

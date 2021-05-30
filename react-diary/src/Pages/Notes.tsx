@@ -2,29 +2,37 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "../Components/Box";
 import { INotes } from "../Components/Interfaces";
-import { fetchNotes } from "../Components/TodayRecentQuickNote";
+import {
+  deleteRealNotes,
+  fetchRealNotes,
+} from "../Components/TodayRecentQuickNote";
 
 const Notes: React.FC = (props) => {
   const [notes, setNotes] = useState<INotes[]>([]);
 
   useEffect(() => {
-    return () => {
-      const getNotes = async () => {
-        const getNotesFromServer = await fetchNotes();
-        setNotes(getNotesFromServer);
-      };
+    const getNotes = async () => {
+      const getNotesFromServer = await fetchRealNotes();
+      setNotes(getNotesFromServer);
     };
+
+    getNotes();
   }, []);
 
-  console.log(notes);
+  const onDelete = (id: number) => {
+    deleteRealNotes(notes, setNotes, id);
+  };
 
   return (
     <Box isGrey={true}>
       <h1>My Notes</h1>
       {notes.map((note: INotes) => (
-        <NavLink key={note.id} exact to={note.noteURL}>
-          {note.noteName}
-        </NavLink>
+        <li>
+          <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
+            {note.noteName}
+          </NavLink>
+          <button onClick={() => onDelete(note.id)}>Delete Note</button>
+        </li>
       ))}
     </Box>
   );
