@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ITask } from "../Interfaces";
 import TaskList from "./TaskList";
 
-const Header: React.FC<{ addTask: (task: ITask) => void }> = (props) => {
+const Header: React.FC<{ addTask: (task: any) => void }> = (props) => {
   const [task, setTask] = useState<string>("");
 
   return (
@@ -19,7 +19,6 @@ const Header: React.FC<{ addTask: (task: ITask) => void }> = (props) => {
         onClick={() => {
           if (task) {
             props.addTask({
-              id: 5,
               isDone: false,
               taskName: task,
             });

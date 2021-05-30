@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IQuickNote, IToday } from "./Interfaces";
+import { IQuickNote, ITask, IToday } from "./Interfaces";
 
 // Fetch Today
 const fetchTodays = async () => {
@@ -61,6 +61,54 @@ const fetchFavourites = async () => {
   return res.data;
 };
 
+// Fetch To Do
+const fetchToDos = async () => {
+  const res = await axios.get("/todo/");
+  return res.data;
+};
+
+const fetchToDo = async (id: number) => {
+  const res = await axios.get(`/todo/${id}`);
+  return res.data;
+};
+
+const addToDo = async (
+  toDo: ITask[],
+  setToDo: (toDo: ITask[]) => void,
+  newToDo: any
+) => {
+  const res = await axios.post("/todo/", newToDo);
+  setToDo([...toDo, newToDo]);
+};
+
+const deleteToDo = async (
+  toDo: ITask[],
+  setToDo: (toDo: ITask[]) => void,
+  id: number
+) => {
+  const res = await axios.delete(`/todo/${id}`);
+  setToDo(toDo.filter((task: ITask) => task.id !== id));
+};
+
+// Toggle Today (Checkboxes)
+const toggleToDo = async (
+  toDo: ITask[],
+  setToDo: (toDo: ITask[]) => void,
+  id: number
+) => {
+  // Fetch data
+  const toDoToggle: ITask = await fetchToDo(id);
+  const updatedToDo = { ...toDoToggle, isDone: !toDoToggle.isDone };
+
+  const res = axios.put(`/todo/${id}`, updatedToDo);
+
+  setToDo(
+    toDo.map((toDo_) =>
+      toDo_.id === id ? { ...toDo_, isDone: !toDo_.isDone } : toDo_
+    )
+  );
+};
+
 export {
   fetchTodays,
   addToday,
@@ -69,4 +117,8 @@ export {
   fetchQuickNotes,
   serverSetQuickNotes,
   fetchFavourites,
+  fetchToDos,
+  addToDo,
+  deleteToDo,
+  toggleToDo,
 };
