@@ -25,3 +25,9 @@ export interface ITask {
   taskName: string;
   isDone: boolean;
 }
+
+export interface INotes {
+  id: number;
+  noteName: string;
+  noteURL: string;
+}

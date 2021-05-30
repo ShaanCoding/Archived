@@ -8,7 +8,7 @@
     {
       "id": 2,
       "taskName": "Go to David's place",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 3,
@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "#"
+    "name": "aaaaa"
   },
   "favourites": [
     {
@@ -65,14 +65,36 @@
       "id": 1
     },
     {
-      "isDone": false,
+      "isDone": true,
       "taskName": "Banna",
+      "id": 2
+    }
+  ],
+  "notes": [
+    {
+      "noteName": "The Little Boy Who Could",
+      "noteURL": "the-little-boy-who-could",
       "id": 2
     },
     {
-      "isDone": false,
-      "taskName": "Pear",
+      "noteName": "Coding Monkey",
+      "noteURL": "coding-monkey",
       "id": 3
+    },
+    {
+      "noteName": "I Am Become Consultant",
+      "noteURL": "i-am-become-consultant",
+      "id": 4
+    },
+    {
+      "noteName": "Depression",
+      "noteURL": "depression",
+      "id": 5
+    },
+    {
+      "noteName": "Once upon a time",
+      "noteURL": "once-upon-a-time",
+      "id": 1
     }
   ]
 }
