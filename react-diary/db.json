@@ -1,0 +1,100 @@
+{
+  "today": [
+    {
+      "id": 1,
+      "taskName": "Team meeting at 13:30",
+      "isDone": false
+    },
+    {
+      "id": 2,
+      "taskName": "Go to David's place",
+      "isDone": true
+    },
+    {
+      "id": 3,
+      "taskName": "Buy kitty kibble",
+      "isDone": true
+    },
+    {
+      "id": 4,
+      "taskName": "Pay bills",
+      "isDone": true
+    }
+  ],
+  "recent-notes": [
+    {
+      "id": 1,
+      "noteName": "Journal - April",
+      "noteURL": "journal-april"
+    },
+    {
+      "id": 2,
+      "noteName": "Mental Health Check",
+      "noteURL": "mental-health-check"
+    },
+    {
+      "id": 3,
+      "noteName": "Workout Log",
+      "noteURL": "workout-log"
+    }
+  ],
+  "quick-note": {
+    "name": "aaaaa"
+  },
+  "favourites": [
+    {
+      "id": 1,
+      "favouriteName": "Journal - May",
+      "favouriteURL": "journal-may"
+    },
+    {
+      "id": 2,
+      "favouriteName": "Mental Health Check",
+      "favouriteURL": "mental-health-check"
+    },
+    {
+      "id": 3,
+      "favouriteName": "Workout Log",
+      "favouriteURL": "workout-log"
+    }
+  ],
+  "todo": [
+    {
+      "isDone": false,
+      "taskName": "Apple",
+      "id": 1
+    },
+    {
+      "isDone": true,
+      "taskName": "Banna",
+      "id": 2
+    }
+  ],
+  "notes": [
+    {
+      "noteName": "The Little Boy Who Could",
+      "noteURL": "the-little-boy-who-could",
+      "id": 2
+    },
+    {
+      "noteName": "Coding Monkey",
+      "noteURL": "coding-monkey",
+      "id": 3
+    },
+    {
+      "noteName": "I Am Become Consultant",
+      "noteURL": "i-am-become-consultant",
+      "id": 4
+    },
+    {
+      "noteName": "Depression",
+      "noteURL": "depression",
+      "id": 5
+    },
+    {
+      "noteName": "Once upon a time",
+      "noteURL": "once-upon-a-time",
+      "id": 1
+    }
+  ]
+}
