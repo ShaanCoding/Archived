@@ -3,12 +3,12 @@
     {
       "id": 1,
       "taskName": "Team meeting at 13:30",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 2,
       "taskName": "Go to David's place",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 3,
@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "saddsd"
+    "name": "# Shaan is cool\n\n## This is a fac"
   },
   "favourites": [
     {
@@ -58,16 +58,5 @@
       "favouriteURL": "workout-log"
     }
   ],
-  "todo": [
-    {
-      "isDone": false,
-      "taskName": "Jonno",
-      "id": 1
-    },
-    {
-      "isDone": false,
-      "taskName": "Is ",
-      "id": 2
-    }
-  ]
+  "todo": []
 }

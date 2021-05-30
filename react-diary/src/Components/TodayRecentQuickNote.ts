@@ -78,7 +78,7 @@ const addToDo = async (
   newToDo: any
 ) => {
   const res = await axios.post("/todo/", newToDo);
-  setToDo([...toDo, newToDo]);
+  setToDo([...toDo, res.data]);
 };
 
 const deleteToDo = async (
