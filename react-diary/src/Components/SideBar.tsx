@@ -2,17 +2,11 @@ import { useEffect, useState } from "react";
 import { FaPencilAlt, FaBookOpen, FaCogs } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { IRecentNotes } from "./Interfaces";
+import { fetchNotes } from "./TodayRecentQuickNote";
 
 const SideBar: React.FC = (props) => {
   const [openNav, setOpenNav] = useState(false);
   const [recentNotes, setRecentNotes] = useState<IRecentNotes[]>([]);
-
-  // Fetch Recent Notes
-  const fetchNotes = async () => {
-    const res = await fetch("http://localhost:5000/recent-notes");
-    const data = await res.json();
-    return data;
-  };
 
   useEffect(() => {
     const getNotes = async () => {
