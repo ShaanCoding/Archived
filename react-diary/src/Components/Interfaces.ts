@@ -1,4 +1,5 @@
 export interface IToday {
+  id: number;
   taskName: string;
   isDone: boolean;
 }

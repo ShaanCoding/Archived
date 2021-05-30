@@ -1,20 +1,24 @@
 {
   "today": [
     {
+      "id": 0,
       "taskName": "Team meeting at 13:30",
+      "isDone": false
+    },
+    {
+      "id": 1,
+      "taskName": "Go to David's place",
       "isDone": true
     },
     {
-      "taskName": "Go to David's place",
-      "isDone": false
-    },
-    {
+      "id": 2,
       "taskName": "Buy kitty kibble",
-      "isDone": false
+      "isDone": true
     },
     {
+      "id": 3,
       "taskName": "Pay bills",
-      "isDone": false
+      "isDone": true
     }
   ],
   "recent-notes": [

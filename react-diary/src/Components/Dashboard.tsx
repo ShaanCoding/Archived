@@ -9,10 +9,50 @@ const Dashboard: React.FC = (props) => {
   const [quickNotes, setQuickNotes] = useState<string[]>([]);
 
   // Fetch Today
-  const fetchToday = async () => {
+  const fetchTodays = async () => {
     const res = await fetch("http://localhost:5000/today");
     const data = await res.json();
     return data;
+  };
+
+  const fetchToday = async (id: number) => {
+    const res = await fetch(`http://localhost:5000/today/${id}`);
+    const data = await res.json();
+    return data;
+  };
+
+  // Update Today
+  const addToday = async (newToday: IToday) => {
+    const res = await fetch("http://localhost:5000/today", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newToday),
+    });
+  };
+
+  // Toggle Today (Checkboxes)
+  const toggleToday = async (id: number) => {
+    // Fetch data
+    const todayToToggle: IToday = await fetchToday(id);
+    const updatedDay = { ...todayToToggle, isDone: !todayToToggle.isDone };
+
+    const res = await fetch(`http://localhost:5000/today/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(updatedDay),
+    });
+
+    const data: IToday = await res.json();
+
+    setTodayNotes(
+      todayNotes.map((todayNote) =>
+        todayNote.id === id ? { ...todayNote, isDone: data.isDone } : todayNote
+      )
+    );
   };
 
   // Fetch Recent Notes
@@ -31,7 +71,7 @@ const Dashboard: React.FC = (props) => {
 
   useEffect(() => {
     const getToday = async () => {
-      const todayFromServer = await fetchToday();
+      const todayFromServer = await fetchTodays();
       setTodayNotes(todayFromServer);
     };
 
@@ -60,7 +100,12 @@ const Dashboard: React.FC = (props) => {
         {/* Checkboxes */}
         {todayNotes.map((today) => (
           <p>
-            <input type="checkbox" />
+            <input
+              key={today.id}
+              type="checkbox"
+              checked={today.isDone}
+              onClick={() => toggleToday(today.id)}
+            />
             {today.taskName}
           </p>
         ))}
