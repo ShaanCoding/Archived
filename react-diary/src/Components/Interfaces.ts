@@ -11,5 +11,5 @@ export interface IRecentNotes {
 }
 
 export interface IQuickNote {
-  note: string;
+  name: string;
 }

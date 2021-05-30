@@ -1,4 +1,5 @@
-import { IToday } from "./Interfaces";
+import axios from "axios";
+import { IQuickNote, IToday } from "./Interfaces";
 
 // Fetch Today
 const fetchTodays = async () => {
@@ -66,20 +67,8 @@ const fetchQuickNotes = async () => {
 };
 
 // Set Quick Notes
-const serverSetQuickNotes = async (
-  newNotes: string,
-  setQuickNotes: (quickNotes: string) => void
-) => {
-  const res = await fetch("http://localhost:5000/quick-note/", {
-    method: "PUT",
-    headers: {
-      "Content-type": "application/json",
-    },
-    body: JSON.stringify([newNotes]),
-  });
-
-  const data: string[] = await res.json();
-  setQuickNotes(data[0]);
+const serverSetQuickNotes = async (newNotes: IQuickNote) => {
+  const res = await axios.put("http://localhost:5000/quick-note/", newNotes);
 };
 
 export {
