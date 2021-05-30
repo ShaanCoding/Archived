@@ -60,9 +60,33 @@ const fetchNotes = async () => {
 
 // Fetch Quick Notes
 const fetchQuickNotes = async () => {
-  const res = await fetch("http://localhost:5000/quick-note");
+  const res = await fetch("http://localhost:5000/quick-note/");
   const data = await res.json();
   return data;
 };
 
-export { fetchTodays, addToday, toggleToday, fetchNotes, fetchQuickNotes };
+// Set Quick Notes
+const serverSetQuickNotes = async (
+  newNotes: string,
+  setQuickNotes: (quickNotes: string) => void
+) => {
+  const res = await fetch("http://localhost:5000/quick-note/", {
+    method: "PUT",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify([newNotes]),
+  });
+
+  const data: string[] = await res.json();
+  setQuickNotes(data[0]);
+};
+
+export {
+  fetchTodays,
+  addToday,
+  toggleToday,
+  fetchNotes,
+  fetchQuickNotes,
+  serverSetQuickNotes,
+};

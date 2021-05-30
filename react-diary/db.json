@@ -1,48 +1,44 @@
 {
   "today": [
     {
-      "id": 0,
+      "id": 1,
       "taskName": "Team meeting at 13:30",
       "isDone": true
     },
     {
-      "id": 1,
+      "id": 2,
       "taskName": "Go to David's place",
       "isDone": false
     },
     {
-      "id": 2,
+      "id": 3,
       "taskName": "Buy kitty kibble",
-      "isDone": true
+      "isDone": false
     },
     {
-      "id": 3,
+      "id": 4,
       "taskName": "Pay bills",
       "isDone": true
     }
   ],
   "recent-notes": [
     {
-      "id:": 0,
+      "id": 1,
       "noteName": "Journal - April",
       "noteURL": "journal-april"
     },
     {
-      "id:": 1,
+      "id": 2,
       "noteName": "Mental Health Check",
       "noteURL": "mental-health-check"
     },
     {
-      "id:": 2,
+      "id": 3,
       "noteName": "Workout Log",
       "noteURL": "workout-log"
     }
   ],
   "quick-note": [
-    "\"We suffer more in imagination than in reality\" - Seneco",
-    "\"Whatever there is a human being, there is an opportunity for a kindness\" - Seneca",
-    "Figure out name of that one book about graphic design Mel mentioned.",
-    "Libre Baskerville's ampersand",
-    "The School of Life - Youtube"
+    ""
   ]
 }

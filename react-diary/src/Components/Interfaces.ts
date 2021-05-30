@@ -9,3 +9,7 @@ export interface IRecentNotes {
   noteName: string;
   noteURL: string;
 }
+
+export interface IQuickNote {
+  note: string;
+}

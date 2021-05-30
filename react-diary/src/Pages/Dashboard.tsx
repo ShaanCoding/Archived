@@ -1,7 +1,8 @@
+import MDEditor from "@uiw/react-md-editor";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "../Components/Box";
-import { IRecentNotes, IToday } from "../Components/Interfaces";
+import { IQuickNote, IRecentNotes, IToday } from "../Components/Interfaces";
 import {
   fetchNotes,
   fetchQuickNotes,
@@ -12,7 +13,7 @@ import {
 const Dashboard: React.FC = (props) => {
   const [todayNotes, setTodayNotes] = useState<IToday[]>([]);
   const [recentNotes, setRecentNotes] = useState<IRecentNotes[]>([]);
-  const [quickNotes, setQuickNotes] = useState<string[]>([]);
+  const [quickNotes, setQuickNotes] = useState<IQuickNote>("");
 
   useEffect(() => {
     const getToday = async () => {
@@ -27,7 +28,7 @@ const Dashboard: React.FC = (props) => {
 
     const getQuickNotes = async () => {
       const getQuickNotesFromServer = await fetchQuickNotes();
-      setQuickNotes(getQuickNotesFromServer);
+      setQuickNotes(getQuickNotesFromServer[0]);
     };
 
     getToday();
@@ -69,9 +70,7 @@ const Dashboard: React.FC = (props) => {
 
       <Box isGrey={true}>
         <h3>QUICK NOTE</h3>
-        {quickNotes.map((quickNote) => (
-          <p>{quickNote}</p>
-        ))}
+        <MDEditor.Markdown source={quickNotes} />
       </Box>
     </div>
   );
