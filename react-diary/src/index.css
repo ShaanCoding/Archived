@@ -1,5 +1,6 @@
 :root {
   --light-grey: #f3f3f3;
+  --medium-grey: #676a7a;
   --grey: #424451;
 }
 
@@ -104,4 +105,25 @@ code {
 }
 
 .quickNote {
+}
+
+.toDoElement * {
+  margin: 20px;
+}
+
+.toDoElement {
+  margin: 20px 0px;
+  background-color: var(--light-grey);
+}
+
+.toDoElement button {
+  padding: 10px 20px;
+  border: none;
+  text-decoration: none;
+  background-color: var(--grey);
+  color: white;
+}
+
+.toDoElement button:hover {
+  background-color: var(--medium-grey);
 }

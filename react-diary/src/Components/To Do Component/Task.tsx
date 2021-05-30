@@ -6,13 +6,13 @@ const Task: React.FC<{
   onTaskClick: (id: number) => void;
 }> = (props) => {
   return (
-    <div>
+    <div className="toDoElement">
       <input
         type="checkbox"
         checked={props.task.isDone}
         onClick={() => props.onTaskClick(props.task.id)}
       />
-      <p>{props.task.taskName}</p>
+      {props.task.taskName}
       <button onClick={() => props.onDelete()}>Delete</button>
     </div>
   );

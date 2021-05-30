@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "# Shaan is cool\n\n## This is a fac"
+    "name": "#"
   },
   "favourites": [
     {
@@ -58,5 +58,21 @@
       "favouriteURL": "workout-log"
     }
   ],
-  "todo": []
+  "todo": [
+    {
+      "isDone": false,
+      "taskName": "Apple",
+      "id": 1
+    },
+    {
+      "isDone": false,
+      "taskName": "Banna",
+      "id": 2
+    },
+    {
+      "isDone": false,
+      "taskName": "Pear",
+      "id": 3
+    }
+  ]
 }

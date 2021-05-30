@@ -7,6 +7,7 @@ const Header: React.FC<{ addTask: (task: any) => void }> = (props) => {
 
   return (
     <div>
+      <h1>To Do List</h1>
       <input
         type="textfield"
         value={task}
