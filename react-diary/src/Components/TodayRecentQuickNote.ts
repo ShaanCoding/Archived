@@ -3,15 +3,13 @@ import { IQuickNote, IToday } from "./Interfaces";
 
 // Fetch Today
 const fetchTodays = async () => {
-  const res = await fetch("/today");
-  const data = await res.json();
-  return data;
+  const res = await axios.get("/today");
+  return res.data;
 };
 
 const fetchToday = async (id: number) => {
-  const res = await fetch(`/today/${id}`);
-  const data = await res.json();
-  return data;
+  const res = await axios.get(`/today/${id}`);
+  return res.data;
 };
 
 // Update Today
