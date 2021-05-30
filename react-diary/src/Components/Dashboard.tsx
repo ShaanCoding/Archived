@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "./Box";
-
-interface IRecentNotes {
-  noteName: string;
-  noteURL: string;
-}
+import { IRecentNotes, IToday } from "./Interfaces";
 
 const Dashboard: React.FC = (props) => {
+  const [todayNotes, setTodayNotes] = useState<IToday[]>([]);
   const [recentNotes, setRecentNotes] = useState<IRecentNotes[]>([]);
   const [quickNotes, setQuickNotes] = useState<string[]>([]);
+
+  // Fetch Today
+  const fetchToday = async () => {
+    const res = await fetch("http://localhost:5000/today");
+    const data = await res.json();
+    return data;
+  };
 
   // Fetch Recent Notes
   const fetchNotes = async () => {
@@ -26,6 +30,11 @@ const Dashboard: React.FC = (props) => {
   };
 
   useEffect(() => {
+    const getToday = async () => {
+      const todayFromServer = await fetchToday();
+      setTodayNotes(todayFromServer);
+    };
+
     const getNotes = async () => {
       const notesFromServer = await fetchNotes();
       setRecentNotes(notesFromServer);
@@ -36,11 +45,10 @@ const Dashboard: React.FC = (props) => {
       setQuickNotes(getQuickNotesFromServer);
     };
 
+    getToday();
     getNotes();
     getQuickNotes();
   }, []);
-
-  console.log(quickNotes);
 
   return (
     <div className="dashboard">
@@ -50,17 +58,16 @@ const Dashboard: React.FC = (props) => {
       <Box isGrey={true}>
         <h3>TODAY</h3>
         {/* Checkboxes */}
+        {todayNotes.map((today) => (
+          <p>
+            <input type="checkbox" />
+            {today.taskName}
+          </p>
+        ))}
       </Box>
 
       <Box isGrey={false}>
         <h3>RECENT NOTES</h3>
-        {/* {favourites.map((favourite) => (
-                <li>
-                  <NavLink exact to={favourite.url}>
-                    {favourite.name}
-                  </NavLink>
-                </li>
-              ))} */}
         {recentNotes.map((note) => (
           <li>
             <NavLink exact to={note.noteURL}>

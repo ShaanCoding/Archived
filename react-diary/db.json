@@ -1,4 +1,22 @@
 {
+  "today": [
+    {
+      "taskName": "Team meeting at 13:30",
+      "isDone": true
+    },
+    {
+      "taskName": "Go to David's place",
+      "isDone": false
+    },
+    {
+      "taskName": "Buy kitty kibble",
+      "isDone": false
+    },
+    {
+      "taskName": "Pay bills",
+      "isDone": false
+    }
+  ],
   "recent-notes": [
     {
       "noteName": "Journal - April",

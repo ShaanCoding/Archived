@@ -1,32 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPencilAlt, FaBookOpen, FaCogs } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-
-const favourites = [
-  {
-    name: "Journal - April",
-    url: "journal",
-  },
-  {
-    name: "Finances",
-    url: "finances",
-  },
-  {
-    name: "Home Tasks",
-    url: "home-tasks",
-  },
-  {
-    name: "Books to Read",
-    url: "books-to-read",
-  },
-  {
-    name: "Travel List",
-    url: "travel-list",
-  },
-];
+import { IRecentNotes } from "./Interfaces";
 
 const SideBar: React.FC = (props) => {
   const [openNav, setOpenNav] = useState(false);
+  const [recentNotes, setRecentNotes] = useState<IRecentNotes[]>([]);
+
+  // Fetch Recent Notes
+  const fetchNotes = async () => {
+    const res = await fetch("http://localhost:5000/recent-notes");
+    const data = await res.json();
+    return data;
+  };
+
+  useEffect(() => {
+    const getNotes = async () => {
+      const notesFromServer = await fetchNotes();
+      setRecentNotes(notesFromServer);
+    };
+
+    getNotes();
+  }, []);
 
   return (
     <>
@@ -84,10 +79,10 @@ const SideBar: React.FC = (props) => {
             <p className="line-text">FAVOURITES</p>
 
             <ul>
-              {favourites.map((favourite) => (
+              {recentNotes.map((recentNote) => (
                 <li>
-                  <NavLink exact to={favourite.url}>
-                    {favourite.name}
+                  <NavLink exact to={recentNote.noteURL}>
+                    {recentNote.noteName}
                   </NavLink>
                 </li>
               ))}
