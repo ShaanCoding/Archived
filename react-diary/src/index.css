@@ -3,7 +3,7 @@
 :root {
   --light-grey: #f3f3f3;
   --medium-grey: #a7a7a9;
-  --light-medium-grey: #d4cdcd;
+  --light-medium-grey: #adafb3;
   --light-medium-grey-2: #dddcdc;
   --grey: #424451;
 }
@@ -30,6 +30,7 @@ body {
   background-color: var(--light-grey);
   padding: 80px 40px;
   height: 100%;
+  position: relative;
 }
 
 .side-bar li {
@@ -39,6 +40,16 @@ body {
 .side-bar * {
   text-decoration: none;
   color: var(--grey);
+}
+
+.side-bar-icon {
+  cursor: pointer;
+}
+
+#side-bar-exit {
+  top: 40px;
+  right: -25px;
+  position: absolute;
 }
 
 .line-text {

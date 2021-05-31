@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { FaPencilAlt, FaBookOpen, FaCogs } from "react-icons/fa";
+import {
+  FaPencilAlt,
+  FaBookOpen,
+  FaArrowCircleLeft,
+  FaBars,
+} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { IFavourites, IRecentNotes } from "./Interfaces";
 import { fetchFavourites, fetchNotes } from "./TodayRecentQuickNote";
@@ -21,7 +26,13 @@ const SideBar: React.FC = (props) => {
     <>
       {openNav ? (
         <div className="side-bar">
-          <button onClick={() => setOpenNav(!openNav)}>Close</button>
+          <a
+            id="side-bar-exit"
+            className="side-bar-icon"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            <FaArrowCircleLeft size={50} />
+          </a>
 
           <h1>
             <FaPencilAlt />
@@ -80,7 +91,9 @@ const SideBar: React.FC = (props) => {
           </div>
         </div>
       ) : (
-        <button onClick={() => setOpenNav(!openNav)}>Open</button>
+        <a className="side-bar-icon" onClick={() => setOpenNav(!openNav)}>
+          <FaBars size={50} />
+        </a>
       )}
     </>
   );
