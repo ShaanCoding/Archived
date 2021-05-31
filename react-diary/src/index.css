@@ -26,18 +26,18 @@ body {
   margin: 12.5px 0px;
 }
 
-.dashboard h1 {
+.dashboard > h1 {
   font-size: 64px;
   font-weight: bold;
 }
 
-.dashboard h2 {
+.dashboard > h2 {
   font-size: 30px;
   font-weight: normal;
   color: var(--medium-grey);
 }
 
-.dashboard h3 {
+.dashboard > h3 {
   font-size: 24px;
   font-weight: bold;
   padding: 20px 0px;
