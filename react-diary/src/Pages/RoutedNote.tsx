@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
+import Box from "../Components/Box";
 import { INote } from "../Components/Interfaces";
 import { getNoteContent } from "../Components/TodayRecentQuickNote";
 
@@ -35,10 +36,12 @@ const RoutedNote: React.FC<{ match: any }> = (props) => {
   return (
     <>
       {props.match.isExact && (
-        <>
+        <div className="routed-note">
           <h1>{actualNote.noteName}</h1>
-          <ReactMarkdown>{actualNote.noteContent}</ReactMarkdown>
-        </>
+          <Box isGrey={true}>
+            <ReactMarkdown>{actualNote.noteContent}</ReactMarkdown>
+          </Box>
+        </div>
       )}
     </>
   );

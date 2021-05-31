@@ -38,7 +38,7 @@ const NewNote: React.FC = (props) => {
 
   return (
     <div>
-      <h1>New Notes</h1>
+      <h1>New Note</h1>
       {/* Add Title */}
       <label>Title</label>
       <input type="textfield" onBlur={(e) => setTitle(e.target.value)} />

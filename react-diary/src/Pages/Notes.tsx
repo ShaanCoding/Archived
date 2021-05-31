@@ -25,9 +25,9 @@ const Notes: React.FC = (props) => {
   };
 
   return (
-    <Box isGrey={true}>
-      <div className="my-notes">
-        <h1>My Notes</h1>
+    <div className="my-notes">
+      <h1>MY NOTES</h1>
+      <Box isGrey={true}>
         {notes.map((note: INotes) => (
           <li>
             <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
@@ -48,8 +48,8 @@ const Notes: React.FC = (props) => {
             New Note
           </Button>
         </NavLink>
-      </div>
-    </Box>
+      </Box>
+    </div>
   );
 };
 
