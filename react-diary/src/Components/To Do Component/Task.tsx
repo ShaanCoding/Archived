@@ -1,3 +1,4 @@
+import { Button, Checkbox } from "@material-ui/core";
 import { ITask } from "../Interfaces";
 
 const Task: React.FC<{
@@ -6,14 +7,19 @@ const Task: React.FC<{
   onTaskClick: (id: number) => void;
 }> = (props) => {
   return (
-    <div className="toDoElement">
-      <input
-        type="checkbox"
+    <div>
+      <Checkbox
         checked={props.task.isDone}
         onClick={() => props.onTaskClick(props.task.id)}
       />
       {props.task.taskName}
-      <button onClick={() => props.onDelete()}>Delete</button>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() => props.onDelete()}
+      >
+        Delete
+      </Button>
     </div>
   );
 };

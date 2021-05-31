@@ -63,9 +63,6 @@ body {
 
 /* My Notes */
 
-.my-notes {
-}
-
 .my-notes li {
   list-style: none;
   padding: 10px;
@@ -79,6 +76,34 @@ body {
 .my-notes > a {
   text-decoration: none;
 }
+
+/* Finished My Notes */
+
+/* To Do List */
+
+.toDoElement {
+  margin: 20px 0px;
+  background-color: var(--light-grey);
+}
+
+.toDoElement > div {
+  margin: 20px;
+  padding: 20px;
+}
+
+.toDoElement > div > * {
+  margin: 20px;
+}
+
+.toDoElement div:nth-child(even) {
+  background-color: var(--light-medium-grey);
+}
+
+.toDoElement div:nth-child(odd) {
+  background-color: var(--light-medium-grey-2);
+}
+
+/* Finished To Do List */
 
 .line-text {
   display: flex;
@@ -164,25 +189,4 @@ body {
 }
 
 .quickNote {
-}
-
-.toDoElement * {
-  margin: 20px;
-}
-
-.toDoElement {
-  margin: 20px 0px;
-  background-color: var(--light-grey);
-}
-
-.toDoElement button {
-  padding: 10px 20px;
-  border: none;
-  text-decoration: none;
-  background-color: var(--grey);
-  color: white;
-}
-
-.toDoElement button:hover {
-  background-color: var(--medium-grey);
 }

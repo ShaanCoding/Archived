@@ -33,14 +33,18 @@ const Notes: React.FC = (props) => {
             <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
               {note.noteName}
             </NavLink>
-            <Button variant="contained" onClick={() => onDelete(note.id)}>
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={() => onDelete(note.id)}
+            >
               Delete Note
             </Button>
           </li>
         ))}
 
         <NavLink to="new-note">
-          <Button variant="contained" color="secondary">
+          <Button variant="contained" color="primary">
             New Note
           </Button>
         </NavLink>

@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "## Hello World\n\n### Once upon a time there was a man named george\n\n**derek hurt his knee**\n\n*lmao*"
+    "name": "## Hello World\n\n### Once upon a time there was a man named george\n\n**derek hurt his knee**\n\n*lmao*\n\n# Hello\n\n##### Hello"
   },
   "favourites": [
     {
@@ -60,12 +60,12 @@
   ],
   "todo": [
     {
-      "isDone": false,
+      "isDone": true,
       "taskName": "Apple",
       "id": 1
     },
     {
-      "isDone": true,
+      "isDone": false,
       "taskName": "Banna",
       "id": 2
     },
@@ -116,7 +116,7 @@
     {
       "noteName": "Once upon a time",
       "noteURL": "once-upon-a-time",
-      "noteContent": "Apple bees lmao 1",
+      "noteContent": "# Apple bees lmao 1",
       "id": 1
     },
     {
