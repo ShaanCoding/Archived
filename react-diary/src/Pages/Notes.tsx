@@ -34,6 +34,8 @@ const Notes: React.FC = (props) => {
           <button onClick={() => onDelete(note.id)}>Delete Note</button>
         </li>
       ))}
+
+      <NavLink to="new-note">New Note</NavLink>
     </Box>
   );
 };

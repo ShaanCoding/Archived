@@ -39,23 +39,23 @@
     }
   ],
   "quick-note": {
-    "name": "aaaaaAAAASASDASAS"
+    "name": "AA"
   },
   "favourites": [
     {
-      "id": 1,
-      "favouriteName": "Journal - May",
-      "favouriteURL": "journal-may"
+      "favouriteName": "Once upon a time",
+      "favouriteURL": "once-upon-a-time",
+      "id": 1
     },
     {
-      "id": 2,
-      "favouriteName": "Mental Health Check",
-      "favouriteURL": "mental-health-check"
+      "favouriteName": "The Little Boy Who Could",
+      "favouriteURL": "the-little-boy-who-could",
+      "id": 2
     },
     {
-      "id": 3,
-      "favouriteName": "Workout Log",
-      "favouriteURL": "workout-log"
+      "favouriteName": "I Am Become Consultant",
+      "favouriteURL": "i-am-become-consultant",
+      "id": 3
     }
   ],
   "todo": [
@@ -100,6 +100,32 @@
       "noteName": "Depression",
       "noteURL": "depression",
       "id": 4
+    }
+  ],
+  "notes-desc": [
+    {
+      "noteName": "Once upon a time",
+      "noteURL": "once-upon-a-time",
+      "noteContent": "Apple bees lmao 1",
+      "id": 1
+    },
+    {
+      "noteName": "The Little Boy Who Could",
+      "noteURL": "the-little-boy-who-could",
+      "noteContent": "Apple bees lmao 2",
+      "id": 2
+    },
+    {
+      "noteName": "I Am Become Consultant",
+      "noteURL": "i-am-become-consultant",
+      "noteContent": "Apple bees lmao 3",
+      "id": 3
+    },
+    {
+      "noteName": "Depression",
+      "noteURL": "depression",
+      "noteContent": "Apple bees lmao 4",
+      "id": 3
     }
   ]
 }

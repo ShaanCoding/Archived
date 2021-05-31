@@ -54,11 +54,6 @@ const SideBar: React.FC = (props) => {
                   TO-DO
                 </NavLink>
               </li>
-              <li>
-                <NavLink exact to="/calendar">
-                  CALENDAR
-                </NavLink>
-              </li>
             </ul>
           </div>
 
@@ -70,7 +65,7 @@ const SideBar: React.FC = (props) => {
             <ul>
               {favourites.map((favourite) => (
                 <li>
-                  <NavLink exact to={favourite.favouriteURL}>
+                  <NavLink exact to={`notes/${favourite.favouriteURL}`}>
                     {favourite.favouriteName}
                   </NavLink>
                 </li>
@@ -83,13 +78,6 @@ const SideBar: React.FC = (props) => {
             <NavLink exact to="/new-note">
               <FaBookOpen />
               New Note
-            </NavLink>
-          </div>
-          {/* Settings */}
-          <div>
-            <NavLink exact to="/settings">
-              <FaCogs />
-              Settings
             </NavLink>
           </div>
         </div>

@@ -31,3 +31,10 @@ export interface INotes {
   noteName: string;
   noteURL: string;
 }
+
+export interface INote {
+  noteName: string;
+  noteURL: string;
+  noteContent: string;
+  id: number;
+}

@@ -122,6 +122,13 @@ const deleteRealNotes = async (
 ) => {
   const res = await axios.delete(`/notes/${id}`);
   setRealNotes(realNotes.filter((notes: INotes) => notes.id !== id));
+
+  // Should also delete from description db
+};
+
+const getNoteContent = async () => {
+  const res = await axios.get("/notes-desc/");
+  return res.data;
 };
 
 export {
@@ -138,4 +145,5 @@ export {
   toggleToDo,
   fetchRealNotes,
   deleteRealNotes,
+  getNoteContent,
 };
