@@ -3,17 +3,17 @@
     {
       "id": 1,
       "taskName": "Team meeting at 13:30",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": 2,
       "taskName": "Go to David's place",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 3,
       "taskName": "Buy kitty kibble",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 4,
@@ -39,62 +39,99 @@
     }
   ],
   "quick-note": {
-    "name": "aaaaa"
+    "name": "## Hello World\n\n### Once upon a time there was a man named george\n\n**derek hurt his knee**\n\n*lmao*\n\n# Hello\n\n##### Hello"
   },
   "favourites": [
     {
-      "id": 1,
-      "favouriteName": "Journal - May",
-      "favouriteURL": "journal-may"
+      "favouriteName": "Once upon a time",
+      "favouriteURL": "once-upon-a-time",
+      "id": 1
     },
     {
-      "id": 2,
-      "favouriteName": "Mental Health Check",
-      "favouriteURL": "mental-health-check"
+      "favouriteName": "The Little Boy Who Could",
+      "favouriteURL": "the-little-boy-who-could",
+      "id": 2
     },
     {
-      "id": 3,
-      "favouriteName": "Workout Log",
-      "favouriteURL": "workout-log"
+      "favouriteName": "I Am Become Consultant",
+      "favouriteURL": "i-am-become-consultant",
+      "id": 3
     }
   ],
   "todo": [
     {
-      "isDone": false,
+      "isDone": true,
       "taskName": "Apple",
       "id": 1
     },
     {
-      "isDone": true,
-      "taskName": "Banna",
+      "isDone": false,
+      "taskName": "Cool boy",
       "id": 2
+    },
+    {
+      "isDone": false,
+      "taskName": "Orange",
+      "id": 3
     }
   ],
   "notes": [
+    {
+      "noteName": "Once upon a time",
+      "noteURL": "once-upon-a-time",
+      "id": 1
+    },
     {
       "noteName": "The Little Boy Who Could",
       "noteURL": "the-little-boy-who-could",
       "id": 2
     },
     {
-      "noteName": "Coding Monkey",
-      "noteURL": "coding-monkey",
-      "id": 3
-    },
-    {
       "noteName": "I Am Become Consultant",
       "noteURL": "i-am-become-consultant",
-      "id": 4
+      "id": 3
     },
     {
       "noteName": "Depression",
       "noteURL": "depression",
-      "id": 5
+      "id": 4
     },
+    {
+      "noteName": "Help me",
+      "noteURL": "help-me",
+      "id": 5
+    }
+  ],
+  "notes-desc": [
     {
       "noteName": "Once upon a time",
       "noteURL": "once-upon-a-time",
+      "noteContent": "# Apple bees lmao 1",
       "id": 1
+    },
+    {
+      "noteName": "The Little Boy Who Could",
+      "noteURL": "the-little-boy-who-could",
+      "noteContent": "Apple bees lmao 2",
+      "id": 2
+    },
+    {
+      "noteName": "I Am Become Consultant",
+      "noteURL": "i-am-become-consultant",
+      "noteContent": "Apple bees lmao 3",
+      "id": 3
+    },
+    {
+      "noteName": "Depression",
+      "noteURL": "depression",
+      "noteContent": "Apple bees lmao 4",
+      "id": 3
+    },
+    {
+      "noteName": "Help me",
+      "noteURL": "help-me",
+      "noteContent": "Yeah No Thanks",
+      "id": 4
     }
   ]
 }

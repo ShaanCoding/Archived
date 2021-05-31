@@ -5,6 +5,7 @@ import {
   serverSetQuickNotes,
 } from "../Components/TodayRecentQuickNote";
 import SimpleMDE, { SimpleMdeReact } from "react-simplemde-editor";
+import Box from "../Components/Box";
 
 const QuickNote: React.FC = (props) => {
   const [quickNotes, setQuickNotes] = React.useState<IQuickNote>({ name: "" });
@@ -25,7 +26,10 @@ const QuickNote: React.FC = (props) => {
 
   return (
     <div className="quickNote">
-      <SimpleMdeReact value={quickNotes.name} onChange={onChange} />
+      <h1>QUICK NOTE</h1>
+      <Box isGrey={true}>
+        <SimpleMdeReact value={quickNotes.name} onChange={onChange} />
+      </Box>
     </div>
   );
 };

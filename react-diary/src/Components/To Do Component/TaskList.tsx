@@ -19,7 +19,7 @@ const TaskList: React.FC<{
     />
   ));
 
-  return <div>{taskMap}</div>;
+  return <div className="toDoElement">{taskMap}</div>;
 };
 
 export default TaskList;

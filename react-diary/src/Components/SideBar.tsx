@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { FaPencilAlt, FaBookOpen, FaCogs } from "react-icons/fa";
+import {
+  FaPencilAlt,
+  FaBookOpen,
+  FaArrowCircleLeft,
+  FaBars,
+} from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { IFavourites, IRecentNotes } from "./Interfaces";
 import { fetchFavourites, fetchNotes } from "./TodayRecentQuickNote";
@@ -21,7 +26,13 @@ const SideBar: React.FC = (props) => {
     <>
       {openNav ? (
         <div className="side-bar">
-          <button onClick={() => setOpenNav(!openNav)}>Close</button>
+          <a
+            id="side-bar-exit"
+            className="side-bar-icon"
+            onClick={() => setOpenNav(!openNav)}
+          >
+            <FaArrowCircleLeft size={50} />
+          </a>
 
           <h1>
             <FaPencilAlt />
@@ -29,16 +40,14 @@ const SideBar: React.FC = (props) => {
           </h1>
 
           {/* Dashboard */}
-          <div className="line-box">
+          <div>
             {/* Fix */}
-            <p className="line-text">DASHBOARD</p>
-
+            <b>
+              <NavLink exact to="/" className="line-text">
+                DASHBOARD
+              </NavLink>
+            </b>
             <ul>
-              <li>
-                <NavLink exact to="/">
-                  DASHBOARD
-                </NavLink>
-              </li>
               <li>
                 <NavLink exact to="/quick-note">
                   QUICK NOTE
@@ -54,23 +63,18 @@ const SideBar: React.FC = (props) => {
                   TO-DO
                 </NavLink>
               </li>
-              <li>
-                <NavLink exact to="/calendar">
-                  CALENDAR
-                </NavLink>
-              </li>
             </ul>
           </div>
 
           {/* Favourites */}
           <div className="line-box">
             {/* Fix */}
-            <p className="line-text">FAVOURITES</p>
+            <b>FAVOURITES</b>
 
             <ul>
               {favourites.map((favourite) => (
                 <li>
-                  <NavLink exact to={favourite.favouriteURL}>
+                  <NavLink exact to={`notes/${favourite.favouriteURL}`}>
                     {favourite.favouriteName}
                   </NavLink>
                 </li>
@@ -85,16 +89,11 @@ const SideBar: React.FC = (props) => {
               New Note
             </NavLink>
           </div>
-          {/* Settings */}
-          <div>
-            <NavLink exact to="/settings">
-              <FaCogs />
-              Settings
-            </NavLink>
-          </div>
         </div>
       ) : (
-        <button onClick={() => setOpenNav(!openNav)}>Open</button>
+        <a className="side-bar-icon" onClick={() => setOpenNav(!openNav)}>
+          <FaBars size={50} />
+        </a>
       )}
     </>
   );

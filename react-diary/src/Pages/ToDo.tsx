@@ -23,7 +23,7 @@ const ToDo: React.FC = (props) => {
   }, []);
 
   return (
-    <div>
+    <div className="to-do">
       <Header
         addTask={(task) => {
           addToDo(tasks, setTasks, task);

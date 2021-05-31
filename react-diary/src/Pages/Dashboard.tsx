@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "../Components/Box";
 import { IQuickNote, IRecentNotes, IToday } from "../Components/Interfaces";
-import SimpleMDE from "react-simplemde-editor";
 
 import {
   fetchNotes,
@@ -10,6 +9,8 @@ import {
   fetchTodays,
   toggleToday,
 } from "../Components/TodayRecentQuickNote";
+import { Checkbox } from "@material-ui/core";
+import ReactMarkdown from "react-markdown";
 
 const Dashboard: React.FC = (props) => {
   const [todayNotes, setTodayNotes] = useState<IToday[]>([]);
@@ -46,15 +47,14 @@ const Dashboard: React.FC = (props) => {
         <h3>TODAY</h3>
         {/* Checkboxes */}
         {todayNotes.map((today) => (
-          <p>
-            <input
+          <div className="todayNotes">
+            <Checkbox
               key={today.id}
-              type="checkbox"
               checked={today.isDone}
               onClick={() => toggleToday(todayNotes, setTodayNotes, today.id)}
             />
             {today.taskName}
-          </p>
+          </div>
         ))}
       </Box>
 
@@ -71,7 +71,7 @@ const Dashboard: React.FC = (props) => {
 
       <Box isGrey={true}>
         <h3>QUICK NOTE</h3>
-        <p>{quickNotes.name}</p>
+        <ReactMarkdown>{quickNotes.name}</ReactMarkdown>
       </Box>
     </div>
   );

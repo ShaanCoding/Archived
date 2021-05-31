@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IQuickNote, ITask, IToday } from "./Interfaces";
+import { INote, INotes, IQuickNote, ITask, IToday } from "./Interfaces";
 
 // Fetch Today
 const fetchTodays = async () => {
@@ -109,6 +109,38 @@ const toggleToDo = async (
   );
 };
 
+// Get Notes
+const fetchRealNotes = async () => {
+  const res = await axios.get("/notes/");
+  return res.data;
+};
+
+const addRealNotes = async (note: INotes) => {
+  const res = await axios.post("/notes/", note);
+  return res.data;
+};
+
+const deleteRealNotes = async (
+  realNotes: INotes[],
+  setRealNotes: (realNotes: INotes[]) => void,
+  id: number
+) => {
+  const res = await axios.delete(`/notes/${id}`);
+  setRealNotes(realNotes.filter((notes: INotes) => notes.id !== id));
+
+  // Should also delete from description db
+};
+
+const getNoteContent = async () => {
+  const res = await axios.get("/notes-desc/");
+  return res.data;
+};
+
+const setNoteContent = async (note: INote) => {
+  const res = await axios.post("/notes-desc/", note);
+  return res.data;
+};
+
 export {
   fetchTodays,
   addToday,
@@ -121,4 +153,9 @@ export {
   addToDo,
   deleteToDo,
   toggleToDo,
+  fetchRealNotes,
+  addRealNotes,
+  deleteRealNotes,
+  getNoteContent,
+  setNoteContent,
 };

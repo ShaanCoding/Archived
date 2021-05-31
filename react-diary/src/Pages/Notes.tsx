@@ -1,32 +1,61 @@
-import { useEffect, useState } from "react";
+import { Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "../Components/Box";
 import { INotes } from "../Components/Interfaces";
-import { fetchNotes } from "../Components/TodayRecentQuickNote";
+import {
+  deleteRealNotes,
+  fetchRealNotes,
+} from "../Components/TodayRecentQuickNote";
 
 const Notes: React.FC = (props) => {
   const [notes, setNotes] = useState<INotes[]>([]);
 
   useEffect(() => {
-    return () => {
-      const getNotes = async () => {
-        const getNotesFromServer = await fetchNotes();
-        setNotes(getNotesFromServer);
-      };
+    const getNotes = async () => {
+      const getNotesFromServer = await fetchRealNotes();
+      setNotes(getNotesFromServer);
     };
+
+    getNotes();
   }, []);
 
-  console.log(notes);
+  const onDelete = (id: number) => {
+    deleteRealNotes(notes, setNotes, id);
+  };
 
   return (
-    <Box isGrey={true}>
-      <h1>My Notes</h1>
-      {notes.map((note: INotes) => (
-        <NavLink key={note.id} exact to={note.noteURL}>
-          {note.noteName}
+    <div className="my-notes">
+      <h1>MY NOTES</h1>
+      <Box isGrey={true}>
+        <table>
+          {notes.map((note: INotes) => (
+            <tr>
+              <td>
+                <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
+                  {note.noteName}
+                </NavLink>
+              </td>
+              <td>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => onDelete(note.id)}
+                >
+                  Delete Note
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </table>
+
+        <NavLink to="new-note">
+          <Button variant="contained" color="primary">
+            New Note
+          </Button>
         </NavLink>
-      ))}
-    </Box>
+      </Box>
+    </div>
   );
 };
 
