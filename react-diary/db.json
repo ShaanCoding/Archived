@@ -13,7 +13,7 @@
     {
       "id": 3,
       "taskName": "Buy kitty kibble",
-      "isDone": true
+      "isDone": false
     },
     {
       "id": 4,
@@ -39,7 +39,7 @@
     }
   ],
   "quick-note": {
-    "name": "AA"
+    "name": "# Hello World\n\n\n\nAA"
   },
   "favourites": [
     {
@@ -78,6 +78,11 @@
       "isDone": false,
       "taskName": "CC",
       "id": 4
+    },
+    {
+      "isDone": false,
+      "taskName": "Cool",
+      "id": 5
     }
   ],
   "notes": [
@@ -100,6 +105,11 @@
       "noteName": "Depression",
       "noteURL": "depression",
       "id": 4
+    },
+    {
+      "noteName": "Help me",
+      "noteURL": "help-me",
+      "id": 5
     }
   ],
   "notes-desc": [
@@ -126,6 +136,12 @@
       "noteURL": "depression",
       "noteContent": "Apple bees lmao 4",
       "id": 3
+    },
+    {
+      "noteName": "Help me",
+      "noteURL": "help-me",
+      "noteContent": "Yeah No Thanks",
+      "id": 4
     }
   ]
 }

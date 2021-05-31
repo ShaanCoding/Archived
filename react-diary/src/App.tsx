@@ -6,6 +6,8 @@ import QuickNote from "./Pages/QuickNote";
 import ToDo from "./Pages/ToDo";
 import Notes from "./Pages/Notes";
 import RoutedNote from "./Pages/RoutedNote";
+import FileNotFound from "./Pages/FileNotFound";
+import NewNote from "./Pages/NewNote";
 
 function App() {
   const { id } = useParams<{ id: string }>();
@@ -28,6 +30,12 @@ function App() {
           </Route>
           <Route exact path="/notes" component={Notes} />
           <Route path={`/notes/:id`} component={RoutedNote} />
+          <Route exact path="/new-note">
+            <NewNote />
+          </Route>
+          <Route>
+            <FileNotFound />
+          </Route>
         </Switch>
       </div>
       <div style={{ flexGrow: 1 }}>
