@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { INote } from "../Components/Interfaces";
 import { getNoteContent } from "../Components/TodayRecentQuickNote";
 
@@ -36,7 +37,7 @@ const RoutedNote: React.FC<{ match: any }> = (props) => {
       {props.match.isExact && (
         <>
           <h1>{actualNote.noteName}</h1>
-          <p>{actualNote.noteContent}</p>
+          <ReactMarkdown>{actualNote.noteContent}</ReactMarkdown>
         </>
       )}
     </>

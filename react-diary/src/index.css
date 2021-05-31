@@ -61,6 +61,25 @@ body {
 
 /* End Of Dashboard */
 
+/* My Notes */
+
+.my-notes {
+}
+
+.my-notes li {
+  list-style: none;
+  padding: 10px;
+}
+
+.my-notes li * {
+  color: var(--grey);
+  margin: 10px;
+}
+
+.my-notes > a {
+  text-decoration: none;
+}
+
 .line-text {
   display: flex;
   align-items: center;

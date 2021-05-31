@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Button } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Box from "../Components/Box";
 import { INotes } from "../Components/Interfaces";
@@ -25,17 +26,25 @@ const Notes: React.FC = (props) => {
 
   return (
     <Box isGrey={true}>
-      <h1>My Notes</h1>
-      {notes.map((note: INotes) => (
-        <li>
-          <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
-            {note.noteName}
-          </NavLink>
-          <button onClick={() => onDelete(note.id)}>Delete Note</button>
-        </li>
-      ))}
+      <div className="my-notes">
+        <h1>My Notes</h1>
+        {notes.map((note: INotes) => (
+          <li>
+            <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
+              {note.noteName}
+            </NavLink>
+            <Button variant="contained" onClick={() => onDelete(note.id)}>
+              Delete Note
+            </Button>
+          </li>
+        ))}
 
-      <NavLink to="new-note">New Note</NavLink>
+        <NavLink to="new-note">
+          <Button variant="contained" color="secondary">
+            New Note
+          </Button>
+        </NavLink>
+      </div>
     </Box>
   );
 };
