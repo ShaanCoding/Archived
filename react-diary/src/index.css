@@ -105,6 +105,19 @@ body {
 
 /* Finished To Do List */
 
+/* To Do List Page */
+
+.to-do > div > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.to-do > div {
+  padding: 20px;
+}
+
+/* End To Do List Page */
+
 /* Routed Note */
 
 .routed-note > h1 {

@@ -63,26 +63,6 @@
       "isDone": true,
       "taskName": "Apple",
       "id": 1
-    },
-    {
-      "isDone": false,
-      "taskName": "Banna",
-      "id": 2
-    },
-    {
-      "isDone": false,
-      "taskName": "AAAA",
-      "id": 3
-    },
-    {
-      "isDone": false,
-      "taskName": "CC",
-      "id": 4
-    },
-    {
-      "isDone": false,
-      "taskName": "Cool",
-      "id": 5
     }
   ],
   "notes": [

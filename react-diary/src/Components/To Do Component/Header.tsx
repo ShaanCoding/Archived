@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { Button, TextField } from "@material-ui/core";
+import React, { useState } from "react";
 import { ITask } from "../Interfaces";
 import TaskList from "./TaskList";
 
@@ -7,16 +8,17 @@ const Header: React.FC<{ addTask: (task: any) => void }> = (props) => {
 
   return (
     <div>
-      <h1>To Do List</h1>
-      <input
-        type="textfield"
+      <h1>TO DO</h1>
+      <TextField
         value={task}
         onChange={(e) => {
           setTask(e.target.value);
         }}
       />
 
-      <button
+      <Button
+        variant="contained"
+        color="secondary"
         onClick={() => {
           if (task) {
             props.addTask({
@@ -27,7 +29,7 @@ const Header: React.FC<{ addTask: (task: any) => void }> = (props) => {
         }}
       >
         Add Task
-      </button>
+      </Button>
     </div>
   );
 };
