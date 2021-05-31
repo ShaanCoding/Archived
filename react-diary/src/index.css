@@ -1,22 +1,65 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
 :root {
   --light-grey: #f3f3f3;
-  --medium-grey: #676a7a;
+  --medium-grey: #a7a7a9;
+  --light-medium-grey: #d4cdcd;
+  --light-medium-grey-2: #dddcdc;
   --grey: #424451;
 }
 
+/* Main Components */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Source Sans Pro";
 }
-/* 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}  */
+
+/* Dashboard CSS */
+
+.dashboard {
+  color: var(--grey);
+  padding: 20px;
+}
+
+.dashboard * {
+  margin: 12.5px 0px;
+}
+
+.dashboard h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.dashboard h2 {
+  font-size: 30px;
+  font-weight: normal;
+  color: var(--medium-grey);
+}
+
+.dashboard h3 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 0px;
+}
+
+.dashboard li {
+  list-style: none;
+}
+
+.dashboard li * {
+  color: var(--grey);
+}
+
+.todayNotes:nth-child(even) {
+  background-color: var(--light-medium-grey);
+}
+
+.todayNotes:nth-child(odd) {
+  background-color: var(--light-medium-grey-2);
+}
+
+/* End Of Dashboard */
 
 .line-text {
   display: flex;
@@ -90,9 +133,6 @@ code {
 
 .weather-card p {
   font-size: 10pt;
-}
-
-.dashboard {
 }
 
 .box {

@@ -19,15 +19,9 @@ function App() {
       </div>
       <div style={{ flexGrow: 6 }}>
         <Switch>
-          <Route exact path="/">
-            <Dashboard />
-          </Route>
-          <Route path="/quick-note">
-            <QuickNote />
-          </Route>
-          <Route path="/to-do">
-            <ToDo />
-          </Route>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/quick-note" component={QuickNote} />
+          <Route path="/to-do" component={ToDo} />
           <Route exact path="/notes" component={Notes} />
           <Route path={`/notes/:id`} component={RoutedNote} />
           <Route exact path="/new-note">
