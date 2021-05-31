@@ -1,5 +1,7 @@
+import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import SimpleMdeReact from "react-simplemde-editor";
+import Box from "../Components/Box";
 import { INote, INotes } from "../Components/Interfaces";
 import {
   addRealNotes,
@@ -37,15 +39,19 @@ const NewNote: React.FC = (props) => {
   };
 
   return (
-    <div>
-      <h1>New Note</h1>
-      {/* Add Title */}
-      <label>Title</label>
-      <input type="textfield" onBlur={(e) => setTitle(e.target.value)} />
-      {/* Add Content */}
-      <SimpleMdeReact onChange={onChange} />
-      {/* Create button */}
-      <button onClick={submitForm}>Submit</button>
+    <div className="new-note">
+      <h1>NEW NOTE</h1>
+      <Box isGrey={true}>
+        {/* Add Title */}
+        <label>Title</label>
+        <input type="textfield" onBlur={(e) => setTitle(e.target.value)} />
+        {/* Add Content */}
+        <SimpleMdeReact onChange={onChange} />
+        {/* Create button */}
+        <Button variant="contained" color="secondary" onClick={submitForm}>
+          Submit
+        </Button>
+      </Box>
     </div>
   );
 };

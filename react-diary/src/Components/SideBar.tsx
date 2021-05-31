@@ -29,16 +29,14 @@ const SideBar: React.FC = (props) => {
           </h1>
 
           {/* Dashboard */}
-          <div className="line-box">
+          <div>
             {/* Fix */}
-            <p className="line-text">DASHBOARD</p>
-
+            <b>
+              <NavLink exact to="/" className="line-text">
+                DASHBOARD
+              </NavLink>
+            </b>
             <ul>
-              <li>
-                <NavLink exact to="/">
-                  DASHBOARD
-                </NavLink>
-              </li>
               <li>
                 <NavLink exact to="/quick-note">
                   QUICK NOTE
@@ -60,7 +58,7 @@ const SideBar: React.FC = (props) => {
           {/* Favourites */}
           <div className="line-box">
             {/* Fix */}
-            <p className="line-text">FAVOURITES</p>
+            <b>FAVOURITES</b>
 
             <ul>
               {favourites.map((favourite) => (
