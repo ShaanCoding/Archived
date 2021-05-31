@@ -127,16 +127,11 @@ body {
   font-weight: bold;
 }
 
-.my-notes li {
-  list-style: none;
+.my-notes table * {
   padding: 10px;
 }
 
-.my-notes li * {
-  margin: 10px;
-}
-
-.my-notes li > a {
+.my-notes a {
   color: var(--grey);
 }
 

@@ -28,20 +28,26 @@ const Notes: React.FC = (props) => {
     <div className="my-notes">
       <h1>MY NOTES</h1>
       <Box isGrey={true}>
-        {notes.map((note: INotes) => (
-          <li>
-            <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
-              {note.noteName}
-            </NavLink>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => onDelete(note.id)}
-            >
-              Delete Note
-            </Button>
-          </li>
-        ))}
+        <table>
+          {notes.map((note: INotes) => (
+            <tr>
+              <td>
+                <NavLink key={note.id} exact to={`notes/${note.noteURL}`}>
+                  {note.noteName}
+                </NavLink>
+              </td>
+              <td>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={() => onDelete(note.id)}
+                >
+                  Delete Note
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </table>
 
         <NavLink to="new-note">
           <Button variant="contained" color="primary">
