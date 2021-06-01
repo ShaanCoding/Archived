@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+:root {
+  --white: #ffffff;
+  --dark-grey: #191919;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans Pro";
+}
+
+/* My Work */
+
+.my-work {
+  padding: 40px;
+  background-color: var(--dark-grey);
+  color: var(--white);
+}
+
+.my-work h1 {
+  letter-spacing: 10px;
+}
+
+.my-work-flexbox {
+  display: flex;
+}
+
+.my-work-flexbox > div {
+  padding: 20px;
+}
+
+/* End My Work */
