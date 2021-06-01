@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+:root {
+  --light-grey: #f3f3f3;
+  --medium-grey: #cacaca;
+  --grey: #424451;
+}
+
+body {
+  margin: 20px, 120px;
+  font-family: "Source Sans Pro";
+}
+
+h1 {
+  font-size: 64pt;
+}
+
+body > div {
+  padding: 80px;
+}
+
+.coinElement {
+  background-color: var(--light-grey);
+}
+
+.coinElement > div {
+  padding: 40px;
+}
+
+.coinElement > div:nth-child(even) {
+  background-color: var(--light-grey);
+}
+
+.coinElement > div:nth-child(odd) {
+  background-color: var(--medium-grey);
+}
