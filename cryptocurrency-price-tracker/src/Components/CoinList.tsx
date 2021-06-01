@@ -1,3 +1,4 @@
+import { Grid, Table } from "@material-ui/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Coin from "./Coin";
@@ -24,24 +25,26 @@ const CoinList: React.FC<{ search: string }> = (props) => {
   );
 
   return (
-    <div>
-      {/* Map all coins here */}
+    <Grid item>
+      <Grid container justify="center" spacing={1} className="coinElement">
+        {/* Map all coins here */}
 
-      {filteredCoins.map((coin: any) => {
-        return (
-          <Coin
-            key={coin.id}
-            coinName={coin.name}
-            coinImage={coin.image}
-            coinSymbol={coin.symbol}
-            coinVolume={coin.total_volume}
-            coinPrice={coin.current_price}
-            coinPriceChange={coin.price_change_percentage_24h}
-            coinMarketCap={coin.market_cap}
-          />
-        );
-      })}
-    </div>
+        {filteredCoins.map((coin: any) => {
+          return (
+            <Coin
+              key={coin.id}
+              coinName={coin.name}
+              coinImage={coin.image}
+              coinSymbol={coin.symbol}
+              coinVolume={coin.total_volume}
+              coinPrice={coin.current_price}
+              coinPriceChange={coin.price_change_percentage_24h}
+              coinMarketCap={coin.market_cap}
+            />
+          );
+        })}
+      </Grid>
+    </Grid>
   );
 };
 
