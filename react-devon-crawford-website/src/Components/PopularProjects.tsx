@@ -11,44 +11,47 @@ const PopularProjects = () => {
         "https://api.github.com/users/ShaanCoding/repos?sort=created"
       );
 
-      const relevantData: IProject[] = res.data.map((repository: any) => {
-        return {
-          projectID: repository.id,
-          projectTitle: repository.name,
-          projectDescription: repository.description,
-          projectLanguage: repository.language,
-          projectStars: repository.stargazers_count,
-        };
-      });
+      const topFive: IProject[] = res.data
+        .map((repository: any) => {
+          return {
+            projectID: repository.id,
+            projectTitle: repository.name,
+            projectDescription: repository.description,
+            projectLanguage: repository.language,
+            projectStars: repository.stargazers_count,
+          };
+        })
+        .slice(0, 5);
 
-      console.log(relevantData);
-
-      return setProject(relevantData);
+      return setProject(topFive);
     };
 
     getRepository();
   }, []);
 
   return (
-    <div>
-      {project && (
-        <table>
-          <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Languages</th>
-            <th>Stars</th>
-          </tr>
-          {project.map((repository: IProject) => (
-            <tr key={repository.projectID}>
-              <td>{repository.projectTitle}</td>
-              <td>{repository.projectDescription}</td>
-              <td>{repository.projectLanguage}</td>
-              <td>{repository.projectStars}</td>
+    <div className="center">
+      <div className="popular-projects">
+        <h1>Popular Projects</h1>
+        {project && (
+          <table>
+            <tr>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Languages</th>
+              <th>Stars</th>
             </tr>
-          ))}
-        </table>
-      )}
+            {project.map((repository: IProject) => (
+              <tr key={repository.projectID}>
+                <td>{repository.projectTitle}</td>
+                <td>{repository.projectDescription}</td>
+                <td>{repository.projectLanguage}</td>
+                <td>{repository.projectStars}</td>
+              </tr>
+            ))}
+          </table>
+        )}
+      </div>
     </div>
   );
 };

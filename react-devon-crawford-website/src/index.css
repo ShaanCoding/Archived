@@ -2,6 +2,8 @@
 
 :root {
   --white: #ffffff;
+  --light-grey: #ebebeb;
+  --medium-grey: #282828;
   --dark-grey: #191919;
 }
 
@@ -9,6 +11,46 @@ body {
   margin: 0;
   font-family: "Source Sans Pro";
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+/* Start of Splashscreen */
+
+.splashscreen {
+  height: 100vh;
+  color: var(--white);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("./images/splashScreenImage.jpg");
+
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.splashscreen * {
+  margin: 0;
+}
+
+.splashscreen-icon {
+  background-color: rgba(235, 235, 235, 0.5);
+  border-radius: 100%;
+  padding: 20px;
+  position: absolute;
+  bottom: 20px;
+}
+
+.splashscreen-icon:hover {
+  background-color: rgba(235, 235, 235, 0.75);
+}
+
+/* End Of Splashscreen */
 
 /* My Work */
 
@@ -31,3 +73,76 @@ body {
 }
 
 /* End My Work */
+
+/* Start Of Popular Projects */
+
+.popular-projects {
+  padding: 80px;
+}
+
+.popular-projects h1 {
+  font-size: 36px;
+}
+
+.popular-projects tr td {
+  padding: 20px;
+}
+
+.popular-projects tr:nth-child(even) {
+  background-color: var(--white);
+}
+
+.popular-projects tr:nth-child(odd) {
+  background-color: var(--light-grey);
+}
+
+/* End Of Popular Projects */
+
+/* Start Of Future Ventures */
+
+.future-ventures {
+  padding: 80px;
+}
+
+/* End Of Future Ventures */
+
+/* Start Of Stay Connected */
+
+.stay-connected {
+  background-color: var(--medium-grey);
+  color: var(--white);
+  padding: 80px;
+  text-align: center;
+}
+
+.stay-connected-flexbox {
+  display: flex;
+  align-items: center;
+  vertical-align: top;
+}
+
+.stay-connected-flexbox > * {
+  padding: 20px;
+}
+
+/* End Of Stay Connected */
+
+/* Footer */
+
+.footer {
+  background-color: var(--dark-grey);
+  color: var(--white);
+  display: flex;
+}
+
+.footer > a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 20px 40px;
+}
+
+.footer > a:hover {
+  text-decoration: underline;
+}
+
+/* End Footer */
