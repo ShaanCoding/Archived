@@ -10,7 +10,7 @@
   );
 
   --dark-grey: hsl(219, 42%, 21%);
-  --dark-grey-button: hsl(219, 42%, 30%);
+  --dark-grey-hover: hsl(219, 42%, 30%);
   --opacity: hsla(219, 42%, 21%, 0.4);
 
   --white: hsl(0, 0%, 100%);
@@ -24,9 +24,22 @@ body {
   color: var(--dark-grey);
 }
 
+body a {
+  color: var(--dark-grey);
+}
+
+body a:hover {
+  color: var(--dark-grey-hover);
+}
+
 .center {
   display: flex;
+  align-items: center;
   justify-content: center;
+}
+
+.column {
+  flex-direction: column;
 }
 
 /* Start Of Splashscreen */
@@ -61,7 +74,7 @@ body {
 }
 
 .splashscreen button:hover {
-  background-color: var(--dark-grey-button);
+  background-color: var(--dark-grey-hover);
 }
 
 .splashscreen-circleBox {
