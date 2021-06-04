@@ -1,1 +1,3 @@
-React-Oculi
+# React-Oculi
+
+![Screenshot](images/screenshot.jpg)
