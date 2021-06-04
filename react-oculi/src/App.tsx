@@ -1,3 +1,4 @@
+import Carousel from "./Components/Carousel";
 import InfoBox from "./Components/InfoBox";
 import Partners from "./Components/Partners";
 import Splashscreen from "./Components/Splashscreen";
@@ -32,6 +33,8 @@ function App() {
         image={infoboxImg}
         isReverse={true}
       />
+
+      <Carousel />
     </div>
   );
 }

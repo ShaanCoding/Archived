@@ -17,6 +17,11 @@
   --white: hsl(0, 0%, 100%);
 
   --blue: hsl(201, 83%, 62%);
+  --blue-hover: hsl(201, 92%, 57%);
+
+  --carousel: hsl(219, 28%, 24%);
+  --carousel-blue: hsl(220, 100%, 95%);
+  --carousel-blue-hover: hsl(218, 92%, 90%);
 }
 
 body {
@@ -31,6 +36,7 @@ body {
 button {
   background-color: var(--dark-grey);
   color: var(--white);
+  border: none;
   padding: 15px 50px;
   border-radius: 50px;
 }
@@ -106,9 +112,9 @@ button:hover {
 
 .our-partners img {
   filter: grayscale(100%);
+  width: 100%;
   height: auto;
   padding: 20px;
-  width: 100%;
 }
 
 /* End Of Our Partners */
@@ -128,3 +134,44 @@ button:hover {
 }
 
 /* End Of Infobox */
+
+/* Start Of Carousel */
+
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel > button {
+  margin: 20px;
+  color: var(--carousel);
+  background-color: var(--carousel-blue);
+}
+
+.carousel > button:hover {
+  background-color: var(--carousel-blue-hover);
+}
+
+.carousel > div {
+  background-color: var(--carousel);
+  color: var(--white);
+  text-align: center;
+  border-radius: 30px;
+  padding: 80px;
+}
+
+.carousel h2 {
+  font-size: 16pt;
+  font-weight: normal;
+}
+
+.carousel a {
+  color: var(--blue);
+}
+
+.carousel a:hover {
+  color: var(--blue-hover);
+}
+
+/* End Of Carousel */
