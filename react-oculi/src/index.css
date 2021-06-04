@@ -69,6 +69,46 @@ button:hover {
   padding: 20px 40px;
 }
 
+/* Start Of Navbar */
+
+nav {
+  padding: 20px 40px;
+}
+
+nav > div {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-left {
+  width: 100%;
+  flex: 2;
+}
+
+.nav-left img {
+  height: 50px;
+}
+
+.nav-right {
+  width: 100%;
+  flex: 1;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: var(--dark-grey);
+  padding: 20px;
+}
+
+.nav-right a:hover {
+  color: var(--dark-grey-hover);
+}
+
+/* End Of Navbar */
+
 /* Start Of Splashscreen */
 
 .splashscreen {

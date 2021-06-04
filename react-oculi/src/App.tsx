@@ -1,6 +1,7 @@
 import Carousel from "./Components/Carousel";
 import InfoBox from "./Components/InfoBox";
 import LearnMore from "./Components/LearnMore";
+import Navbar from "./Components/Navbar";
 import Partners from "./Components/Partners";
 import Product from "./Components/Product";
 import Products from "./Components/Products";
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Splashscreen />
       <Partners />
       <InfoBox
