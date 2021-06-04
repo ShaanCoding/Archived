@@ -7,7 +7,7 @@ import texasInstruments from "../images/partners/texasInstruments.png";
 
 const Partners = () => {
   return (
-    <div className="center column">
+    <div className="center column box">
       <div className="our-partners">
         <img src={BaiDu} />
         <img src={Decent} />
