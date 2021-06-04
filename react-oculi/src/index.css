@@ -236,3 +236,40 @@ button:hover {
 }
 
 /* End Of Product */
+
+/* Learn More */
+
+.learn-more {
+  padding: 5vh 10vw;
+  background: var(--rainbow-reversed);
+  border-radius: 30px;
+  text-align: center;
+}
+
+.learn-more > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.learn-more > div {
+  margin: 20px;
+}
+
+.learn-more input,
+textarea {
+  width: 100%;
+  padding: 0px 20px;
+  height: 2.5vh;
+  background-color: var(--white);
+  border: none;
+  border-radius: 30px;
+}
+
+.learn-more textarea {
+  height: 20vh;
+  padding: 20px;
+}
+
+/* End Of Learn More */

@@ -1,5 +1,6 @@
 import Carousel from "./Components/Carousel";
 import InfoBox from "./Components/InfoBox";
+import LearnMore from "./Components/LearnMore";
 import Partners from "./Components/Partners";
 import Product from "./Components/Product";
 import Products from "./Components/Products";
@@ -67,6 +68,7 @@ function App() {
           productPropertiesList={productProperties}
         />
       </Products>
+      <LearnMore />
     </div>
   );
 }
