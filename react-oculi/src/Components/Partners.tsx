@@ -16,7 +16,9 @@ const Partners = () => {
         <img src={taiwania} />
         <img src={texasInstruments} />
       </div>
-      <a href="">View our partners and investors</a>
+      <a className="our-partners-a" href="">
+        View our partners and investors
+      </a>
     </div>
   );
 };
