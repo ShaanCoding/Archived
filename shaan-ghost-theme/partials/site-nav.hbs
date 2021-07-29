@@ -19,7 +19,15 @@
             {{#if @site.twitter}}
                 <a class="social-link social-link-tw" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
             {{/if}}
+
+            <a class="social-link social-link-tw" href="https://github.com/ShaanCoding/" title="Github" target="_blank" rel="noopener">{{> "icons/github"}}</a>
+    
+            <a class="social-link social-link-tw" href="https://www.linkedin.com/in/ShaanCoding/" title="LinkedIn" target="_blank" rel="noopener">{{> "icons/linkedin"}}</a>
+    
+            <a class="social-link social-link-tw" href="#" title="Night Mode" target="_blank" rel="noopener" onclick="ActivateDeactiveNightMode();return false;">{{> "icons/night"}}</a>
         </div>
+
+
         {{#if @labs.subscribers}}
             <a class="subscribe-button" href="#subscribe">Subscribe</a>
         {{else}}
