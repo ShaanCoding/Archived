@@ -1,6 +1,7 @@
 themes=(
 	casper
 	lyra
+	shaan
 )
 
 mkdir -p content/themes/
