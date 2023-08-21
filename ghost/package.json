@@ -9,10 +9,11 @@
     "node": "16.X"
   },
   "dependencies": {
-    "casper": "github:TryGhost/Casper#main",
     "ghost": "5.4.0",
     "ghost-storage-adapter-s3": "^2.8.0",
+    "casper": "github:TryGhost/Casper#main",
     "lyra": "github:TryGhost/lyra#main",
+    "shaan": "git@github.com:ShaanCoding/Shaan-Ghost-Theme#main",
     "mysql2": "2.3.3"
   },
   "scripts": {
