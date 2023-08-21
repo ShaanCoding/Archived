@@ -13,8 +13,25 @@ This example deploys self-hosted version of [Ghost](https://ghost.org/). Interna
 
 - Click the Railway button 👆
 - Add the environment variables
-  - If you do not add the `CLOUDINARY_URL` environment variable, your images/files will not be persisted between deploys.
-  - Add the `MAILGUN_SMTP_LOGIN` and `MAILGUN_SMTP_PASSWORD` variables if you want to invite users to your admin panel or send emails to your subscribers when you publish a new post.
+
+### S3
+
+If you do not add the S3 environment variable, your images/files will not be persisted between deploys.
+
+```
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+AWS_DEFAULT_REGION
+GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET
+GHOST_STORAGE_ADAPTER_S3_ASSET_HOST  // optional
+GHOST_STORAGE_ADAPTER_S3_PATH_PREFIX // optional
+GHOST_STORAGE_ADAPTER_S3_ENDPOINT // optional
+GHOST_STORAGE_ADAPTER_S3_SSE // optional
+GHOST_STORAGE_ADAPTER_S3_FORCE_PATH_STYLE // optional
+GHOST_STORAGE_ADAPTER_S3_ACL // optional
+```
+
+- Add the `MAILGUN_SMTP_LOGIN` and `MAILGUN_SMTP_PASSWORD` variables if you want to invite users to your admin panel or send emails to your subscribers when you publish a new post.
 
 ## 📝 Notes
 
