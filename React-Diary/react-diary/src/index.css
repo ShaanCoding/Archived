@@ -1,0 +1,235 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+
+:root {
+  --light-grey: #f3f3f3;
+  --medium-grey: #a7a7a9;
+  --light-medium-grey: #adafb3;
+  --light-medium-grey-2: #dddcdc;
+  --grey: #424451;
+}
+
+/* Main Components */
+
+body {
+  color: var(--grey);
+  margin: 0;
+  font-family: "Source Sans Pro";
+}
+
+/* Navbar */
+
+.flexbox {
+  display: flex;
+}
+
+.flexbox > div {
+  margin: 20px;
+}
+
+.side-bar {
+  background-color: var(--light-grey);
+  padding: 80px 40px;
+  height: 100%;
+  position: relative;
+}
+
+.side-bar li {
+  list-style-type: none;
+}
+
+.side-bar * {
+  text-decoration: none;
+  color: var(--grey);
+}
+
+.side-bar-icon {
+  cursor: pointer;
+}
+
+#side-bar-exit {
+  top: 40px;
+  right: -25px;
+  position: absolute;
+}
+
+.line-text {
+  display: flex;
+  align-items: center;
+}
+
+.line-text::after {
+  background-color: var(--grey);
+  content: "";
+  flex: 1;
+  margin-left: 1rem;
+  height: 1px;
+}
+
+/* Adding Lines On Divs (Before & After) */
+
+.line-box::before,
+.line-box::after {
+  background-color: var(--grey);
+  content: "";
+  width: 100%;
+  height: 1px;
+  display: block;
+  margin: 30px auto;
+}
+
+/* End of Navbar */
+
+/* Dashboard CSS */
+
+.dashboard {
+  padding: 20px;
+}
+
+.dashboard * {
+  margin: 12.5px 0px;
+}
+
+.dashboard > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.dashboard > h2 {
+  font-size: 30px;
+  font-weight: normal;
+  color: var(--medium-grey);
+}
+
+.dashboard > h3 {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 0px;
+}
+
+.dashboard li {
+  list-style: none;
+}
+
+.todayNotes:nth-child(even) {
+  background-color: var(--light-medium-grey);
+}
+
+.todayNotes:nth-child(odd) {
+  background-color: var(--light-medium-grey-2);
+}
+
+/* End Of Dashboard */
+
+/* My Notes */
+
+.my-notes > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.my-notes table * {
+  padding: 10px;
+}
+
+.my-notes a {
+  color: var(--grey);
+}
+
+/* Finished My Notes */
+
+/* To Do List */
+
+.toDoElement {
+  margin: 20px 0px;
+  background-color: var(--light-grey);
+}
+
+.toDoElement > div {
+  margin: 20px;
+  padding: 20px;
+}
+
+.toDoElement > div > * {
+  margin: 20px;
+}
+
+.toDoElement div:nth-child(even) {
+  background-color: var(--light-medium-grey);
+}
+
+.toDoElement div:nth-child(odd) {
+  background-color: var(--light-medium-grey-2);
+}
+
+/* Finished To Do List */
+
+/* To Do List Page */
+
+.to-do > div > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+.to-do > div {
+  padding: 20px;
+}
+
+/* End To Do List Page */
+
+/* Routed Note */
+
+.routed-note > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+/* End Of Routed Note */
+
+/* New Note Page */
+
+.new-note > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
+
+/* End Of New Note Page */
+
+/* Weather card */
+
+.weather-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-card > div {
+  /* border-color: pink;
+  border-style: solid; */
+  margin: 20px;
+  /* height: 125px; */
+  height: 100%;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.weather-card h1 {
+  font-size: 18pt;
+}
+
+.weather-card p {
+  font-size: 10pt;
+}
+
+.box {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.grey {
+  background-color: var(--light-grey);
+}
+
+.quickNote > h1 {
+  font-size: 64px;
+  font-weight: bold;
+}
