@@ -1,0 +1,43 @@
+﻿<Window x:Name="TicTacToe" x:Class="Tic_Tac_Toe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tic_Tac_Toe"
+        mc:Ignorable="d"
+        Title="Tic Tac Toe" Height="450" Width="800" Icon="Assets/logo.png">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="B00" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="0" Grid.Row="0" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B10" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="1" Grid.Row="0" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B20" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="2" Grid.Row="0" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B01" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="0" Grid.Row="1" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B11" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="1" Grid.Row="1" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B21" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="2" Grid.Row="1" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B02" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="0" Grid.Row="2" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B12" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="1" Grid.Row="2" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+        <Button x:Name="B22" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="75" Click="GridClick" Grid.Column="2" Grid.Row="2" BorderBrush="Black" Foreground="Black" FontSize="48"/>
+
+        <Button x:Name="NewGameButton" Content="New Game" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="46" Click="NewGameButton_Click" Grid.Column="0" Grid.Row="3" BorderBrush="{x:Null}" Foreground="White" Background="#FF232323" FontWeight="Bold"/>
+        <Button x:Name="ResetButton" Content="Reset" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="46" Click="ResetButton_Click" Grid.Column="1" Grid.Row="3" BorderBrush="{x:Null}" Foreground="White" Background="#FF232323" FontWeight="Bold"/>
+        <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Height="46" Click="ExitButton_Click" Grid.Column="2" Grid.Row="3" BorderBrush="{x:Null}" Foreground="White" Background="#FF232323" FontWeight="Bold"/>
+
+        <Label x:Name="XWinLabel" Content="X Win: 0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="0" FontWeight="Bold"/>
+        <Label x:Name="OWinLabel" Content="Y Win: 0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="1" FontWeight="Bold"/>
+        <Label x:Name="DrawsLabel" Content="Draws: 0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="2" FontWeight="Bold"/>
+
+    </Grid>
+</Window>
