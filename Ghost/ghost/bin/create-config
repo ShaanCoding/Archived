@@ -1,0 +1,91 @@
+#!/usr/bin/env node
+
+/*
+  This file creates and writes our production config after the build has been completed.
+  Make changes here if you want to use a different image storage service or email provider.
+*/
+
+var fs = require("fs");
+var path = require("path");
+
+var appRoot = path.join(__dirname, "..");
+var contentPath = path.join(appRoot, "/content/");
+function createConfig() {
+  var fileStorage, storage;
+
+  if (
+    process.env.AWS_ACCESS_KEY_ID &&
+    process.env.AWS_SECRET_ACCESS_KEY &&
+    process.env.AWS_DEFAULT_REGION
+  ) {
+    console.log("AWS Environments Variables found, setting storage to AWS");
+    fileStorage = true;
+    storage = {
+      active: "s3",
+      s3: {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        region: process.env.AWS_DEFAULT_REGION,
+        bucket: process.env.GHOST_STORAGE_ADAPTER_S3_PATH_BUCKET,
+        assetHost: process.env.OPTIONAL_CDN_URL, // YOUR_OPTIONAL_CDN_URL (See note 1 below)
+        signatureVersion: process.env.SIGNATURE_VERSION, // REGION_SIGNATURE_VERSION (See note 5 below),
+        pathPrefix: process.env.OPTIONAL_BUCKET_SUBDIRECTORY, // YOUR_OPTIONAL_BUCKET_SUBDIRECTORY,
+        endpoint: process.env.ENDPOINT_URL, // YOUR_OPTIONAL_ENDPOINT_URL (only needed for 3rd party S3 providers)
+        serverSideEncryption: process.env.OPTIONAL_SEE, // YOUR_OPTIONAL_SSE (See note 2 below)
+        forcePathStyle: true,
+        acl: process.env.OPTIONAL_ACL, // YOUR_OPTIONAL_ACL (See note 4 below)
+      },
+    };
+  } else {
+    console.log(
+      "AWS Environments Variables not found, setting storage to false"
+    );
+    fileStorage = false;
+    storage = {};
+  }
+
+  config = {
+    url: process.env.BLOG_URL,
+    logging: {
+      level: "info",
+      transports: ["stdout"],
+    },
+    mail: {
+      transport: "SMTP",
+      options: {
+        service: "Mailgun",
+        auth: {
+          user: process.env.MAILGUN_SMTP_LOGIN,
+          pass: process.env.MAILGUN_SMTP_PASSWORD,
+        },
+      },
+    },
+    fileStorage: fileStorage,
+    storage: storage,
+    database: {
+      client: "mysql",
+      connection: {
+        host: process.env.MYSQLHOST,
+        port: process.env.MYSQLPORT,
+        user: process.env.MYSQLUSER,
+        password: process.env.MYSQLPASSWORD,
+        database: process.env.MYSQLDATABASE,
+      },
+      pool: { min: 0, max: 5 },
+      debug: false,
+    },
+    server: {
+      host: "0.0.0.0",
+      port: process.env.PORT,
+    },
+    paths: {
+      contentPath: contentPath,
+    },
+  };
+
+  return config;
+}
+
+var configContents = JSON.stringify(createConfig(), null, 2);
+fs.writeFileSync(path.join(appRoot, "config.production.json"), configContents);
+fs.mkdirSync(path.join(contentPath, "/data/"), { recursive: true });
